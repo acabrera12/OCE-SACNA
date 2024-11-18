@@ -23,8 +23,8 @@ public class UpdateManager
     {
         while (is_updating)
         {
-            ConnectManager.Update(); // actualizar ConnectManager
-            SettingsManager.Update(); // actualizar Settings Manager
+            //ConnectManager.Update(); // actualizar ConnectManager
+            //SettingsManager.Update(); // actualizar Settings Manager
 
             foreach (IUpdatable updatable in updatables)
             {
