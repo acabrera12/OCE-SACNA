@@ -6,15 +6,11 @@ namespace OCE_SACNA;
 
 public class SbjModule : Entity
 {
-    public string name { get; set; }
+    public string Name { get; set; }
 
-    public SbjModule()
+    public SbjModule(int id = -1,string name = "")
     {
-        this.name = string.Empty;
-    }
-
-    public SbjModule(string name = "")
-    {
-        this.name = name;
+        this.ID = id;
+        this.Name = name;
     }
 }
