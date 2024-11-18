@@ -38,7 +38,7 @@ public static class AuthManager
     // metodos publicos
     public static bool get_admin_authorization()
     {
-        if (loged_user.rank == RANKING.DEFAULT)
+        if (loged_user.Rank == RANKING.DEFAULT)
         {
             return true;
         }
@@ -86,22 +86,22 @@ public static class AuthManager
     // metodos privados
     private static CODES validate_user(User user)
     {
-        if (user.id <= -1)
+        if (!Entity.is_valid_id(user.ID))
         {
             return CODES.INVALID_USER_ID;
         }
 
-        if (user.rank == RANKING.UNASSIGNED)
+        if (user.Rank == RANKING.UNASSIGNED)
         {
             return CODES.INVALID_USER_RANK;
         }
 
-        if (user.status == USER_STATUS.UNASSIGNED)
+        if (user.Status == USER_STATUS.UNASSIGNED)
         {
             return CODES.INVALID_USER_STATUS;
         }
 
-        if (user.username == String.Empty)
+        if (user.Username == String.Empty)
         {
             return CODES.INVALID_USERNAME;
         }
