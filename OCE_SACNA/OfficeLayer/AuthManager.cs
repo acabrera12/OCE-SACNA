@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EntityLayer;
 
 namespace OfficeLayer
 {
     public static class AuthManager
     {
-        private User LoggedUSer;
+        private static User LogedUser = new User();
         public enum RANKING
         {
             NONE = 0,
@@ -34,6 +30,77 @@ namespace OfficeLayer
             INVALID_USER_STATE = 5,
             LOGGIN_ERR = 6,
             LOGOFF_ERR = 7
+        }
+        public static ERR_CODES Login(User user)
+        {
+            ERR_CODES result = ValidateUser(user);
+
+            if (result != ERR_CODES.SUSSCES)
+            {
+                Console.WriteLine("Login error: ", result);
+                return result;
+            }
+
+            LogedUser = user;
+
+            Console.WriteLine("Login sussces");
+
+            return ERR_CODES.SUSSCES;
+        }
+        public static ERR_CODES Logoff()
+        {
+            ERR_CODES result = ValidateUser(LogedUser);
+
+            if (result != ERR_CODES.SUSSCES)
+            {
+                Console.WriteLine("Logoff error: ", result);
+                return result;
+            }
+
+            LogedUser = new User();
+
+            Console.WriteLine("Logoff sussces");
+
+            return ERR_CODES.SUSSCES;
+        }
+
+        public static bool GetAdminAuthorization()
+        {
+            if (LogedUser.Rank == RANKING.ADMIN || LogedUser.Rank == RANKING.DEFAULT)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private static ERR_CODES ValidateUser(User user)
+        {
+            if (user.ID > Entity.MaxID || user.ID > 0)
+            {
+                return ERR_CODES.INVALID_USER_ID;
+            }
+
+            if (user.Username == String.Empty)
+            {
+                return ERR_CODES.INVALID_USER_NAME;
+            }
+
+            if (user.Password == String.Empty)
+            {
+                return ERR_CODES.LOGGIN_ERR;
+            }
+
+            if (user.Rank == RANKING.NONE)
+            {
+                return ERR_CODES.INVALID_USER_RANK;
+            }
+
+            if (user.State == USER_STATE.NONE)
+            {
+                return ERR_CODES.INVALID_USER_STATE;
+            }
+
+            return ERR_CODES.SUSSCES;
         }
     }
 }
