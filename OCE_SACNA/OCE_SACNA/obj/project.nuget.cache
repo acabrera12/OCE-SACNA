@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EPW+NrHfSbI=",
+  "dgSpecHash": "kI4UwmFkahc=",
   "success": true,
   "projectFilePath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OCE_SACNA\\OCE_SACNA.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Yoscar\\.nuget\\packages\\fontawesome.sharp\\6.6.0\\fontawesome.sharp.6.6.0.nupkg.sha512"
+  ],
   "logs": []
 }

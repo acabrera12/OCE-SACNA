@@ -1,0 +1,15 @@
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\bin\Debug\net8.0\OfficeLayer.deps.json
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\bin\Debug\net8.0\OfficeLayer.dll
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\bin\Debug\net8.0\OfficeLayer.pdb
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\bin\Debug\net8.0\EntityLayer.dll
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\bin\Debug\net8.0\EntityLayer.pdb
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\OfficeLayer.csproj.AssemblyReference.cache
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\OfficeLayer.GeneratedMSBuildEditorConfig.editorconfig
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\OfficeLayer.AssemblyInfoInputs.cache
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\OfficeLayer.AssemblyInfo.cs
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\OfficeLayer.csproj.CoreCompileInputs.cache
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\OfficeLa.078BC426.Up2Date
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\OfficeLayer.dll
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\refint\OfficeLayer.dll
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\OfficeLayer.pdb
+F:\Documentos\OCESACNA\OCE_SACNA\OfficeLayer\obj\Debug\net8.0\ref\OfficeLayer.dll

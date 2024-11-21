@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EntityLayer
+﻿namespace EntityLayer
 {
     public class Representative : Entity
     {
         public string FullName = string.Empty;
         public string PhoneNumber = string.Empty;
         public string Email = string.Empty;
-        public Representative()
+        public Representative(int ID = -1, string FullName = "", string PhoneNumber = "", string Email = "")
         {
-
+            this.ID = ID;
+            this.FullName = FullName;
+            this.PhoneNumber = PhoneNumber;
+            this.PhoneNumber = PhoneNumber;
         }
     }
 }

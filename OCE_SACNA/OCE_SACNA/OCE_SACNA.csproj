@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
+    <ProjectReference Include="..\OfficeLayer\OfficeLayer.csproj" />
   </ItemGroup>
 
 </Project>

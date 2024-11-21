@@ -1,0 +1,21 @@
+﻿using EntityLayer.Abstract;
+
+namespace EntityLayer
+{
+    public class Subject : Entity
+    {
+        public string Name { get; set; }
+        public SbjModule Module { get; set; }
+        public Teacher Teacher { get; set; }
+        public Course Course { get; set; }
+
+        public Subject(SbjModule module, Teacher teacher, Course course, int ID = -1, string name = "")
+        {
+            this.ID = ID;
+            this.Module = module;
+            this.Name = name;
+            this.Teacher = teacher;
+            this.Course = course;
+        }
+    }
+}

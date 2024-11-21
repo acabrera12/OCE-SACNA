@@ -1,0 +1,11 @@
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\bin\Debug\net8.0\EntityLayer.deps.json
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\bin\Debug\net8.0\EntityLayer.dll
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\bin\Debug\net8.0\EntityLayer.pdb
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\obj\Debug\net8.0\EntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\obj\Debug\net8.0\EntityLayer.AssemblyInfoInputs.cache
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\obj\Debug\net8.0\EntityLayer.AssemblyInfo.cs
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\obj\Debug\net8.0\EntityLayer.csproj.CoreCompileInputs.cache
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\obj\Debug\net8.0\EntityLayer.dll
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\obj\Debug\net8.0\refint\EntityLayer.dll
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\obj\Debug\net8.0\EntityLayer.pdb
+F:\Documentos\OCESACNA\OCE_SACNA\EntityLayer\obj\Debug\net8.0\ref\EntityLayer.dll
