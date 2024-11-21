@@ -17,7 +17,7 @@ namespace OCE_SACNA
 
         static async Task Process()
         {
-            await ProcessManager.StartProcess();
+            await ProcessManager.StartProcessing();
         }
     }
 }

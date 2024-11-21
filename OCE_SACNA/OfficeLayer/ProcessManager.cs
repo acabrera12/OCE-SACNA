@@ -8,7 +8,7 @@ namespace OfficeLayer
         private int ProcessDelay = 33; // delay in ms
         private bool IsProcessing = true;
 
-        public async Task StartProcess()
+        public async Task StartProcessing()
         {
             IsProcessing = true;
 
