@@ -1,13 +1,12 @@
-using OfficeLayer;
+using Engine;
+using Engine.Core;
 
 namespace OCE_SACNA
 {
     internal static class Program
     {
-        private static ProcessManager ProcessManager = new ProcessManager();
-
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new AuthMenu());
@@ -15,9 +14,9 @@ namespace OCE_SACNA
             Process();
         }
 
-        static async Task Process()
+        internal static void Process()
         {
-            await ProcessManager.StartProcessing();
+            Engine.Engine.StartProcessing();
         }
     }
 }

@@ -1,0 +1,12 @@
+F:\Documentos\CS-OCE-SACNA\Engine\bin\Debug\net8.0\Engine.deps.json
+F:\Documentos\CS-OCE-SACNA\Engine\bin\Debug\net8.0\Engine.dll
+F:\Documentos\CS-OCE-SACNA\Engine\bin\Debug\net8.0\Engine.pdb
+F:\Documentos\CS-OCE-SACNA\Engine\obj\Debug\net8.0\Engine.GeneratedMSBuildEditorConfig.editorconfig
+F:\Documentos\CS-OCE-SACNA\Engine\obj\Debug\net8.0\Engine.AssemblyInfoInputs.cache
+F:\Documentos\CS-OCE-SACNA\Engine\obj\Debug\net8.0\Engine.AssemblyInfo.cs
+F:\Documentos\CS-OCE-SACNA\Engine\obj\Debug\net8.0\Engine.csproj.CoreCompileInputs.cache
+F:\Documentos\CS-OCE-SACNA\Engine\obj\Debug\net8.0\Engine.sourcelink.json
+F:\Documentos\CS-OCE-SACNA\Engine\obj\Debug\net8.0\Engine.dll
+F:\Documentos\CS-OCE-SACNA\Engine\obj\Debug\net8.0\refint\Engine.dll
+F:\Documentos\CS-OCE-SACNA\Engine\obj\Debug\net8.0\Engine.pdb
+F:\Documentos\CS-OCE-SACNA\Engine\obj\Debug\net8.0\ref\Engine.dll

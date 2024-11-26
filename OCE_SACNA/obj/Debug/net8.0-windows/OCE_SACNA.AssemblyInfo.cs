@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OCE_SACNA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+adcd7bce2fc59622cb9647f6f057c7e44e916a86")]
 [assembly: System.Reflection.AssemblyProductAttribute("OCE_SACNA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OCE_SACNA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

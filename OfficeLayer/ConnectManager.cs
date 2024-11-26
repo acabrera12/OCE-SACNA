@@ -1,10 +1,11 @@
-using EntityLayer;
+using Engine;
 
 namespace OfficeLayer
 {
     public static class ConnectManager
     {
         private static List<Connection> RequestQueue = new List<Connection>();
+
     }
 
     public class Connection

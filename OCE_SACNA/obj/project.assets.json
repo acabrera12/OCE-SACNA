@@ -14,21 +14,21 @@
           "Microsoft.WindowsDesktop.App"
         ]
       },
-      "EntityLayer/1.0.0": {
+      "Engine/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "compile": {
-          "bin/placeholder/EntityLayer.dll": {}
+          "bin/placeholder/Engine.dll": {}
         },
         "runtime": {
-          "bin/placeholder/EntityLayer.dll": {}
+          "bin/placeholder/Engine.dll": {}
         }
       },
       "OfficeLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "EntityLayer": "1.0.0"
+          "Engine": "1.0.0"
         },
         "compile": {
           "bin/placeholder/OfficeLayer.dll": {}
@@ -57,10 +57,10 @@
         "lib/netcoreapp3.1/FontAwesome.Sharp.dll"
       ]
     },
-    "EntityLayer/1.0.0": {
+    "Engine/1.0.0": {
       "type": "project",
-      "path": "../EntityLayer/EntityLayer.csproj",
-      "msbuildProject": "../EntityLayer/EntityLayer.csproj"
+      "path": "../Engine/Engine.csproj",
+      "msbuildProject": "../Engine/Engine.csproj"
     },
     "OfficeLayer/1.0.0": {
       "type": "project",
@@ -70,7 +70,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "EntityLayer >= 1.0.0",
+      "Engine >= 1.0.0",
       "FontAwesome.Sharp >= 6.6.0",
       "OfficeLayer >= 1.0.0"
     ]
@@ -82,11 +82,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OCE_SACNA\\OCE_SACNA.csproj",
+      "projectUniqueName": "F:\\Documentos\\CS-OCE-SACNA\\OCE_SACNA\\OCE_SACNA.csproj",
       "projectName": "OCE_SACNA",
-      "projectPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OCE_SACNA\\OCE_SACNA.csproj",
+      "projectPath": "F:\\Documentos\\CS-OCE-SACNA\\OCE_SACNA\\OCE_SACNA.csproj",
       "packagesPath": "C:\\Users\\Yoscar\\.nuget\\packages\\",
-      "outputPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OCE_SACNA\\obj\\",
+      "outputPath": "F:\\Documentos\\CS-OCE-SACNA\\OCE_SACNA\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -107,11 +107,11 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\EntityLayer.csproj": {
-              "projectPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\EntityLayer.csproj"
+            "F:\\Documentos\\CS-OCE-SACNA\\Engine\\Engine.csproj": {
+              "projectPath": "F:\\Documentos\\CS-OCE-SACNA\\Engine\\Engine.csproj"
             },
-            "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OfficeLayer\\OfficeLayer.csproj": {
-              "projectPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OfficeLayer\\OfficeLayer.csproj"
+            "F:\\Documentos\\CS-OCE-SACNA\\OfficeLayer\\OfficeLayer.csproj": {
+              "projectPath": "F:\\Documentos\\CS-OCE-SACNA\\OfficeLayer\\OfficeLayer.csproj"
             }
           }
         }

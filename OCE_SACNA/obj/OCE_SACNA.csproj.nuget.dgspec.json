@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OCE_SACNA\\OCE_SACNA.csproj": {}
+    "F:\\Documentos\\CS-OCE-SACNA\\OCE_SACNA\\OCE_SACNA.csproj": {}
   },
   "projects": {
-    "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\EntityLayer.csproj": {
+    "F:\\Documentos\\CS-OCE-SACNA\\Engine\\Engine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\EntityLayer.csproj",
-        "projectName": "EntityLayer",
-        "projectPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\EntityLayer.csproj",
+        "projectUniqueName": "F:\\Documentos\\CS-OCE-SACNA\\Engine\\Engine.csproj",
+        "projectName": "Engine",
+        "projectPath": "F:\\Documentos\\CS-OCE-SACNA\\Engine\\Engine.csproj",
         "packagesPath": "C:\\Users\\Yoscar\\.nuget\\packages\\",
-        "outputPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\obj\\",
+        "outputPath": "F:\\Documentos\\CS-OCE-SACNA\\Engine\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -69,14 +69,14 @@
         }
       }
     },
-    "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OCE_SACNA\\OCE_SACNA.csproj": {
+    "F:\\Documentos\\CS-OCE-SACNA\\OCE_SACNA\\OCE_SACNA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OCE_SACNA\\OCE_SACNA.csproj",
+        "projectUniqueName": "F:\\Documentos\\CS-OCE-SACNA\\OCE_SACNA\\OCE_SACNA.csproj",
         "projectName": "OCE_SACNA",
-        "projectPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OCE_SACNA\\OCE_SACNA.csproj",
+        "projectPath": "F:\\Documentos\\CS-OCE-SACNA\\OCE_SACNA\\OCE_SACNA.csproj",
         "packagesPath": "C:\\Users\\Yoscar\\.nuget\\packages\\",
-        "outputPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OCE_SACNA\\obj\\",
+        "outputPath": "F:\\Documentos\\CS-OCE-SACNA\\OCE_SACNA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -97,11 +97,11 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\EntityLayer.csproj": {
-                "projectPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\EntityLayer.csproj"
+              "F:\\Documentos\\CS-OCE-SACNA\\Engine\\Engine.csproj": {
+                "projectPath": "F:\\Documentos\\CS-OCE-SACNA\\Engine\\Engine.csproj"
               },
-              "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OfficeLayer\\OfficeLayer.csproj": {
-                "projectPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OfficeLayer\\OfficeLayer.csproj"
+              "F:\\Documentos\\CS-OCE-SACNA\\OfficeLayer\\OfficeLayer.csproj": {
+                "projectPath": "F:\\Documentos\\CS-OCE-SACNA\\OfficeLayer\\OfficeLayer.csproj"
               }
             }
           }
@@ -150,14 +150,14 @@
         }
       }
     },
-    "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OfficeLayer\\OfficeLayer.csproj": {
+    "F:\\Documentos\\CS-OCE-SACNA\\OfficeLayer\\OfficeLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OfficeLayer\\OfficeLayer.csproj",
+        "projectUniqueName": "F:\\Documentos\\CS-OCE-SACNA\\OfficeLayer\\OfficeLayer.csproj",
         "projectName": "OfficeLayer",
-        "projectPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OfficeLayer\\OfficeLayer.csproj",
+        "projectPath": "F:\\Documentos\\CS-OCE-SACNA\\OfficeLayer\\OfficeLayer.csproj",
         "packagesPath": "C:\\Users\\Yoscar\\.nuget\\packages\\",
-        "outputPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\OfficeLayer\\obj\\",
+        "outputPath": "F:\\Documentos\\CS-OCE-SACNA\\OfficeLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -178,8 +178,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\EntityLayer.csproj": {
-                "projectPath": "F:\\Documentos\\OCESACNA\\OCE_SACNA\\EntityLayer\\EntityLayer.csproj"
+              "F:\\Documentos\\CS-OCE-SACNA\\Engine\\Engine.csproj": {
+                "projectPath": "F:\\Documentos\\CS-OCE-SACNA\\Engine\\Engine.csproj"
               }
             }
           }
