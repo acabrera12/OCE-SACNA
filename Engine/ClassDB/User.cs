@@ -24,7 +24,7 @@ namespace Engine.ClassDB
             INACTIVE = 2
         }
 
-        public User(string username = "", string password = "", RANKING rank = RANKING.NONE, USER_STATE state = USER_STATE.NONE, int id = -1)
+        public User(string username, string password, int id = -1, RANKING rank = RANKING.NONE, USER_STATE state = USER_STATE.NONE)
         {
             this.ID = id;
             this.Username = username;

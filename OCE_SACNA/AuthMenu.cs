@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,14 +29,39 @@ namespace OCE_SACNA
             string username = UsernameBox.Text;
             string password = PasswordBox.Text;
 
-            User user = new User(username, password, AuthManager.RANKING.USER, AuthManager.USER_STATE.ACTIVE);
+            User user = new User(username, password);
 
-            AuthManager.ERR_CODES response = AuthManager.Login(user);
+            AuthMgr.ResultCode response = AuthManager.Login(user);
 
-            if (response != AuthManager.ERR_CODES.SUSSCES)
+            if (response != AuthMgr.ResultCode.SUSSCES)
             {
-                MessageBox.Show($"En sistema ha regresado un error {response}");
+                if (response == AuthMgr.ResultCode.USER_NAME_EMPTY)
+                {
+                    MessageBox.Show("Por favor, ingrese un usuario");
+                }
+                else if (response == AuthMgr.ResultCode.USER_PASSWORD_EMPTY)
+                {
+                    MessageBox.Show("Por favor, ingrese una contraseña");
+                }
+                else if (response == AuthMgr.ResultCode.INCORRECT_PASSWORD)
+                {
+                    MessageBox.Show("La contraseña es incorrecta");
+                }
+                else if (response == AuthMgr.ResultCode.DISABLED_USER)
+                {
+                    MessageBox.Show("Usuario desactivado, póngase en contacto con su administrador");
+                }
+                else
+                {
+                    MessageBox.Show($"El sistema ha devuelto un error imprevisto: '{result}'");
+                }
             }
+
+            // MenuInicio MenuInicio = new MenuInicio();
+
+            this.Hide();
+
+            // MenuInico.Show();
         }
     }
 }

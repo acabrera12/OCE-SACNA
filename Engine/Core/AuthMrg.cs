@@ -23,16 +23,36 @@ namespace Engine.Core
 
         public static ResultCode TryLogginAs(User user)
         {
-            /*conectar a la base de datos, obtener coincidencias
-            establecer {user} si se encuentra
-            si no, return ResultCode.UNREGISTETED_USER*/
-            
             ResultCode result = ValidateUser(user);
 
             if (result != ResultCode.SUSSCES)
             {
-                Console.WriteLine($"Error trying to verify user, error: {result}");
                 return result;
+            }
+
+            /* Conectar a la base de datos para obtener la información,
+            verificar que sea correcto (return {error} si no). si exite la info,
+            crear {new User()} con la info, establecer user a {new user ()}
+            */
+
+            if (user.ID < 0 || user.ID > User.MaxID)
+            {
+                return ResultCode.INVALID_USER_ID;
+            }
+
+            if (user.Rank == User.RANKING.NONE)
+            {
+                return ResultCode.INVALID_USER_RANK;
+            }
+
+            if (user.State == User.USER_STATE.NONE)
+            {
+                return ResultCode.INVALID_USER_STATE;
+            }
+
+            if (user.State == User.USER_STATE.INACTIVE)
+            {
+                return ResultCode.DISABLED_USER;
             }
 
             LoggedUser = user;
@@ -71,21 +91,6 @@ namespace Engine.Core
 
         private static ResultCode ValidateUser(User user)
         {
-            if (user.ID > User.MaxID || user.ID < 0)
-            {
-                return ResultCode.INVALID_USER_ID;
-            }
-
-            if (user.Rank == User.RANKING.NONE)
-            {
-                return ResultCode.INVALID_USER_RANK;
-            }
-
-            if (user.State == User.USER_STATE.NONE)
-            {
-                return ResultCode.INVALID_USER_STATE;
-            }
-
             if (user.Username == String.Empty)
             {
                 return ResultCode.USER_NAME_EMPTY;

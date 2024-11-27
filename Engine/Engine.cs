@@ -7,9 +7,21 @@ namespace Engine
 {
     public static class EngineController
     {
+        public static Version3 Version = new Version3(0,1,2);
+
         public static void Initialize()
         {
 
+        }
+
+        public static Version3 GetEngineVersion()
+        {
+            return Version;
+        }
+
+        public static string GetEngineVersionAsString()
+        {
+            return Version.GetVersionAsString();
         }
     }
 
