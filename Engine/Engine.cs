@@ -33,6 +33,19 @@ namespace Engine
 
     public static class AuthMgrController
     {
-        
+        public static AuthMgr.ResultCode Loggin(User user)
+        {
+            return AuthMgr.TryLogginAs(user);
+        }
+
+        public static AuthMgr.ResultCode Logout()
+        {
+            return AuthMgr.Logoff();
+        }
+
+        public static bool GetAdminAuthorization()
+        {
+            return AuthMgr.GetAdministratorAuthorization();
+        }
     }
 }
