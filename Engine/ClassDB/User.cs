@@ -1,3 +1,9 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata;
+using System.Text;
+using System.Threading.Tasks;
 using Engine.ClassDB.Asbtract;
 
 namespace Engine.ClassDB
@@ -8,13 +14,13 @@ namespace Engine.ClassDB
         public string Password { get; set; }
         public RANKING Rank { get; set; }
         public USER_STATE State { get; set; }
-
+        
         public enum RANKING
         {
-            NONE = 0,
-            USER = 1,
-            ADMIN = 2,
-            DEFAULT = 3
+                NONE = 0,
+                DEFAULT = 1,
+                USER = 2,
+                ADMIN = 3
         }
 
         public enum USER_STATE
@@ -24,13 +30,22 @@ namespace Engine.ClassDB
             INACTIVE = 2
         }
 
-        public User(string username, string password, int id = -1, RANKING rank = RANKING.NONE, USER_STATE state = USER_STATE.NONE)
+        public User(string username, string password, RANKING rank = RANKING.NONE, USER_STATE state = USER_STATE.NONE, int id = -1)
         {
             this.ID = id;
             this.Username = username;
             this.Password = password;
             this.Rank = rank;
             this.State = state;
+        }
+
+        public User()
+        {
+            this.ID = -1;
+            this.Username = string.Empty;
+            this.Password = string.Empty;
+            this.Rank = RANKING.NONE;
+            this.State = USER_STATE.NONE;
         }
     }
 }
