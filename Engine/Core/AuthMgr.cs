@@ -1,38 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using Engine.ClassDB;
 
 namespace Engine.Core
 {
     internal static class AuthMgr
     {
-        private static User LoggedUSer = new User();
+        private static User LoggedUser = new User();
 
         public enum ResultCode
         {
-            SUCCESS = 0,
-            USER_NAME_EMPTY = 1,
-            USER_PASSWORD_EMPTY = 2,
-            INVALID_USER_ID = 3,
-            INVALID_USER_RANK = 4,
-            INVALID_USER_STATE = 5,
-            DISABLED_USER = 6,
-            UNKNOW_ERROR = 7
+            SUSSCES = 0,
+            INVALID_USER_ID = 1,
+            INVALID_USER_RANK = 2,
+            INVALID_USER_STATE = 3,
+            USER_NAME_EMPTY = 4,
+            USER_PASSWORD_EMPTY = 5,
+            UNREGISTERED_USER = 6,
+            UNKNOWN_ERROR = 7,
+            INCORRECT_PASSWORD = 8,
+            DISABLED_USER = 9
         }
 
-        public static ResultCode Login(User user)
+        public static ResultCode TryLogginAs(User user)
         {
             ResultCode result = ValidateUser(user);
 
-            if (result != ResultCode.SUCCESS)
+            if (result != ResultCode.SUSSCES)
             {
                 return result;
             }
 
-            // conexion a la base de datos
+            /* Conectar a la base de datos para obtener la información,
+            verificar que sea correcto (return {error} si no). si exite la info,
+            crear {new User()} con la info, establecer user a {new user ()}
+            */
 
             if (user.ID < 0 || user.ID > User.MaxID)
             {
@@ -54,7 +55,38 @@ namespace Engine.Core
                 return ResultCode.DISABLED_USER;
             }
 
-            return ResultCode.SUCCESS;
+            LoggedUser = user;
+
+            Console.WriteLine("Login successful");
+
+            return ResultCode.SUSSCES;
+        }
+
+        public static ResultCode Logout()
+        {
+            ResultCode result = ValidateUser(LoggedUser);
+
+            if (result != ResultCode.SUSSCES)
+            {
+                Console.WriteLine($"Error trying to log out, error: {result}");
+                return result;
+            }
+
+            LoggedUser = new User();
+
+            Console.WriteLine("Successful logout");
+
+            return ResultCode.SUSSCES;
+        }
+
+        public static bool GetAdministratorAuthorization()
+        {
+            if (LoggedUser.Rank != User.RANKING.ADMIN || LoggedUser.Rank != User.Rank.DEFAULT)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private static ResultCode ValidateUser(User user)
@@ -69,7 +101,7 @@ namespace Engine.Core
                 return ResultCode.USER_PASSWORD_EMPTY;
             }
 
-            return ResultCode.SUCCESS;
+            return ResultCode.SUSSCES;
         }
     }
 }
