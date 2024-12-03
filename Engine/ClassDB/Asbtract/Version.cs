@@ -14,7 +14,7 @@ namespace Engine.ClassDB.Asbtract
         public string GetVersionAsString()
         {
             string value = $"{this.Version}.{this.SubVersion}";
-            return 
+            return value;
         }
     }
 
@@ -22,18 +22,19 @@ namespace Engine.ClassDB.Asbtract
     {
         public int Version { get; set; }
         public int SubVersion { get; set; }
-        public int ModVersion { get; set; }
+        public int Iteration { get; set; }
 
-        public Version3(int version, int subversion, int modversion)
+        public Version3(int version, int subversion, int iteration)
         {
             this.Version = version;
             this.SubVersion = subversion;
-            this.ModVersion = modversion;
+            this.Iteration = iteration;
         }
 
         public string GetVersionAsString()
         {
-            string value = $"{this.Version}.{this.SubVersion}.{this.ModVersion}"
+            string value = $"{this.Version}.{this.SubVersion}.{this.Iteration}";
+            return value;
         }
     }
 }

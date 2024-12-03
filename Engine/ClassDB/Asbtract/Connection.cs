@@ -1,6 +1,6 @@
 namespace Engine.ClassDB.Asbtract
 {
-    public class Connnection
+    public class Connection
     {
         public string Command { get; set; }
         public string Data { get; set; }
@@ -8,7 +8,7 @@ namespace Engine.ClassDB.Asbtract
         public Connection(string command, string data)
         {
             this.Command = command;
-            this.data = data;
+            this.Data = data;
         }
     }
 }

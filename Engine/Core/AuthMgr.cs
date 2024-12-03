@@ -3,7 +3,7 @@ using Engine.ClassDB;
 
 namespace Engine.Core
 {
-    internal static class AuthMgr
+    public static class AuthMgr
     {
         private static User LoggedUser = new User();
 
@@ -81,7 +81,7 @@ namespace Engine.Core
 
         public static bool GetAdministratorAuthorization()
         {
-            if (LoggedUser.Rank != User.RANKING.ADMIN || LoggedUser.Rank != User.Rank.DEFAULT)
+            if (LoggedUser.Rank != User.RANKING.ADMIN || LoggedUser.Rank != User.RANKING.DEFAULT)
             {
                 return false;
             }

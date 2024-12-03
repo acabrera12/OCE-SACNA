@@ -37,7 +37,7 @@ namespace Engine
             await Processor.StartProcessing();
         }
 
-        public static void AddProcessableItem(IProcesable item)
+        public static void AddProcessableItem(IProcessable item)
         {
             Processor.AddProcessable(item);
         }
@@ -45,14 +45,14 @@ namespace Engine
 
     public static class AuthMgrController
     {
-        public static AuthMgr.ResultCode Loggin(User user)
+        public static AuthMgr.ResultCode Login(User user)
         {
             return AuthMgr.TryLogginAs(user);
         }
 
         public static AuthMgr.ResultCode Logout()
         {
-            return AuthMgr.Logoff();
+            return AuthMgr.Logout();
         }
 
         public static bool GetAdminAuthorization()
