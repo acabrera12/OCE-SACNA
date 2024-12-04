@@ -1,6 +1,27 @@
 namespace Engine.ClassDB.Asbtract
 {
-    public class Version2
+    internal class VersionBase
+    {
+        private string ConstructVersion(params int[] args)
+        {
+            string value = String.Empty;
+            int index = 0;
+
+            foreach (int arg in args)
+            {
+                if (index != args.Count() - 1)
+                {
+                    value += $"{arg}.";
+                } else {
+                    value += $"{arg}";
+                }
+            }
+
+            return value;
+        }
+    }
+
+    public class Version2 : VersionBase
     {
         public int Version { get; set; }
         public int SubVersion { get; set; }
@@ -13,12 +34,11 @@ namespace Engine.ClassDB.Asbtract
 
         public string GetVersionAsString()
         {
-            string value = $"{this.Version}.{this.SubVersion}";
-            return value;
+            return ConstructVersion(this.Version, this.SubVersion);
         }
     }
 
-    public class Version3
+    public class Version3 : VersionBase
     {
         public int Version { get; set; }
         public int SubVersion { get; set; }
@@ -33,8 +53,7 @@ namespace Engine.ClassDB.Asbtract
 
         public string GetVersionAsString()
         {
-            string value = $"{this.Version}.{this.SubVersion}.{this.Iteration}";
-            return value;
+            return ConstructVersion(this.Version, this.SubVersion, this.Iteration);
         }
     }
 }
