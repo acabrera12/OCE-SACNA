@@ -1,59 +1,68 @@
 namespace Engine.ClassDB.Asbtract
 {
-    internal class VersionBase
+    public class Version
     {
-        private string ConstructVersion(params int[] args)
+        protected string ConstructVer(params int[] args)
         {
-            string value = String.Empty;
+            string value = string.Empty;
             int index = 0;
 
-            foreach (int arg in args)
+            foreach (int num in args)
             {
                 if (index != args.Count() - 1)
                 {
-                    value += $"{arg}.";
-                } else {
-                    value += $"{arg}";
+                    value += $"{num}.";
                 }
+                else
+                {
+                    value += $"{num}";
+                }
+                index++;
             }
 
             return value;
         }
+
+        public virtual string GetAsText()
+        {
+            return String.Empty;
+        }
     }
 
-    public class Version2 : VersionBase
+    public class Version2 : Version
     {
         public int Version { get; set; }
         public int SubVersion { get; set; }
+
+        public override string GetAsText()
+        {
+            return ConstructVer(Version, SubVersion);
+        }
 
         public Version2(int version, int subversion)
         {
             this.Version = version;
             this.SubVersion = subversion;
         }
-
-        public string GetVersionAsString()
-        {
-            return ConstructVersion(this.Version, this.SubVersion);
-        }
     }
 
-    public class Version3 : VersionBase
+
+    public class Version3 : Version
     {
         public int Version { get; set; }
         public int SubVersion { get; set; }
-        public int Iteration { get; set; }
+        public int Modification { get; set; }
 
-        public Version3(int version, int subversion, int iteration)
+        public override string GetAsText()
+        {
+            return ConstructVer(Version, SubVersion, Modification);
+        }
+
+        public Version3(int version, int subversion, int modification)
         {
             this.Version = version;
             this.SubVersion = subversion;
-            this.Iteration = iteration;
-        }
-
-        public string GetVersionAsString()
-        {
-            return ConstructVersion(this.Version, this.SubVersion, this.Iteration);
+            this.Modification = modification;
         }
     }
 }

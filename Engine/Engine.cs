@@ -7,7 +7,7 @@ namespace Engine
 {
     public static class EngineController
     {
-        public static Version3 Version = new Version3(0,1,2);
+        public static Version3 Version = new Version3(0,1,8);
 
         public static void Initialize()
         {
@@ -19,9 +19,9 @@ namespace Engine
             return Version;
         }
 
-        public static string GetEngineVersionAsString()
+        public static string GetEngineVersionAsText()
         {
-            return Version.GetVersionAsString();
+            return Version.GetAsText();
         }
     }
 
