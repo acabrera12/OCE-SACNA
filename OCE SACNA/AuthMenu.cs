@@ -54,7 +54,11 @@ namespace OCE_SACNA
                 return;
             }
 
-            
+            MainMenu MainMenu = new MainMenu();
+
+            this.Hide();
+
+            MainMenu.Show();
         }
     }
 }
