@@ -42,22 +42,4 @@ namespace Engine
             Processor.AddProcessable(item);
         }
     }
-
-    public static class AuthMgrController
-    {
-        public static AuthMgr.ResultCode Login(User user)
-        {
-            return AuthMgr.TryLogginAs(user);
-        }
-
-        public static AuthMgr.ResultCode Logout()
-        {
-            return AuthMgr.Logout();
-        }
-
-        public static bool GetAdminAuthorization()
-        {
-            return AuthMgr.GetAdministratorAuthorization();
-        }
-    }
 }
