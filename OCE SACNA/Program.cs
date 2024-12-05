@@ -4,7 +4,7 @@ namespace OCE_SACNA
 {
     internal static class Program
     {
-        public static Version3 = new Version3(0,0,7);
+        public static Version3 Version = new Version3(0,0,9);
 
         /// <summary>
         ///  The main entry point for the application.
