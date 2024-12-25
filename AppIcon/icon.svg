@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="icon@px.png"
+   inkscape:export-xdpi="192"
+   inkscape:export-ydpi="192"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="1.9882812"
+     inkscape:cx="113.41454"
+     inkscape:cy="146.1061"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="102.09823"
+       y="166.47545"
+       width="3.5206288"
+       height="48.282909"
+       id="rect18" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect1"
+       is_visible="true"
+       lpeversion="1" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="226.9161"
+       height="99.05184"
+       patternTransform="translate(11.498002,50.295654)"
+       preserveAspectRatio="xMidYMid"
+       id="pattern2"
+       inkscape:label="pattern2">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:133.333px;font-family:'Cascadia Code';-inkscape-font-specification:'Cascadia Code';fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;paint-order:markers stroke fill"
+         x="-2.9479041"
+         y="-70.916481"
+         id="text1"><tspan
+           sodipodi:role="line"
+           id="tspan1"
+           x="-2.9479041"
+           y="-70.916481" /><tspan
+           sodipodi:role="line"
+           id="tspan2"
+           x="-2.9479041"
+           y="95.749756">OCE</tspan></text>
+    </pattern>
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="104"
+       height="104"
+       patternTransform="translate(-1.9567795,36.770134)"
+       preserveAspectRatio="xMidYMid"
+       id="pattern3"
+       inkscape:label="pattern3">
+      <circle
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;paint-order:markers stroke fill"
+         id="path3"
+         cx="52"
+         cy="52"
+         r="50" />
+    </pattern>
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="bg"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke-width:4"
+       id="path2"
+       inkscape:flatsided="true"
+       sodipodi:sides="6"
+       sodipodi:cx="19.915684"
+       sodipodi:cy="83.930382"
+       sodipodi:r1="112.14034"
+       sodipodi:r2="106.89724"
+       sodipodi:arg1="0.52359878"
+       sodipodi:arg2="1.0471976"
+       inkscape:rounded="0.128"
+       inkscape:randomized="0"
+       d="m 117.03207,140.00055 c -7.17698,12.4309 -82.762423,56.07017 -97.116387,56.07017 -14.3539636,0 -89.939403,-43.63927 -97.116385,-56.07017 -7.176982,-12.43089 -7.176982,-99.709443 0,-112.14034 7.176982,-12.430897 82.7624224,-56.070171 97.116386,-56.070171 14.353964,0 89.939406,43.639274 97.116386,56.070172 7.17698,12.430897 7.17698,99.709449 0,112.140339 z"
+       transform="matrix(1.0200171,0,0,1.0200171,107.68566,42.389574)"
+       inkscape:label="border" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;fill:#2569d0;fill-opacity:1;fill-rule:evenodd;stroke-width:4"
+       id="path1"
+       inkscape:flatsided="true"
+       sodipodi:sides="6"
+       sodipodi:cx="19.915684"
+       sodipodi:cy="83.930382"
+       sodipodi:r1="112.14034"
+       sodipodi:r2="106.89724"
+       sodipodi:arg1="0.52359878"
+       sodipodi:arg2="1.0471976"
+       inkscape:rounded="0.128"
+       inkscape:randomized="0"
+       d="m 117.03207,140.00055 c -7.17698,12.4309 -82.762423,56.07017 -97.116387,56.07017 -14.3539636,0 -89.939403,-43.63927 -97.116385,-56.07017 -7.176982,-12.43089 -7.176982,-99.709443 0,-112.14034 7.176982,-12.430897 82.7624224,-56.070171 97.116386,-56.070171 14.353964,0 89.939406,43.639274 97.116386,56.070172 7.17698,12.430897 7.17698,99.709449 0,112.140339 z"
+       transform="matrix(0.97561811,0,0,0.97561811,108.5699,46.116)"
+       inkscape:label="fill" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="front"
+     transform="translate(128,95.634766)"
+     style="display:inline;fill:#ffffff;fill-opacity:1"
+     sodipodi:insensitive="true">
+    <path
+       id="path9"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       d="m 0,-36 -50,10.000234 V -16 L -25,-6 0,4 50,-16 v -2.5 L 2.5,-0.249766 v -5 L 50,-23.688397 v -2.311369 z m -32,30 v 32.5625 c 0,0 13.255828,10.167969 32,10.167969 18.744172,0 32,-10.167969 32,-10.167969 V -6 L 0,7 Z"
+       sodipodi:nodetypes="ccccccccccccccscccc"
+       inkscape:label="birrete" />
+    <path
+       style="display:inline;fill:#292929;fill-opacity:1;fill-rule:evenodd;stroke-width:4.76166;stroke-dasharray:19.0467, 4.76166;paint-order:markers stroke fill"
+       d="m 39.116822,-17.81521 -8.928118,3.462218 V 0.52720571 l 4.933733,-5.95207891 3.994385,2.5526839 z"
+       id="path11"
+       sodipodi:nodetypes="cccccc"
+       inkscape:label="guardapagina" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:Impact;-inkscape-font-specification:Impact;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke-width:4;stroke-dasharray:16, 4;paint-order:markers stroke fill"
+       x="-49.046875"
+       y="105.66211"
+       id="text17"><tspan
+         sodipodi:role="line"
+         id="tspan17"
+         x="-49.046875"
+         y="105.66211">OCE</tspan></text>
+  </g>
+</svg>
