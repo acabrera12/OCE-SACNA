@@ -10,9 +10,9 @@ namespace OCESACNA.Engine.DBCollections
     {
         public string error { get; set; }
         public string command { get; set; }
-        public Dictionary<string, dynamic> response { get; set; }
+        public object response { get; set; }
 
-        public DBResponse(string err, string command, Dictionary<string, dynamic> response)
+        public DBResponse(string err, string command, object response)
         {
             this.error = err;
             this.command = command;

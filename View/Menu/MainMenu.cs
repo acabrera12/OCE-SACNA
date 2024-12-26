@@ -94,7 +94,6 @@ namespace OCESACNA.View.Menu
         private void MainMenuBtn_Click(object sender, EventArgs e)
         {
             ShowModule(typeof(StartModule));
-            Engine.Controller.Initialize();
         }
 
         private void SettingBtn_Click(object sender, EventArgs e)

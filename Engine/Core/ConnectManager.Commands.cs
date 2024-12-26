@@ -15,7 +15,15 @@ namespace OCESACNA.Engine.Core
             Request request = new Request("GetAllUsers", new Dictionary<string, string>());
             request.RequestCompleted.Connect(callback);
 
-            SendRequest(request);
+            AddToQueue(request);
+        }
+
+        public static void GetUserByID(int id, Signal.EmitEventHandler callback)
+        {
+            Request request = new Request("GetUserByID", new DBUser(id));
+            request.RequestCompleted.Connect(callback);
+
+            AddToQueue(request);
         }
     }
 }

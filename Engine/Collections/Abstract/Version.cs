@@ -9,7 +9,7 @@ namespace OCESACNA.Engine.Collections.Abstract
             return ConstructVer(Version);
         }
 
-        public string ConstructVer(params int[] args)
+        protected string ConstructVer(params int[] args)
         {
             string text = "";
             int index = 0;

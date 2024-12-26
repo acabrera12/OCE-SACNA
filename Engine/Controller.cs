@@ -14,6 +14,7 @@ namespace OCESACNA.Engine
         public static void Initialize()
         {
             AuthManager.Init();
+            ConnectManager.Init();
         }
     }
 }

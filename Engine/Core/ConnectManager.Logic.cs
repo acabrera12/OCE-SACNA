@@ -1,13 +1,14 @@
 ﻿using OCESACNA.Engine.Collections;
+using OCESACNA.Engine.DBCollections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using OCESACNA.Engine.DBCollections;
 
 namespace OCESACNA.Engine.Core
 {
@@ -22,6 +23,34 @@ namespace OCESACNA.Engine.Core
         private static string Nonce = string.Empty;
         private static HttpClient Client = new HttpClient();
 
+        private static bool isRequesting = false;
+        private static List<Request> RequestQueue = new List<Request>();
+
+        private static async Task StartUpdate()
+        {
+            while (true)
+            {
+                await Update();
+                await Task.Delay(40);
+            }
+        }
+
+        private static async Task Update()
+        {
+            if (isRequesting || !RequestQueue.Any())
+            {
+                return;
+            }
+
+            if (Nonce == string.Empty)
+            {
+                await GetNonce();
+                return;
+            }
+
+            isRequesting = true;
+            await SendRequest(QueuePopFront());
+        }
 
         private static async Task GetNonce()
         {
@@ -32,21 +61,21 @@ namespace OCESACNA.Engine.Core
 
             try
             {
-                var data = JsonSerializer.Serialize(request);
+                var data = JsonSerializer.Serialize(request.Data);
+                string body = $"?command={request.Command}&data={data}";
 
-                HttpContent content = new StringContent(data);
+                HttpContent content = new StringContent(body, Encoding.UTF8);
 
-                HttpResponseMessage response = await Client.PostAsync(GetUsingURL(), content);
+                HttpResponseMessage response = await Client.PostAsync(GetUsingURL() + body, content);
 
                 if (!response.IsSuccessStatusCode)
                 {
                     Console.WriteLine($"HttpResponse status isn't success: {response.StatusCode}");
-                    return;
                 }
 
                 string responseBody = await response.Content.ReadAsStringAsync();
 
-                RequestCompleted(request, responseBody);
+                RequestCompleted(request, responseBody, response.StatusCode);
             }
             catch (HttpRequestException e)
             {
@@ -80,21 +109,21 @@ namespace OCESACNA.Engine.Core
 
             try
             {
-                var data = JsonSerializer.Serialize<Request>(request);
+                var data = JsonSerializer.Serialize(request.Data);
+                string body = $"?command={request.Command}&data={data}";
 
-                HttpContent content = new StringContent(data, Encoding.UTF8);
+                HttpContent content = new StringContent(body, Encoding.UTF8);
 
-                HttpResponseMessage response = await Client.PostAsync(GetUsingURL() + data, content);
+                HttpResponseMessage response = await Client.PostAsync(GetUsingURL() + body, content);
 
                 if (!response.IsSuccessStatusCode)
                 {
                     Console.WriteLine($"HttpResponse status isn't success: {response.StatusCode}");
-                    return;
                 }
 
                 string responseBody = await response.Content.ReadAsStringAsync();
 
-                RequestCompleted(request, responseBody);
+                RequestCompleted(request, responseBody, response.StatusCode);
             }
             catch (HttpRequestException e)
             {
@@ -102,9 +131,38 @@ namespace OCESACNA.Engine.Core
             }
         }
 
-        private static void RequestCompleted(Request request, string ResponseBody)
+        private static void RequestCompleted(Request request, string ResponseBody, HttpStatusCode resultCode)
         {
-            Console.WriteLine(ResponseBody);
+            if (resultCode != HttpStatusCode.OK)
+            {
+                Console.WriteLine($"Error: httpStatusCode {resultCode}");
+            }
+
+            var json = JsonDocument.Parse(ResponseBody).RootElement;
+            DBResponse response = new DBResponse(
+                json.GetProperty("error").ToString(),
+                json.GetProperty("command").ToString(),
+                json.GetProperty("response")
+                );
+
+            if (response.error != "none")
+            {
+                Console.WriteLine($"Database returned a error: {response.error}");
+                isRequesting = false;
+                return;
+            }
+
+            if (response.command == "GetNonce")
+            {
+                Nonce = response.response.ToString();
+                isRequesting = false;
+                return;
+            }
+
+            RequestEventArgs args = new RequestEventArgs(response);
+            request.RequestCompleted.Emit(args);
+
+            isRequesting = false;
         }
 
         private static byte[] RandomBytes(int length)
@@ -124,6 +182,23 @@ namespace OCESACNA.Engine.Core
                 return AltServerURL;
             }
             return ServerURL;
+        }
+
+        private static Request QueuePopFront()
+        {
+            Request r = RequestQueue[0];
+            RequestQueue.RemoveAt(0);
+            return r;
+        }
+
+        private static void AddToQueue(Request r)
+        {
+            RequestQueue.Add(r);
+        }
+
+        internal static void Init()
+        {
+            Task.Run(() => StartUpdate());
         }
     }
 }

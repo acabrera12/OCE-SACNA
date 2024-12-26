@@ -15,19 +15,6 @@ namespace OCESACNA.Engine.Collections
             this.Version = version;
             this.SubVersion = subversion;
         }
-
-        public bool IsUpperThan(Version2 version)
-        {
-            if (version.Version > Version)
-            {
-                return true;
-            }
-            else if (version.SubVersion > SubVersion)
-            {
-                return true;
-            }
-            return false;
-        }
     }
 
     public class Version3 : VersionBase
@@ -46,21 +33,25 @@ namespace OCESACNA.Engine.Collections
             this.SubVersion = subversion;
             this.Modification = modification;
         }
-        public bool IsUpperThan(Version3 version)
+    }
+
+    public class Version4 : VersionBase
+    {
+        public int SubVersion { get; set; }
+        public int Modification { get; set; }
+        public int Iteration { get; set; }
+
+        public override string GetAsText()
         {
-            if (version.Version > Version)
-            {
-                return true;
-            }
-            else if (version.SubVersion > SubVersion)
-            {
-                return true;
-            }
-            else if (version.Modification > Modification)
-            {
-                return true;
-            }
-            return false;
+            return ConstructVer(Version, SubVersion, Modification, Iteration);
+        }
+
+        public Version4(int version, int subversion, int modification, int iteration)
+        {
+            this.Version = version;
+            this.SubVersion = subversion;
+            this.Modification = modification;
+            this.Iteration = iteration;
         }
     }
 }
