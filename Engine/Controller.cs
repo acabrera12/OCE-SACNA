@@ -13,8 +13,9 @@ namespace OCESACNA.Engine
         public static readonly Version3 MainEngineVersion = new Version3(0,3,0);
         public static void Initialize()
         {
+            UpdateManager.Init();
+            ConnectManager.Init("localhost");
             AuthManager.Init();
-            ConnectManager.Init();
         }
     }
 }

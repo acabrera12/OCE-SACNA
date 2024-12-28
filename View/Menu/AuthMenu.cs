@@ -2,7 +2,6 @@
 using OCESACNA.Engine.Core;
 using System;
 using System.Windows.Forms;
-using OCESACNA.View.Menu;
 
 namespace OCESACNA.View.Menu
 {
@@ -15,6 +14,9 @@ namespace OCESACNA.View.Menu
 
         private void LogginBtn_Click(object sender, EventArgs e)
         {
+            UsernameBox.Text = EraseIvalid(UsernameBox.Text);
+            PasswordBox.Text = EraseIvalid(PasswordBox.Text);
+
             string username = UsernameBox.Text;
             string password = PasswordBox.Text;
 
@@ -56,6 +58,20 @@ namespace OCESACNA.View.Menu
             PasswordBox.Text = string.Empty;
 
             MainMenu.Show();
+        }
+
+        private string EraseIvalid(string input)
+        {
+            string[] toErase = { " ", "'", "/", @"\", "~" };
+
+            string output = input;
+            
+            for (int i = 0; i < toErase.Length; i++)
+            {
+                output = output.Replace(toErase[i], "");
+            }
+
+             return output;
         }
     }
 }

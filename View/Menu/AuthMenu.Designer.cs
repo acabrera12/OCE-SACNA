@@ -96,7 +96,7 @@ namespace OCESACNA.View.Menu
             this.PasswordBox.Location = new System.Drawing.Point(126, 138);
             this.PasswordBox.MaxLength = 16;
             this.PasswordBox.Name = "PasswordBox";
-            this.PasswordBox.PasswordChar = '*';
+            this.PasswordBox.PasswordChar = '•';
             this.PasswordBox.Size = new System.Drawing.Size(241, 20);
             this.PasswordBox.TabIndex = 4;
             // 

@@ -9,6 +9,11 @@ namespace OCESACNA.Engine.Core
         private static User LoggedUser = new User();
         private static List<User> UserList = new List<User>();
 
+        internal static void Init()
+        {
+            ConnectManager.GetAllUsers(GetDBUsers);
+        }
+
         public enum ResultCode
         {
             SUSSCES = 0,
@@ -32,31 +37,38 @@ namespace OCESACNA.Engine.Core
                 return result;
             }
 
-            /* Conectar a la base de datos para obtener la información,
-            verificar que sea correcto (return {error} si no). si exite la info,
-            crear {new User()} con la info, establecer user a {new user ()}
-            */
+            User DBUser = UserList.Find(x => x.UserName == user.UserName);
 
-            if (user.UserID < 0 || user.UserID > User.MaxID)
+            if (DBUser == null)
+            {
+                return ResultCode.UNREGISTERED_USER;
+            }
+
+            if (DBUser.UserID > User.MaxID || user.UserID < 0)
             {
                 return ResultCode.INVALID_USER_ID;
             }
 
-            if (user.Rank == User.RANKING.NONE)
+            if (DBUser.Rank == User.RANKING.NONE)
             {
                 return ResultCode.INVALID_USER_RANK;
             }
 
-            if (user.State == User.STATES.NONE)
+            if (DBUser.State == User.STATES.NONE)
             {
                 return ResultCode.INVALID_USER_STATE;
             }
 
-            if (user.State == User.STATES.INACTIVE)
+            if (DBUser.Password != user.Password)
+            {
+                return ResultCode.INCORRECT_PASSWORD;
+            }
+
+            if (DBUser.State == User.STATES.INACTIVE)
             {
                 return ResultCode.DISABLED_USER;
             }
-
+            
             LoggedUser = user;
 
             Console.WriteLine("Login successfull");
@@ -83,12 +95,16 @@ namespace OCESACNA.Engine.Core
 
         public static bool GetAdministratorAuthorization()
         {
-            if (LoggedUser.Rank != User.RANKING.ADMIN || LoggedUser.Rank != User.RANKING.DEFAULT)
+            if (LoggedUser.Rank == User.RANKING.ADMIN || LoggedUser.Rank == User.RANKING.DEFAULT)
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
+        }
+        public static string GetLoggedUsername()
+        {
+            return LoggedUser.UserName;
         }
 
         private static ResultCode ValidateUser(User user)
@@ -105,19 +121,24 @@ namespace OCESACNA.Engine.Core
 
             return ResultCode.SUSSCES;
         }
-        public static string GetLoggedUsername()
-        {
-           return LoggedUser.UserName;
-        }
 
-        private static void GetUsers(object sender, EventArgs args)
+        private static void GetDBUsers(object sender, RequestEventArgs eventArgs)
         {
-            Console.WriteLine(args);
-        }
+            List<Dictionary<string, dynamic>> list = eventArgs.response;
 
-        internal static void Init()
-        {
-            ConnectManager.GetAllUsers(GetUsers);
+            foreach (Dictionary<string, dynamic> dic in list)
+            {
+                User user = new User()
+                {
+                    UserID = dic["UserID"],
+                    UserName = dic["UserName"],
+                    Password = dic["Password"],
+                    Rank = (User.RANKING) dic["Rank"],
+                    State = (User.STATES) dic["State"]
+                };
+
+                UserList.Add(user);
+            }
         }
     }
 }

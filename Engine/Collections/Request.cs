@@ -1,29 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using OCESACNA.Engine.DBCollections;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OCESACNA.Engine.Collections
 {
     public class Request
     {
-        public string Command { get; set; }
-        public object Data { get; set; }
+        public string query { get; set; }
+        public string[] keys { get; set; }
 
-        public Request(string command, object data)
+        public Request(string query, string[] keys)
         {
-            this.Command = command;
-            this.Data = data;
+            this.query = query;
+            this.keys = keys;
         }
 
-        public Signal RequestCompleted = new Signal();
+        public delegate void CompleEventHandle(Request sender, RequestEventArgs eventArgs);
+
+        public event CompleEventHandle Completed;
+
+        protected virtual void OnComplete(RequestEventArgs eventArgs)
+        {
+            if (Completed != null)
+            {
+                Completed(this, eventArgs);
+            }
+        }
+
+        public void Complete(RequestEventArgs eventArgs)
+        {
+            OnComplete(eventArgs);
+        }
+
+        public void Connect(CompleEventHandle callback)
+        {
+            Completed += callback;
+        }
     }
 
     public class RequestEventArgs : EventArgs
     {
-        DBResponse Response { get; set; }
-        public RequestEventArgs(DBResponse response)
+        public List<Dictionary<string, dynamic>> response { get; set; }
+
+        public RequestEventArgs(List<Dictionary<string, dynamic>> response)
         {
-            this.Response = response;
+            this.response = response;
         }
     }
 }

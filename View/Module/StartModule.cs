@@ -1,4 +1,5 @@
 ﻿using OCESACNA.Engine.Core;
+using OCESACNA.Engine.Collections;
 using System;
 using System.Windows.Forms;
 
@@ -22,6 +23,14 @@ namespace OCESACNA.View.Module
             }
 
             UserLabel.Text = username;
+
+            ConnectManager.GetAllStudents(GetStudents);
+        }
+
+        private void GetStudents(object sende, RequestEventArgs eventArgs)
+        {
+            var count = eventArgs.response.Count;
+            StudentsLabel.Text = $"{count} estudiante(s) registrado(s)";
         }
     }
 }
