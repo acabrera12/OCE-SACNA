@@ -26,12 +26,20 @@ namespace OCESACNA.Engine.Core
 
         private static MySqlDataReader Query(string query)
         {
-            MySqlCommand MySQLCommand = new MySqlCommand(query)
+            try
             {
-                Connection = DBConnection.GetConnection()
-            };
-            MySqlDataReader DataReader = MySQLCommand.ExecuteReader();
-            return DataReader;
+                MySqlCommand MySQLCommand = new MySqlCommand(query)
+                {
+                    Connection = DBConnection.GetConnection()
+                };
+                MySqlDataReader DataReader = MySQLCommand.ExecuteReader();
+                return DataReader;
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine($"{e}");
+                return null;
+            }
         }
 
 
@@ -67,6 +75,7 @@ namespace OCESACNA.Engine.Core
                 list.Add(current);
             }
 
+            Data.Close();
             request.Complete(new RequestEventArgs(list));
             isRequesting = false;
         }

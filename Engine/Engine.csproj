@@ -112,6 +112,7 @@
     <Compile Include="Core\AuthManager.cs" />
     <Compile Include="Core\ConnectManager.cs" />
     <Compile Include="Core\ConnectManager.Keys.cs" />
+    <Compile Include="Core\ConversionManager.cs" />
     <Compile Include="Core\UpdateManager.cs" />
     <Compile Include="DBCollections\Course.cs" />
     <Compile Include="DBCollections\Representative.cs" />

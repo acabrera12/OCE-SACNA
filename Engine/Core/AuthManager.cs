@@ -128,14 +128,7 @@ namespace OCESACNA.Engine.Core
 
             foreach (Dictionary<string, dynamic> dic in list)
             {
-                User user = new User()
-                {
-                    UserID = dic["UserID"],
-                    UserName = dic["UserName"],
-                    Password = dic["Password"],
-                    Rank = (User.RANKING) dic["Rank"],
-                    State = (User.STATES) dic["State"]
-                };
+                User user = ConversionManager.DictionaryToUser(dic);
 
                 UserList.Add(user);
             }

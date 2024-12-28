@@ -32,5 +32,37 @@ namespace OCESACNA.Engine.Collections
             this.Rank = rank;
             this.State = state;
         }
+
+        public static string GetRankingText(RANKING r)
+        {
+            switch (r)
+            {
+                case RANKING.NONE:
+                    return "Ninguno";
+                case RANKING.DEFAULT:
+                    return "Predeterminado";
+                case RANKING.USER:
+                    return "Usuarrio";
+                case RANKING.ADMIN:
+                    return "Administrador";
+                default:
+                    return "Nulo";
+            }
+        }
+
+        public static string GetStateText(STATES s)
+        {
+            switch (s)
+            {
+                case STATES.NONE:
+                    return "Ninguno";
+                case STATES.ACTIVE:
+                    return "Activo";
+                case STATES.INACTIVE:
+                    return "Inactivo";
+                default:
+                    return "Nulo";
+            }
+        }
     }
 }
