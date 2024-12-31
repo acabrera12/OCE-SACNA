@@ -2,10 +2,9 @@
 {
     public static partial class ConnectManager
     {
-        private static readonly string[] EmptyKey = { };
         private static readonly string[] UserKeys = { "UserID", "UserName", "Password", "Rank", "State" };
         private static readonly string[] CourseKey = { "CourseID", "Year", "Mention", "Section" };
-        private static readonly string[] RepresentativeKeys = { "RprsentID", "FullName" };
+        private static readonly string[] RepresentativeKeys = { "RprsentID", "FullName", "PhoneNumber", "Email" };
         private static readonly string[] TeacherKeys = { "TeachID", "FullName", CourseKey[0] };
         private static readonly string[] SbjetModuleKeys = { "SbjetModuleID", "Name" };
         private static readonly string[] SubjectKeys = { "SubjectID", SbjetModuleKeys[0], "Name", TeacherKeys[0], CourseKey[0] };

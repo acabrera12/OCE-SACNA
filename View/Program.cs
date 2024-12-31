@@ -17,7 +17,14 @@ namespace OCESACNA
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AuthMenu());
+            try
+            {
+                Application.Run(new AuthMenu());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

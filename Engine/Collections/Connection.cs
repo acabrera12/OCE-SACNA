@@ -4,8 +4,8 @@ namespace OCESACNA.Engine.Collections
     internal class Connection
     {
         private MySqlConnection connection;
-        private string connectChain;
-        private string server;
+        private readonly string connectChain;
+        private readonly string server;
         private readonly string database = "ocesacna";
         private readonly string user = "root";
         private readonly string password = "";

@@ -31,6 +31,7 @@ namespace OCESACNA.View.Menu
         {
             this.menu = new System.Windows.Forms.MenuStrip();
             this.MainMenuBtn = new FontAwesome.Sharp.IconMenuItem();
+            this.SettingBtn = new FontAwesome.Sharp.IconMenuItem();
             this.ManagementBtn = new FontAwesome.Sharp.IconMenuItem();
             this.ManageStudentBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageRpresentBtn = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +40,8 @@ namespace OCESACNA.View.Menu
             this.ManageScoresBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.AdminBtn = new FontAwesome.Sharp.IconMenuItem();
             this.ManageUsersBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.SettingBtn = new FontAwesome.Sharp.IconMenuItem();
+            this.ManageCoursesBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManageSbjectModulesBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLabels = new System.Windows.Forms.MenuStrip();
             this.infoBtn = new FontAwesome.Sharp.IconMenuItem();
             this.ExitBtn = new FontAwesome.Sharp.IconMenuItem();
@@ -54,9 +56,9 @@ namespace OCESACNA.View.Menu
             this.menu.BackColor = System.Drawing.Color.White;
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MainMenuBtn,
+            this.SettingBtn,
             this.ManagementBtn,
-            this.AdminBtn,
-            this.SettingBtn});
+            this.AdminBtn});
             this.menu.Location = new System.Drawing.Point(0, 24);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(808, 55);
@@ -66,7 +68,7 @@ namespace OCESACNA.View.Menu
             // MainMenuBtn
             // 
             this.MainMenuBtn.BackColor = System.Drawing.Color.White;
-            this.MainMenuBtn.IconChar = FontAwesome.Sharp.IconChar.HomeUser;
+            this.MainMenuBtn.IconChar = FontAwesome.Sharp.IconChar.HomeLg;
             this.MainMenuBtn.IconColor = System.Drawing.Color.Black;
             this.MainMenuBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MainMenuBtn.IconSize = 32;
@@ -77,6 +79,21 @@ namespace OCESACNA.View.Menu
             this.MainMenuBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.MainMenuBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.MainMenuBtn.Click += new System.EventHandler(this.MainMenuBtn_Click);
+            // 
+            // SettingBtn
+            // 
+            this.SettingBtn.BackColor = System.Drawing.Color.White;
+            this.SettingBtn.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.SettingBtn.IconColor = System.Drawing.Color.Black;
+            this.SettingBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SettingBtn.IconSize = 32;
+            this.SettingBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SettingBtn.Name = "SettingBtn";
+            this.SettingBtn.Size = new System.Drawing.Size(95, 51);
+            this.SettingBtn.Text = "Configuración";
+            this.SettingBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.SettingBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.SettingBtn.Click += new System.EventHandler(this.SettingBtn_Click);
             // 
             // ManagementBtn
             // 
@@ -137,7 +154,9 @@ namespace OCESACNA.View.Menu
             // 
             this.AdminBtn.BackColor = System.Drawing.Color.White;
             this.AdminBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ManageUsersBtn});
+            this.ManageUsersBtn,
+            this.ManageCoursesBtn,
+            this.ManageSbjectModulesBtn});
             this.AdminBtn.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
             this.AdminBtn.IconColor = System.Drawing.Color.Black;
             this.AdminBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -152,24 +171,23 @@ namespace OCESACNA.View.Menu
             // ManageUsersBtn
             // 
             this.ManageUsersBtn.Name = "ManageUsersBtn";
-            this.ManageUsersBtn.Size = new System.Drawing.Size(119, 22);
+            this.ManageUsersBtn.Size = new System.Drawing.Size(180, 22);
             this.ManageUsersBtn.Text = "Usuarios";
             this.ManageUsersBtn.Click += new System.EventHandler(this.ManageUsersBtn_Click);
             // 
-            // SettingBtn
+            // ManageCoursesBtn
             // 
-            this.SettingBtn.BackColor = System.Drawing.Color.White;
-            this.SettingBtn.IconChar = FontAwesome.Sharp.IconChar.Cog;
-            this.SettingBtn.IconColor = System.Drawing.Color.Black;
-            this.SettingBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.SettingBtn.IconSize = 32;
-            this.SettingBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.SettingBtn.Name = "SettingBtn";
-            this.SettingBtn.Size = new System.Drawing.Size(95, 51);
-            this.SettingBtn.Text = "Configuración";
-            this.SettingBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.SettingBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.SettingBtn.Click += new System.EventHandler(this.SettingBtn_Click);
+            this.ManageCoursesBtn.Name = "ManageCoursesBtn";
+            this.ManageCoursesBtn.Size = new System.Drawing.Size(180, 22);
+            this.ManageCoursesBtn.Text = "Cursos";
+            this.ManageCoursesBtn.Click += new System.EventHandler(this.ManageCoursesBtn_Click);
+            // 
+            // ManageSbjectModulesBtn
+            // 
+            this.ManageSbjectModulesBtn.Name = "ManageSbjectModulesBtn";
+            this.ManageSbjectModulesBtn.Size = new System.Drawing.Size(180, 22);
+            this.ManageSbjectModulesBtn.Text = "Áreas de Formación";
+            this.ManageSbjectModulesBtn.Click += new System.EventHandler(this.ManageSbjectModulesBtn_Click);
             // 
             // menuLabels
             // 
@@ -270,5 +288,7 @@ namespace OCESACNA.View.Menu
         private FontAwesome.Sharp.IconMenuItem AdminBtn;
         private System.Windows.Forms.Panel MainContainer;
         private System.Windows.Forms.ToolStripMenuItem ManageUsersBtn;
+        private System.Windows.Forms.ToolStripMenuItem ManageCoursesBtn;
+        private System.Windows.Forms.ToolStripMenuItem ManageSbjectModulesBtn;
     }
 }

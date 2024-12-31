@@ -29,7 +29,7 @@ namespace OCESACNA.View.Module
 
         public void GetStudents(object sender, RequestEventArgs eventArgs)
         {
-            var count = eventArgs.response.Count;
+            var count = eventArgs.Response.Count;
             if (InvokeRequired)
             {
                 Invoke(new Action(() => StudentsLabel.Text = $"{count} estudiante(s) registrado(s)"));

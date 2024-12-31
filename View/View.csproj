@@ -43,7 +43,9 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -76,11 +78,23 @@
     <Compile Include="Menu\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\ManageCoursesModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module\ManageCoursesModule.Designer.cs">
+      <DependentUpon>ManageCoursesModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module\ManageRepresentativesModule.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Module\ManageRepresentativesModule.Designer.cs">
       <DependentUpon>ManageRepresentativesModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module\ManageSbjetModulesModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module\ManageSbjetModulesModule.Designer.cs">
+      <DependentUpon>ManageSbjetModulesModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\ManageScoresModule.cs">
       <SubType>Form</SubType>
@@ -128,6 +142,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Menu\AuthMenu.resx">
       <DependentUpon>AuthMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\InfoMenu.resx">
+      <DependentUpon>InfoMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\ManageRepresentativesModule.resx">
+      <DependentUpon>ManageRepresentativesModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\ManageUsersModule.resx">
       <DependentUpon>ManageUsersModule.cs</DependentUpon>

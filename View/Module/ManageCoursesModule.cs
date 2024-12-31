@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OCESACNA.View.Menu
+namespace OCESACNA.View.Module
 {
-    public partial class InfoMenu : Form
+    public partial class ManageCoursesModule : Form
     {
-        public InfoMenu()
+        public ManageCoursesModule()
         {
             InitializeComponent();
         }

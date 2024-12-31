@@ -8,13 +8,19 @@ namespace OCESACNA.Engine.Collections
 {
     public class Request
     {
-        public string query { get; set; }
-        public string[] keys { get; set; }
+        public string Query { get; set; }
+        public string[] Keys { get; set; }
 
         public Request(string query, string[] keys)
         {
-            this.query = query;
-            this.keys = keys;
+            Query = query;
+            Keys = keys;
+        }
+
+        public Request(string query)
+        {
+            Query = query;
+            Keys = new string[0];
         }
 
         public delegate void CompleEventHandle(Request sender, RequestEventArgs eventArgs);
@@ -23,10 +29,7 @@ namespace OCESACNA.Engine.Collections
 
         protected virtual void OnComplete(RequestEventArgs eventArgs)
         {
-            if (Completed != null)
-            {
-                Completed(this, eventArgs);
-            }
+            Completed?.Invoke(this, eventArgs);
         }
 
         public void Complete(RequestEventArgs eventArgs)
@@ -42,11 +45,11 @@ namespace OCESACNA.Engine.Collections
 
     public class RequestEventArgs : EventArgs
     {
-        public List<Dictionary<string, dynamic>> response { get; set; }
+        public List<Dictionary<string, dynamic>> Response { get; set; }
 
         public RequestEventArgs(List<Dictionary<string, dynamic>> response)
         {
-            this.response = response;
+            this.Response = response;
         }
     }
 }

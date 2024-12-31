@@ -136,5 +136,15 @@ namespace OCESACNA.View.Menu
         {
             ShowModule(typeof(ManageUsersModule));
         }
+
+        private void ManageCoursesBtn_Click(object sender, EventArgs e)
+        {
+            ShowModule(typeof(ManageCoursesModule));
+        }
+
+        private void ManageSbjectModulesBtn_Click(object sender, EventArgs e)
+        {
+            ShowModule(typeof(ManageSbjetModulesModule));
+        }
     }
 }

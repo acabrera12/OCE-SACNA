@@ -7,9 +7,15 @@ namespace OCESACNA.Engine.Core
     public static class AuthManager
     {
         private static User LoggedUser = new User();
-        private static List<User> UserList = new List<User>();
+        private readonly static List<User> UserList = new List<User>();
 
         internal static void Init()
+        {
+            ConnectManager.GetAllUsers(GetDBUsers);
+            ConnectManager.DataModified.Connect(UpdateData);
+        }
+
+        private static void UpdateData(object s, EventArgs e)
         {
             ConnectManager.GetAllUsers(GetDBUsers);
         }
@@ -124,7 +130,7 @@ namespace OCESACNA.Engine.Core
 
         private static void GetDBUsers(object sender, RequestEventArgs eventArgs)
         {
-            List<Dictionary<string, dynamic>> list = eventArgs.response;
+            List<Dictionary<string, dynamic>> list = eventArgs.Response;
 
             foreach (Dictionary<string, dynamic> dic in list)
             {

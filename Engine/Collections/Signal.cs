@@ -13,10 +13,7 @@ namespace OCESACNA.Engine.Collections
 
         protected virtual void OnEmit(EventArgs args)
         {
-            if (Emited != null)
-            {
-                Emited(this, args);
-            }
+            Emited?.Invoke(this, args);
         }
 
         public void Emit(EventArgs args)
