@@ -209,7 +209,7 @@ namespace OCESACNA.View.Menu
             this.infoBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.infoBtn.Name = "infoBtn";
             this.infoBtn.Size = new System.Drawing.Size(28, 20);
-            this.infoBtn.Click += new System.EventHandler(this.infoBtn_Click);
+            this.infoBtn.Click += new System.EventHandler(this.InfoBtn_Click);
             // 
             // ExitBtn
             // 

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9B494FA8-2CA4-4362-B0A8-F449BF2B6761}</ProjectGuid>
+    <ProjectGuid>{4080A984-DD60-4477-BA6B-A15E1E427364}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>OCESACNA.View</RootNamespace>
     <AssemblyName>OCE SACNA</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -33,19 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>App.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net48\FontAwesome.Sharp.dll</HintPath>
+      <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -140,20 +137,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Menu\AuthMenu.resx">
-      <DependentUpon>AuthMenu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Menu\InfoMenu.resx">
       <DependentUpon>InfoMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu\MainMenu.resx">
-      <DependentUpon>MainMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Module\ManageRepresentativesModule.resx">
-      <DependentUpon>ManageRepresentativesModule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Module\ManageUsersModule.resx">
-      <DependentUpon>ManageUsersModule.cs</DependentUpon>
+    <EmbeddedResource Include="Module\ManageCoursesModule.resx">
+      <DependentUpon>ManageCoursesModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -180,14 +168,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
+    <Content Include="App.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.csproj">
-      <Project>{5bdf9ae8-1324-4e68-ae1b-3e79b9a6d97d}</Project>
+      <Project>{672f7a64-3ff6-4fd7-8c32-6c6ed2dde999}</Project>
       <Name>Engine</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

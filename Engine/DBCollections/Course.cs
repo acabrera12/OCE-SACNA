@@ -4,10 +4,10 @@ namespace OCESACNA.Engine.DBCollections
     {
         public int CourseID { get; set; }
         public int Year { get; set; }
-        public int Mention { get; set; }
+        public string Mention { get; set; }
         public char Section { get; set; }
 
-        public DBCourse(int id = -1, int year = -1, int mention = -1, char section = '!')
+        public DBCourse(int id = -1, int year = -1, string mention = "", char section = '!')
         {
             this.CourseID = id;
             this.Year = year;

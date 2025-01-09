@@ -50,6 +50,55 @@ namespace OCESACNA.Engine.Core
             return representative;
         }
 
+        public static Teacher DictionaryToTeacher(Dictionary<string, dynamic> input)
+        {
+            Teacher teacher = new Teacher()
+            {
+                TeachID = input["TeachID"],
+                FullName = input["FullName"],
+                Course = input["Course"]
+            };
+
+            return teacher;
+        }
+
+        public static SubjectModule DictionaryToSbjetModule(Dictionary<string, dynamic> input)
+        {
+            SubjectModule subjectModule = new SubjectModule()
+            {
+                SbjetModuleID = input["SbjetModuleID"],
+                Name = input["Name"]
+            };
+
+            return subjectModule;
+        }
+
+        public static Subject DictionaryToSubject(Dictionary<string, dynamic> input)
+        {
+            Subject subject = new Subject()
+            {
+                SubjectID = input["SubjectID"],
+                SbjetModule = input["SbjetModule"],
+                Name = input["Name"],
+                Teach = input["Teach"],
+                Course = input["Course"]
+            };
+
+            return subject;
+        }
+
+        public static Student DictonaryToStudent(Dictionary<string, dynamic> input)
+        {
+            Student student = new Student()
+            {
+
+            };
+
+            return student;
+        }
+
+        // entity to db entity
+
         public static DBUser UserToDBUser(User user)
         {
             DBUser DBUser = new DBUser()

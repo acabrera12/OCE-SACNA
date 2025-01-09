@@ -8,7 +8,7 @@ namespace OCESACNA.View.Menu
 {
     public partial class MainMenu : Form
     {
-        private List<Form> ActiveModulesList = new List<Form>();
+        private readonly List<Form> ActiveModulesList = new List<Form>();
         private Form ActiveModule = null;
 
         public AuthMenu authMenu;
@@ -101,7 +101,7 @@ namespace OCESACNA.View.Menu
             ShowModule(typeof(SettingsModule));
         }
 
-        private void infoBtn_Click(object sender, EventArgs e)
+        private void InfoBtn_Click(object sender, EventArgs e)
         {
             InfoMenu infoMenu = new InfoMenu();
             infoMenu.ShowDialog();
