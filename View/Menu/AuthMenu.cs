@@ -65,13 +65,13 @@ namespace OCESACNA.View.Menu
             string[] toErase = { " ", "'", "/", @"\", "~" };
 
             string output = input;
-            
+
             for (int i = 0; i < toErase.Length; i++)
             {
                 output = output.Replace(toErase[i], "");
             }
 
-             return output;
+            return output;
         }
     }
 }

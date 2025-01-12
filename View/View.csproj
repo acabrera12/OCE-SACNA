@@ -143,6 +143,9 @@
     <EmbeddedResource Include="Module\ManageCoursesModule.resx">
       <DependentUpon>ManageCoursesModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Module\ManageSbjetModulesModule.resx">
+      <DependentUpon>ManageSbjetModulesModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

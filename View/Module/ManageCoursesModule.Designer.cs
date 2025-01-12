@@ -29,11 +29,11 @@ namespace OCESACNA.View.Module
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("1° Año");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("2° Año");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("3° Año");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("4° Año");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("5° Año");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("1° Año");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("2° Año");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("3° Año");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("4° Año");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("5° Año");
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.SectionGroup = new System.Windows.Forms.GroupBox();
             this.SectionBox = new System.Windows.Forms.ComboBox();
@@ -50,9 +50,23 @@ namespace OCESACNA.View.Module
             this.EraseMBtn = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.Tree = new System.Windows.Forms.TreeView();
+            this.MainContainer = new System.Windows.Forms.Panel();
+            this.TopPanel = new System.Windows.Forms.Panel();
+            this.SearchLabel = new System.Windows.Forms.Label();
+            this.SearchByBox = new System.Windows.Forms.ComboBox();
+            this.SearchBox = new System.Windows.Forms.TextBox();
+            this.DataGrid = new System.Windows.Forms.DataGridView();
+            this.Selection = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mention = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Section = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LeftPanel.SuspendLayout();
             this.SectionGroup.SuspendLayout();
             this.MentionGroup.SuspendLayout();
+            this.MainContainer.SuspendLayout();
+            this.TopPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // LeftPanel
@@ -162,6 +176,8 @@ namespace OCESACNA.View.Module
             // 
             // YearBox
             // 
+            this.YearBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.YearBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.YearBox.FormattingEnabled = true;
             this.YearBox.Items.AddRange(new object[] {
             "Todos",
@@ -269,32 +285,145 @@ namespace OCESACNA.View.Module
             // 
             // Tree
             // 
-            this.Tree.Location = new System.Drawing.Point(206, 9);
+            this.Tree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.Tree.Location = new System.Drawing.Point(206, 12);
             this.Tree.Name = "Tree";
-            treeNode26.Name = "1thYear";
-            treeNode26.Text = "1° Año";
-            treeNode27.Name = "2thYear";
-            treeNode27.Text = "2° Año";
-            treeNode28.Name = "3thYear";
-            treeNode28.Text = "3° Año";
-            treeNode29.Name = "4thYear";
-            treeNode29.Text = "4° Año";
-            treeNode30.Name = "5thYear";
-            treeNode30.Text = "5° Año";
+            treeNode11.Name = "1thYear";
+            treeNode11.Text = "1° Año";
+            treeNode12.Name = "2thYear";
+            treeNode12.Text = "2° Año";
+            treeNode13.Name = "3thYear";
+            treeNode13.Text = "3° Año";
+            treeNode14.Name = "4thYear";
+            treeNode14.Text = "4° Año";
+            treeNode15.Name = "5thYear";
+            treeNode15.Text = "5° Año";
             this.Tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode26,
-            treeNode27,
-            treeNode28,
-            treeNode29,
-            treeNode30});
-            this.Tree.Size = new System.Drawing.Size(190, 429);
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15});
+            this.Tree.Size = new System.Drawing.Size(164, 426);
             this.Tree.TabIndex = 3;
+            this.Tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.Tree_NodeMouseClick);
+            // 
+            // MainContainer
+            // 
+            this.MainContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainContainer.Controls.Add(this.TopPanel);
+            this.MainContainer.Controls.Add(this.DataGrid);
+            this.MainContainer.Location = new System.Drawing.Point(376, 12);
+            this.MainContainer.Name = "MainContainer";
+            this.MainContainer.Size = new System.Drawing.Size(412, 426);
+            this.MainContainer.TabIndex = 5;
+            // 
+            // TopPanel
+            // 
+            this.TopPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TopPanel.BackColor = System.Drawing.Color.White;
+            this.TopPanel.Controls.Add(this.SearchLabel);
+            this.TopPanel.Controls.Add(this.SearchByBox);
+            this.TopPanel.Controls.Add(this.SearchBox);
+            this.TopPanel.Location = new System.Drawing.Point(3, 3);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(406, 32);
+            this.TopPanel.TabIndex = 2;
+            // 
+            // SearchLabel
+            // 
+            this.SearchLabel.AutoSize = true;
+            this.SearchLabel.Location = new System.Drawing.Point(3, 10);
+            this.SearchLabel.Name = "SearchLabel";
+            this.SearchLabel.Size = new System.Drawing.Size(58, 13);
+            this.SearchLabel.TabIndex = 14;
+            this.SearchLabel.Text = "Buscar por";
+            // 
+            // SearchByBox
+            // 
+            this.SearchByBox.FormattingEnabled = true;
+            this.SearchByBox.Location = new System.Drawing.Point(67, 6);
+            this.SearchByBox.Name = "SearchByBox";
+            this.SearchByBox.Size = new System.Drawing.Size(138, 21);
+            this.SearchByBox.TabIndex = 14;
+            // 
+            // SearchBox
+            // 
+            this.SearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchBox.Location = new System.Drawing.Point(211, 6);
+            this.SearchBox.MaxLength = 255;
+            this.SearchBox.Name = "SearchBox";
+            this.SearchBox.Size = new System.Drawing.Size(192, 20);
+            this.SearchBox.TabIndex = 14;
+            // 
+            // DataGrid
+            // 
+            this.DataGrid.AllowUserToAddRows = false;
+            this.DataGrid.AllowUserToDeleteRows = false;
+            this.DataGrid.AllowUserToOrderColumns = true;
+            this.DataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Selection,
+            this.ID,
+            this.Year,
+            this.Mention,
+            this.Section});
+            this.DataGrid.Location = new System.Drawing.Point(3, 41);
+            this.DataGrid.MultiSelect = false;
+            this.DataGrid.Name = "DataGrid";
+            this.DataGrid.ReadOnly = true;
+            this.DataGrid.Size = new System.Drawing.Size(406, 382);
+            this.DataGrid.TabIndex = 1;
+            this.DataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellContentClick);
+            // 
+            // Selection
+            // 
+            this.Selection.HeaderText = "•••";
+            this.Selection.Name = "Selection";
+            this.Selection.ReadOnly = true;
+            this.Selection.Width = 32;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 50;
+            // 
+            // Year
+            // 
+            this.Year.HeaderText = "Año";
+            this.Year.Name = "Year";
+            this.Year.ReadOnly = true;
+            // 
+            // Mention
+            // 
+            this.Mention.HeaderText = "Mención";
+            this.Mention.Name = "Mention";
+            this.Mention.ReadOnly = true;
+            this.Mention.Width = 150;
+            // 
+            // Section
+            // 
+            this.Section.HeaderText = "Sección";
+            this.Section.Name = "Section";
+            this.Section.ReadOnly = true;
+            this.Section.Width = 50;
             // 
             // ManageCoursesModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.MainContainer);
             this.Controls.Add(this.Tree);
             this.Controls.Add(this.LeftPanel);
             this.Name = "ManageCoursesModule";
@@ -306,6 +435,10 @@ namespace OCESACNA.View.Module
             this.SectionGroup.PerformLayout();
             this.MentionGroup.ResumeLayout(false);
             this.MentionGroup.PerformLayout();
+            this.MainContainer.ResumeLayout(false);
+            this.TopPanel.ResumeLayout(false);
+            this.TopPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -328,5 +461,16 @@ namespace OCESACNA.View.Module
         private System.Windows.Forms.ComboBox YearBox;
         private System.Windows.Forms.Label YearLabel;
         private System.Windows.Forms.TreeView Tree;
+        private System.Windows.Forms.Panel MainContainer;
+        private System.Windows.Forms.Panel TopPanel;
+        private System.Windows.Forms.Label SearchLabel;
+        private System.Windows.Forms.ComboBox SearchByBox;
+        private System.Windows.Forms.TextBox SearchBox;
+        private System.Windows.Forms.DataGridView DataGrid;
+        private System.Windows.Forms.DataGridViewButtonColumn Selection;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mention;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Section;
     }
 }

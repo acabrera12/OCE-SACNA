@@ -102,7 +102,7 @@ namespace OCESACNA.View.Module
                 return;
             }
 
-            if (FullNameBox.Text == "" || PhoneNumberBox.Text == "" || EmailBox.Text == "")
+            if (FullNameBox.Text.Replace(" ", "") == "" || PhoneNumberBox.Text.Replace(" ", "") == "" || EmailBox.Text.Replace(" ", "") == "")
             {
                 MessageBox.Show("Rellene todos los campos");
                 return;

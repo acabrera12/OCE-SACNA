@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OCESACNA.Engine.Collections;
 using OCESACNA.Engine.DBCollections;
-using OCESACNA.Engine.Collections;
+using System;
+using System.Collections.Generic;
 
 namespace OCESACNA.Engine.Core
 {
@@ -91,10 +88,39 @@ namespace OCESACNA.Engine.Core
         {
             Student student = new Student()
             {
-
+                StudentID = input["StudentID"],
+                Cedula = input["Cedula"],
+                LastNames = input["LastNames"],
+                FirstNames = input["FirstNames"],
+                Age = input["Age"],
+                Sex = input["Sex"],
+                Birthdate = input["Birthdate"],
+                BirthPlace = input["BirthPlace"],
+                FederalEntty = input["FederalEntty"],
+                Address = input["Address"],
+                PhoneNumber = input["PhoneNumber"],
+                Email = input["Email"],
+                Rprsent = input["Rprsent"],
+                Course = input["Course"]
             };
 
             return student;
+        }
+
+        public static Score DictionaryToScore(Dictionary<string, dynamic> input)
+        {
+            Score score = new Score()
+            {
+                ScoreID = input["ScoreID"],
+                Student = input["student"],
+                Subject = input["Subject"],
+                First = input["First"],
+                Second = input["Second"],
+                Third = input["Third"],
+                Final = input["Final"],
+            };
+
+            return score;
         }
 
         // entity to db entity
@@ -113,6 +139,19 @@ namespace OCESACNA.Engine.Core
             return DBUser;
         }
 
+        public static DBCourse CourseToDBCourse(Course course)
+        {
+            DBCourse DBCourse = new DBCourse()
+            {
+                CourseID = course.CourseID,
+                Year = course.Year,
+                Mention = course.Mention,
+                Section = char.Parse(course.Section)
+            };
+
+            return DBCourse;
+        }
+
         public static DBRepresentative RprsentativeToDBRprsentative(Representative rpsent)
         {
             DBRepresentative DBRepresentative = new DBRepresentative()
@@ -124,6 +163,43 @@ namespace OCESACNA.Engine.Core
             };
 
             return DBRepresentative;
+        }
+
+        public static DBTeacher TeacherToDBTeacher(Teacher teacher)
+        {
+            DBTeacher DBTeacher = new DBTeacher()
+            {
+                TeachID = teacher.TeachID,
+                FullName = teacher.FullName,
+                CourseID = teacher.Course.CourseID
+            };
+
+            return DBTeacher;
+        }
+
+        public static DBSubjectModule SubjectModuleToDBSubjectModule(SubjectModule subjectModule)
+        {
+            DBSubjectModule DBSubjectModule = new DBSubjectModule()
+            {
+                SbjetModuleID = subjectModule.SbjetModuleID,
+                Name = subjectModule.Name
+            };
+
+            return DBSubjectModule;
+        }
+
+        public static DBSubject SubjectToDBSubject(Subject subject)
+        {
+            DBSubject DBSubject = new DBSubject()
+            {
+                SubjectID = subject.SubjectID,
+                SbjetModuleID = subject.SbjetModule.SbjetModuleID,
+                Name = subject.Name,
+                TeachID = subject.Teach.TeachID,
+                CourseID = subject.Course.CourseID
+            };
+
+            return DBSubject;
         }
     }
 }

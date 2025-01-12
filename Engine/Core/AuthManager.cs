@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OCESACNA.Engine.Collections;
+using System;
 using System.Collections.Generic;
-using OCESACNA.Engine.Collections;
 
 namespace OCESACNA.Engine.Core
 {
@@ -74,7 +74,7 @@ namespace OCESACNA.Engine.Core
             {
                 return ResultCode.DISABLED_USER;
             }
-            
+
             LoggedUser = user;
 
             Console.WriteLine("Login successfull");

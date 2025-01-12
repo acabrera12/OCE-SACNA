@@ -83,10 +83,11 @@ namespace OCESACNA.Engine.Core
             isRequesting = false;
         }
 
-        public static void RunCustom(string query, string[] keys)
+        public static void RunCustom(string query)
         {
-            Request r = new Request(query, keys);
+            Request r = new Request(query);
             RequestQueue.Add(r);
+            r.Connect(OnDataModified);
         }
 
         public static void RunCustom(string query, string[] keys, Request.CompleEventHandle callback)
@@ -166,7 +167,7 @@ namespace OCESACNA.Engine.Core
         public static void UpdateCourse(DBCourse course)
         {
             Request r = new Request($"UPDATE courses SET `Year` ='{course.Year}', `Mention` ='{course.Mention}'," +
-                $" `Section` ='{course.Section}' WHEHRE `CourseID` ='{course.CourseID}'");
+                $" `Section` ='{course.Section}' WHERE `CourseID` ='{course.CourseID}'");
             r.Connect(OnDataModified);
             RequestQueue.Add(r);
         }
