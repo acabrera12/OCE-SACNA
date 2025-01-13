@@ -29,4 +29,15 @@ namespace OCESACNA.View.Collections
             this.Value = Value;
         }
     }
+
+    public class BoolComboBoxElement : ComboBoxElement
+    {
+        public new bool Value { get; set; }
+
+        public BoolComboBoxElement(string Text, bool Value)
+        {
+            this.Text = Text;
+            this.Value = Value;
+        }
+    }
 }

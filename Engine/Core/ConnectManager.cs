@@ -6,13 +6,23 @@ using System.Collections.Generic;
 
 namespace OCESACNA.Engine.Core
 {
+    /// <summary>
+    /// Administrador de conexión/solicitudes de la base de datos clase <see cref="ConnectManager"></see>
+    /// </summary>
     public static partial class ConnectManager
     {
         private static Connection DBConnection;
         private static readonly List<Request> RequestQueue = new List<Request>();
         private static bool isRequesting = false;
+        /// <summary>
+        /// Señal emitida cuando los datos en la base de datos son modificados
+        /// </summary>
         public static Signal DataModified = new Signal();
 
+        /// <summary>
+        /// Inicializa el administrador de conexión
+        /// </summary>
+        /// <param name="server">URI del host</param>
         internal static void Init(string server)
         {
             DBConnection = new Connection(server);
@@ -25,6 +35,11 @@ namespace OCESACNA.Engine.Core
             UpdateManager.Updated.Connect(Update);
         }
 
+        /// <summary>
+        /// Ejecuta la consulta a la base de datos
+        /// </summary>
+        /// <param name="query">Consulta MySQL</param>
+        /// <returns>Datos de <see cref="MySqlDataReader"></see></returns>
         private static MySqlDataReader Query(string query)
         {
             try
@@ -43,7 +58,9 @@ namespace OCESACNA.Engine.Core
             }
         }
 
-
+        /// <summary>
+        /// Encargado de la cuota de solicitud, Gestiona la cola de solicitudes
+        /// </summary>
         private static void Update(object Sender, EventArgs Args)
         {
             if (isRequesting || RequestQueue.Count == 0)
@@ -58,6 +75,10 @@ namespace OCESACNA.Engine.Core
             SendRequest(r);
         }
 
+        /// <summary>
+        /// Ejecuta una solicitud
+        /// </summary>
+        /// <param name="request">Solicitud</param>
         private static void SendRequest(Request request)
         {
             MySqlDataReader Data = Query(request.Query);
@@ -83,6 +104,10 @@ namespace OCESACNA.Engine.Core
             isRequesting = false;
         }
 
+        /// <summary>
+        /// Ejecuta una solicitud personalizada
+        /// </summary>
+        /// <param name="query">Sentencia MySQl</param>
         public static void RunCustom(string query)
         {
             Request r = new Request(query);
@@ -90,6 +115,12 @@ namespace OCESACNA.Engine.Core
             r.Connect(OnDataModified);
         }
 
+        /// <summary>
+        /// Ejecuta una solicitud personalizada y devuelve la llamada
+        /// </summary>
+        /// <param name="query">Sentencia MySQL</param>
+        /// <param name="keys">Llaves aúxiliares</param>
+        /// <param name="callback">Llamada a devolver</param>
         public static void RunCustom(string query, string[] keys, Request.CompleEventHandle callback)
         {
             Request r = new Request(query, keys);
@@ -97,6 +128,9 @@ namespace OCESACNA.Engine.Core
             RequestQueue.Add(r);
         }
 
+        /// <summary>
+        /// Disparador de la señal <see cref="DataModified"></see>
+        /// </summary>
         private static void OnDataModified(object sender, RequestEventArgs e)
         {
             DataModified.Emit(e);

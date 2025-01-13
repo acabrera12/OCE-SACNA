@@ -1,16 +1,43 @@
 using OCESACNA.Engine.Collections.Abstract;
 namespace OCESACNA.Engine.Collections
 {
+    /// <summary>
+    /// Entidad clase <c>Score</c> que hace referencia a un registro de la base de datos
+    /// </summary>
     public class Score : Entity
     {
+        /// <summary>
+        /// ID correspondiente a la instancia
+        /// </summary>
         public int ScoreID { get; set; }
+        /// <summary>
+        /// Estudiante asociado a la instancia
+        /// </summary>
         public Student Student { get; set; }
+        /// <summary>
+        /// Asignatura asociada a la instancia
+        /// </summary>
         public Subject Subject { get; set; }
+        /// <summary>
+        /// Hace referencia al conjunto de calificaciones de primer lapso
+        /// </summary>
         public ScoreModule First { get; set; }
+        /// <summary>
+        /// Hace referencia al conjunto de calificaciones de segundo lapso
+        /// </summary>
         public ScoreModule Second { get; set; }
+        /// <summary>
+        /// Hace referencia al conjunto de calificaciones de tercer lapso
+        /// </summary>
         public ScoreModule Third { get; set; }
+        /// <summary>
+        /// Hace referencia al conjunto de calificaciones promediados de los anteriores conjuntos
+        /// </summary>
         public ScoreModule Final { get; set; }
 
+        /// <summary>
+        /// Inicializa una instancia vacía de la entidad <c>Score</c>
+        /// </summary>
         public Score()
         {
             this.ScoreID = -1;
@@ -22,6 +49,16 @@ namespace OCESACNA.Engine.Collections
             this.Final = new ScoreModule();
         }
 
+        /// <summary>
+        /// Inicializa una instancia de la entidad <c>Score</c>
+        /// </summary>
+        /// <param name="id">ID del registro</param>
+        /// <param name="student">Estudiante asociado</param>
+        /// <param name="subject">Asignatura asociada</param>
+        /// <param name="first">Conjunto de calificaciones de primer lapso</param>
+        /// <param name="second">Conjunto de calificaciones de segundo lapso</param>
+        /// <param name="third">Conjunto de calificaciones de tercer lapso</param>
+        /// <param name="final">Conjunto promediado de la calificaciones finales</param>
         public Score(int id, Student student, Subject subject, ScoreModule first, ScoreModule second, ScoreModule third, ScoreModule final)
         {
             this.ScoreID = id;
@@ -34,12 +71,30 @@ namespace OCESACNA.Engine.Collections
         }
     }
 
+    /// <summary>
+    /// Clase <c>ScoreModule</c> Conjunto de calificaciones
+    /// </summary>
     public class ScoreModule
     {
+        /// <summary>
+        /// Calificación
+        /// </summary>
         public float Score { get; set; }
+        /// <summary>
+        /// Calificación final
+        /// </summary>
         public float DefScore { get; set; }
+        /// <summary>
+        /// Inasistencias
+        /// </summary>
         public int Inas { get; set; }
 
+        /// <summary>
+        /// Inicializa una instancia de clase <c>ScoreModule</c>
+        /// </summary>
+        /// <param name="score">Calificación</param>
+        /// <param name="def">Calificación definitiva</param>
+        /// <param name="inas">Inasistencias</param>
         public ScoreModule(float score = -1f, float def = -1f, int inas = -1)
         {
             this.Score = score;

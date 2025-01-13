@@ -3,9 +3,14 @@ using OCESACNA.Engine.Core;
 
 namespace OCESACNA.Engine
 {
+    /// <summary>
+    /// Controlador de los administradores
+    /// </summary>
     public static class Controller
     {
-        public static readonly Version3 MainEngineVersion = new Version3(0, 3, 0);
+        /// <summary>
+        /// Inicializa todos los administradores
+        /// </summary>
         public static void Initialize()
         {
             UpdateManager.Init();

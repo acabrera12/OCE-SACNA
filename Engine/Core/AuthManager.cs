@@ -4,22 +4,36 @@ using System.Collections.Generic;
 
 namespace OCESACNA.Engine.Core
 {
+    /// <summary>
+    /// Administrador de identidad/autoridad clase <see cref="AuthManager"></see>
+    /// </summary>
     public static class AuthManager
     {
         private static User LoggedUser = new User();
         private readonly static List<User> UserList = new List<User>();
 
+        /// <summary>
+        /// Inicializa el administrador
+        /// </summary>
         internal static void Init()
         {
             ConnectManager.GetAllUsers(GetDBUsers);
             ConnectManager.DataModified.Connect(UpdateData);
         }
 
+        /// <summary>
+        /// Actualiza los datos
+        /// </summary>
+        /// <param name="s">Objeto que envía el evento</param>
+        /// <param name="e">Argumentos de evento</param>
         private static void UpdateData(object s, EventArgs e)
         {
             ConnectManager.GetAllUsers(GetDBUsers);
         }
-
+        
+        /// <summary>
+        /// Posibles Resultados de métodos del administrador
+        /// </summary>
         public enum ResultCode
         {
             SUSSCES = 0,
@@ -34,6 +48,11 @@ namespace OCESACNA.Engine.Core
             DISABLED_USER = 9
         }
 
+        /// <summary>
+        /// Intenta iniciar sesión como el usuario indicado
+        /// </summary>
+        /// <param name="user">Usuario</param>
+        /// <returns>Un <see cref="ResultCode">resultado del administrador</see></returns>
         public static ResultCode TryLogginAs(User user)
         {
             ResultCode result = ValidateUser(user);
@@ -82,6 +101,10 @@ namespace OCESACNA.Engine.Core
             return ResultCode.SUSSCES;
         }
 
+        /// <summary>
+        /// Cierra la sesión del usuario actual
+        /// </summary>
+        /// <returns>Un <see cref="ResultCode">Resultado del administrador</see></returns>
         public static ResultCode Logout()
         {
             ResultCode result = ValidateUser(LoggedUser);
@@ -99,6 +122,10 @@ namespace OCESACNA.Engine.Core
             return ResultCode.SUSSCES;
         }
 
+        /// <summary>
+        /// Obtiene autorización de usuario administrador
+        /// </summary>
+        /// <returns><c>True</c> si el usuario es administrador, <c>False</c> si no</returns>
         public static bool GetAdministratorAuthorization()
         {
             if (LoggedUser.Rank == User.RANKING.ADMIN || LoggedUser.Rank == User.RANKING.DEFAULT)
@@ -108,6 +135,11 @@ namespace OCESACNA.Engine.Core
 
             return false;
         }
+
+        /// <summary>
+        /// Obtiene el nombre de usuario del usuario activo
+        /// </summary>
+        /// <returns>Cadena de texto que representa el nombre de usuario</returns>
         public static string GetLoggedUsername()
         {
             return LoggedUser.UserName;
