@@ -109,7 +109,7 @@
     <Compile Include="Collections\Teacher.cs" />
     <Compile Include="Collections\User.cs" />
     <Compile Include="Collections\Version.cs" />
-    <Compile Include="Controller.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Core\AuthManager.cs" />
     <Compile Include="Core\ConnectManager.cs" />
     <Compile Include="Core\ConnectManager.Keys.cs" />

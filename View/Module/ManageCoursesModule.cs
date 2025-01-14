@@ -16,7 +16,7 @@ namespace OCESACNA.View.Module
         int selectedID = -1;
         bool isEditing = false;
         bool isCreating = false;
-        readonly string[] YearsNames = { "1thYear", "2thYear", "3thYear", "4thYear", "5thYear" };
+        readonly string[] YearsKeys = Engine.Engine.YearsKeys;
 
 
         public ManageCoursesModule()
@@ -49,9 +49,9 @@ namespace OCESACNA.View.Module
             TreeNodeCollection nodes = Tree.Nodes;
 
             int index = 0;
-            foreach (string year in YearsNames)
+            foreach (string year in YearsKeys)
             {
-                foreach (Course course in CourseList.Where(e => YearsNames[e.Year] == year))
+                foreach (Course course in CourseList.Where(e => YearsKeys[e.Year] == year))
                 {
                     if (nodes[index].Nodes.Count == 0)
                     {
@@ -80,7 +80,7 @@ namespace OCESACNA.View.Module
                 index++;
             }
 
-            for (index = 0; index < YearsNames.Length; index++)
+            for (index = 0; index < YearsKeys.Length; index++)
             {
                 foreach (TreeNode node in nodes[index].Nodes)
                 {
@@ -322,7 +322,7 @@ namespace OCESACNA.View.Module
 
         private void Tree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (!YearsNames.Contains(e.Node.Name))
+            if (!YearsKeys.Contains(e.Node.Name))
             {
                 return;
             }
@@ -332,7 +332,7 @@ namespace OCESACNA.View.Module
                 DataGrid.Rows.Clear();
             }
 
-            foreach (Course course in CourseList.Where(c => YearsNames[c.Year] == e.Node.Name))
+            foreach (Course course in CourseList.Where(c => YearsKeys[c.Year] == e.Node.Name))
             {
                 DataGrid.Rows.Add(new object[] { "", course.CourseID, e.Node.Text, course.Mention, course.Section });
             }

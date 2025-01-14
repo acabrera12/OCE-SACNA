@@ -13,7 +13,7 @@ namespace OCESACNA
         [STAThread]
         static void Main()
         {
-            Controller.Initialize();
+            Engine.Engine.Initialize();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

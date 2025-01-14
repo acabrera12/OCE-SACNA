@@ -10,6 +10,11 @@ namespace OCESACNA.Engine.Core
     public static class UpdateManager
     {
         /// <summary>
+        /// Tiempo en ms que transcurre antes de una actualizacion
+        /// </summary>
+        internal const int MillisecondsDelay = 100;
+
+        /// <summary>
         /// Señal emitida cuando se actualiza
         /// </summary>
         internal static Signal Updated = new Signal();
@@ -30,7 +35,7 @@ namespace OCESACNA.Engine.Core
             while (true)
             {
                 Updated.Emit(EventArgs.Empty);
-                await Task.Delay(100);
+                await Task.Delay(MillisecondsDelay);
             }
         }
     }
