@@ -291,14 +291,14 @@ namespace OCESACNA.Engine.Core
         #region SbjetModule commands
         public static void GetAllSbjetModules(Request.CompleEventHandle callback)
         {
-            Request r = new Request("SELECT * FROM subjectmodules", SbjetModuleKeys);
+            Request r = new Request("SELECT * FROM subjectmodules", SbjectModuleKeys);
             r.Connect(callback);
             RequestQueue.Add(r);
         }
 
         public static void GetSbjetModuleByID(int id, Request.CompleEventHandle callback)
         {
-            Request r = new Request($"SELECT * FROM subjectmodules WHERE `SbjetModuleID` ='{id}'", SbjetModuleKeys);
+            Request r = new Request($"SELECT * FROM subjectmodules WHERE `SbjetModuleID` ='{id}'", SbjectModuleKeys);
             r.Connect(callback);
             RequestQueue.Add(r);
         }

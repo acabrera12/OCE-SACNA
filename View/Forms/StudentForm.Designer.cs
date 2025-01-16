@@ -47,7 +47,7 @@ namespace OCESACNA.View.Forms
             this.BirthPlaceLabel = new System.Windows.Forms.Label();
             this.FederalEnttyLabel = new System.Windows.Forms.Label();
             this.FederalEnttyBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.AddressBox = new System.Windows.Forms.TextBox();
             this.AddressLabel = new System.Windows.Forms.Label();
             this.PhoneNumberLabel = new System.Windows.Forms.Label();
             this.PhoneNumberBox = new System.Windows.Forms.TextBox();
@@ -58,12 +58,12 @@ namespace OCESACNA.View.Forms
             this.SelectRprsentBtn = new FontAwesome.Sharp.IconButton();
             this.PersonalDataGroup = new System.Windows.Forms.GroupBox();
             this.AdditionalDataGroup = new System.Windows.Forms.GroupBox();
-            this.YearBox = new System.Windows.Forms.ComboBox();
-            this.YearLabel = new System.Windows.Forms.Label();
-            this.MentionBox = new System.Windows.Forms.ComboBox();
-            this.SectionBox = new System.Windows.Forms.ComboBox();
-            this.MentionLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.MentionLabel = new System.Windows.Forms.Label();
+            this.SectionBox = new System.Windows.Forms.ComboBox();
+            this.MentionBox = new System.Windows.Forms.ComboBox();
+            this.YearLabel = new System.Windows.Forms.Label();
+            this.YearBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.AgeBox)).BeginInit();
             this.PersonalDataGroup.SuspendLayout();
             this.AdditionalDataGroup.SuspendLayout();
@@ -236,13 +236,13 @@ namespace OCESACNA.View.Forms
             this.FederalEnttyBox.Size = new System.Drawing.Size(101, 20);
             this.FederalEnttyBox.TabIndex = 14;
             // 
-            // textBox1
+            // AddressBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 165);
-            this.textBox1.MaxLength = 100;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(440, 20);
-            this.textBox1.TabIndex = 16;
+            this.AddressBox.Location = new System.Drawing.Point(6, 165);
+            this.AddressBox.MaxLength = 100;
+            this.AddressBox.Name = "AddressBox";
+            this.AddressBox.Size = new System.Drawing.Size(440, 20);
+            this.AddressBox.TabIndex = 16;
             // 
             // AddressLabel
             // 
@@ -328,7 +328,7 @@ namespace OCESACNA.View.Forms
             this.PersonalDataGroup.Controls.Add(this.FirstNamesBox);
             this.PersonalDataGroup.Controls.Add(this.AddressLabel);
             this.PersonalDataGroup.Controls.Add(this.PhoneNumberLabel);
-            this.PersonalDataGroup.Controls.Add(this.textBox1);
+            this.PersonalDataGroup.Controls.Add(this.AddressBox);
             this.PersonalDataGroup.Controls.Add(this.EmailLabel);
             this.PersonalDataGroup.Controls.Add(this.PhoneNumberBox);
             this.PersonalDataGroup.Controls.Add(this.LastNamesLabel);
@@ -369,25 +369,33 @@ namespace OCESACNA.View.Forms
             this.AdditionalDataGroup.TabStop = false;
             this.AdditionalDataGroup.Text = "Datos Adicionales";
             // 
-            // YearBox
+            // label1
             // 
-            this.YearBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.YearBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.YearBox.FormattingEnabled = true;
-            this.YearBox.Location = new System.Drawing.Point(6, 76);
-            this.YearBox.Name = "YearBox";
-            this.YearBox.Size = new System.Drawing.Size(121, 21);
-            this.YearBox.TabIndex = 25;
-            this.YearBox.SelectedIndexChanged += new System.EventHandler(this.YearBox_SelectedIndexChanged);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(345, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Seción";
             // 
-            // YearLabel
+            // MentionLabel
             // 
-            this.YearLabel.AutoSize = true;
-            this.YearLabel.Location = new System.Drawing.Point(3, 60);
-            this.YearLabel.Name = "YearLabel";
-            this.YearLabel.Size = new System.Drawing.Size(26, 13);
-            this.YearLabel.TabIndex = 26;
-            this.YearLabel.Text = "Año";
+            this.MentionLabel.AutoSize = true;
+            this.MentionLabel.Location = new System.Drawing.Point(130, 60);
+            this.MentionLabel.Name = "MentionLabel";
+            this.MentionLabel.Size = new System.Drawing.Size(48, 13);
+            this.MentionLabel.TabIndex = 28;
+            this.MentionLabel.Text = "Mención";
+            // 
+            // SectionBox
+            // 
+            this.SectionBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.SectionBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.SectionBox.FormattingEnabled = true;
+            this.SectionBox.Location = new System.Drawing.Point(348, 76);
+            this.SectionBox.Name = "SectionBox";
+            this.SectionBox.Size = new System.Drawing.Size(98, 21);
+            this.SectionBox.TabIndex = 27;
             // 
             // MentionBox
             // 
@@ -400,33 +408,25 @@ namespace OCESACNA.View.Forms
             this.MentionBox.TabIndex = 27;
             this.MentionBox.SelectedIndexChanged += new System.EventHandler(this.MentionBox_SelectedIndexChanged);
             // 
-            // SectionBox
+            // YearLabel
             // 
-            this.SectionBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.SectionBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.SectionBox.FormattingEnabled = true;
-            this.SectionBox.Location = new System.Drawing.Point(348, 76);
-            this.SectionBox.Name = "SectionBox";
-            this.SectionBox.Size = new System.Drawing.Size(98, 21);
-            this.SectionBox.TabIndex = 27;
+            this.YearLabel.AutoSize = true;
+            this.YearLabel.Location = new System.Drawing.Point(3, 60);
+            this.YearLabel.Name = "YearLabel";
+            this.YearLabel.Size = new System.Drawing.Size(26, 13);
+            this.YearLabel.TabIndex = 26;
+            this.YearLabel.Text = "Año";
             // 
-            // MentionLabel
+            // YearBox
             // 
-            this.MentionLabel.AutoSize = true;
-            this.MentionLabel.Location = new System.Drawing.Point(130, 60);
-            this.MentionLabel.Name = "MentionLabel";
-            this.MentionLabel.Size = new System.Drawing.Size(48, 13);
-            this.MentionLabel.TabIndex = 28;
-            this.MentionLabel.Text = "Mención";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(345, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Seción";
+            this.YearBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.YearBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.YearBox.FormattingEnabled = true;
+            this.YearBox.Location = new System.Drawing.Point(6, 76);
+            this.YearBox.Name = "YearBox";
+            this.YearBox.Size = new System.Drawing.Size(121, 21);
+            this.YearBox.TabIndex = 25;
+            this.YearBox.SelectedIndexChanged += new System.EventHandler(this.YearBox_SelectedIndexChanged);
             // 
             // StudentForm
             // 
@@ -471,7 +471,7 @@ namespace OCESACNA.View.Forms
         private System.Windows.Forms.Label BirthPlaceLabel;
         private System.Windows.Forms.Label FederalEnttyLabel;
         private System.Windows.Forms.TextBox FederalEnttyBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox AddressBox;
         private System.Windows.Forms.Label AddressLabel;
         private System.Windows.Forms.Label PhoneNumberLabel;
         private System.Windows.Forms.TextBox PhoneNumberBox;

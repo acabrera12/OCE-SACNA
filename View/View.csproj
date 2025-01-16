@@ -58,6 +58,12 @@
   <ItemGroup>
     <Compile Include="Collections\ComboBoxElement.cs" />
     <Compile Include="Collections\IDataForm.cs" />
+    <Compile Include="Forms\ChoiceRprsentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChoiceRprsentForm.Designer.cs">
+      <DependentUpon>ChoiceRprsentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\ChoiceRprsentForm.resx">
+      <DependentUpon>ChoiceRprsentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </EmbeddedResource>
