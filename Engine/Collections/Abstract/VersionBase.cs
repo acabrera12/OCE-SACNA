@@ -1,7 +1,7 @@
 namespace OCESACNA.Engine.Collections.Abstract
 {
     /// <summary>
-    /// Clase asbtracta <c>VersionBase</c> de la que derivan las clase <c>VersionX</c>
+    /// Clase asbtracta <see cref="VersionBase"/> de la que derivan las clases <see cref="Version2"/> y <see cref="Version3"/>
     /// </summary>
     public abstract class VersionBase
     {

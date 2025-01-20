@@ -24,7 +24,7 @@ namespace OCESACNA.View.Menu
 
             AuthManager.ResultCode resultCode = AuthManager.TryLogginAs(user);
 
-            if (resultCode != AuthManager.ResultCode.SUSSCES)
+            if (resultCode != AuthManager.ResultCode.SUCCESS)
             {
                 switch (resultCode)
                 {

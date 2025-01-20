@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OCESACNA.Engine.Collections;
+using OCESACNA.View.Collections;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using OCESACNA.Engine.Collections;
-using OCESACNA.View.Collections;
 
 namespace OCESACNA.View.Forms
 {
-    public partial class StudentForm : Form, IDataForm
+    public partial class StudentForm : Form
     {
         public Signal Acepted = new Signal();
         public Signal Canceled = new Signal();
@@ -29,8 +28,8 @@ namespace OCESACNA.View.Forms
         {
             InitializeComponent();
 
-            SexBox.Items.Add(new BoolComboBoxElement("M", true));
-            SexBox.Items.Add(new BoolComboBoxElement("F", false));
+            SexBox.Items.Add(new SexComboBoxElement("M", Student.SEXS.M));
+            SexBox.Items.Add(new SexComboBoxElement("F", Student.SEXS.F));
             ComboBoxElement.AjustComboBox(SexBox);
 
             int index = 0;
@@ -43,23 +42,64 @@ namespace OCESACNA.View.Forms
             ComboBoxElement.AjustComboBox(YearBox);
         }
 
-        public void SetData(Dictionary<string, dynamic> data)
+        public void SetData(Student data)
         {
+            StudentID = data.StudentID;
+            Rprsent = data.Rprsent;
+            RprsentBox.Text = Rprsent.FullName;
+            YearBox.SelectedIndex = data.Course.Year;
 
+            foreach (StringComboBoxElement scbe in MentionBox.Items)
+            {
+                if (scbe.Text == data.Course.Mention)
+                {
+                    MentionBox.SelectedIndex = MentionBox.Items.IndexOf(scbe);
+                    break;
+                }
+            }
+
+            foreach (StringComboBoxElement scbe in SectionBox.Items)
+            {
+                if (scbe.Text == data.Course.Section)
+                {
+                    SectionBox.SelectedIndex = SectionBox.Items.IndexOf(scbe);
+                    break;
+                }
+            }
+
+            foreach (SexComboBoxElement scbe in SexBox.Items)
+            {
+                if (scbe.Value == data.Sex)
+                {
+                    SexBox.SelectedIndex = SexBox.Items.IndexOf(scbe);
+                    break;
+                }
+            }
+
+            CedulaBox.Text = data.Cedula.ToString();
+            LastNamesBox.Text = data.LastNames;
+            FirstNamesBox.Text = data.FirstNames;
+            AgeBox.Value = data.Age;
+            BirthdateBox.Value = data.Birthdate;
+            BirthPlaceBox.Text = data.BirthPlace;
+            FederalEnttyBox.Text = data.FederalEntty;
+            AddressBox.Text = data.Address;
+            PhoneNumberBox.Text = data.PhoneNumber;
+            EmailBox.Text = data.Email;
         }
 
-        public object[] GetData()
+        public Student GetDataAndHide()
         {
-            bool sex = false;
+            Student.SEXS sex = 0;
             string mention = "";
             string section = "";
 
             int index = SexBox.SelectedIndex;
-            foreach (BoolComboBoxElement boolComboBox in SexBox.Items)
+            foreach (SexComboBoxElement intComboBox in SexBox.Items)
             {
-                if (index == SexBox.Items.IndexOf(boolComboBox))
+                if (index == SexBox.Items.IndexOf(intComboBox))
                 {
-                    sex = boolComboBox.Value;
+                    sex = intComboBox.Value;
                     break;
                 }
             }
@@ -84,19 +124,53 @@ namespace OCESACNA.View.Forms
                 }
             }
 
-            object[] values = new object[]
+            if (!VerifyData())
             {
-                StudentID, CedulaBox.Text, LastNamesBox.Text, FirstNameLabel.Text, AgeBox.Value,
-                sex, BirthdateBox.Value, BirthPlaceBox.Text, FederalEnttyBox.Text, AddressBox.Text,
-                PhoneNumberBox.Text, EmailBox.Text, Rprsent, new Course(-1, YearBox.SelectedIndex, mention, section)
+                throw new Exception("Alguno de los campos es inválido");
+            }
+
+            Student student = new Student()
+            {
+                StudentID = StudentID,
+                Address = AddressBox.Text,
+                Age = int.Parse(AgeBox.Value.ToString()),
+                Birthdate = BirthdateBox.Value,
+                BirthPlace = BirthPlaceBox.Text,
+                Cedula = int.Parse(CedulaBox.Text),
+                Course = Engine.Engine.Courses.Where(
+                    t => t.Year == YearBox.SelectedIndex
+                    && t.Mention == mention
+                    && t.Section == section
+                ).First(),
+                Email = EmailBox.Text,
+                FederalEntty = FederalEnttyBox.Text,
+                FirstNames = FirstNamesBox.Text,
+                LastNames = LastNamesBox.Text,
+                PhoneNumber = PhoneNumberBox.Text,
+                Rprsent = Rprsent,
+                Sex = sex
             };
 
-            return values;
+            Hide();
+            return student;
         }
 
         public void ClearData()
         {
-
+            StudentID = -1;
+            AddressBox.Text = string.Empty;
+            BirthdateBox.Value = DateTime.Today;
+            BirthPlaceBox.Text = string.Empty;
+            CedulaBox.Text = string.Empty;
+            YearBox.SelectedIndex = 0;
+            EmailBox.Text = string.Empty;
+            FederalEnttyBox.Text = string.Empty;
+            FirstNamesBox.Text = string.Empty;
+            LastNamesBox.Text = string.Empty;
+            PhoneNumberBox.Text = string.Empty;
+            Rprsent = null;
+            RprsentBox.Text = string.Empty;
+            SexBox.SelectedIndex = 0;
         }
 
         private void AceptBtn_Click(object sender, EventArgs e)
@@ -120,21 +194,14 @@ namespace OCESACNA.View.Forms
             }
 
             int index = YearBox.SelectedIndex;
-            StringComboBoxElement stringCombo = new StringComboBoxElement("None", "");
 
-            foreach (StringComboBoxElement scbe in YearBox.Items)
-            {
-                if (index == YearBox.Items.IndexOf(scbe))
-                {
-                    stringCombo = scbe;
-                    break;
-                }
-            }
-
-            foreach (Course c in Engine.Engine.Courses.Where(t => stringCombo.Text == YearsNames[t.Year]))
+            foreach (Course c in Engine.Engine.Courses.Where(t => t.Year == index))
             {
                 MentionBox.Items.Add(new StringComboBoxElement(c.Mention, string.Empty));
             }
+
+            ComboBoxElement.AjustComboBox(MentionBox);
+            MentionBox.SelectedIndex = 0;
         }
 
         private void MentionBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,10 +223,13 @@ namespace OCESACNA.View.Forms
                 }
             }
 
-            foreach (Course c in Engine.Engine.Courses.Where(t => stringCombo.Text == YearsNames[t.Year] && t.Mention == stringCombo.Text))
+            foreach (Course c in Engine.Engine.Courses.Where(t => t.Year == YearBox.SelectedIndex && t.Mention == stringCombo.Text))
             {
-                SectionBox.Items.Add(c.Section);
+                SectionBox.Items.Add(new StringComboBoxElement(c.Section, string.Empty));
             }
+
+            ComboBoxElement.AjustComboBox(SectionBox);
+            SectionBox.SelectedIndex = 0;
         }
 
         ChoiceRprsentForm Cr;
@@ -167,17 +237,44 @@ namespace OCESACNA.View.Forms
         private void SelectRprsentBtn_Click(object sender, EventArgs e)
         {
             Cr = new ChoiceRprsentForm();
-            Cr.ShowDialog();
             Cr.DataElementChoiced.Connect(OnChoiceRprsentDataChoiced);
+            Cr.ShowDialog();
         }
 
         private void OnChoiceRprsentDataChoiced(object sender, EventArgs e)
         {
             Rprsent = Cr.Choiced;
-
             RprsentBox.Text = Rprsent.FullName;
-
             Cr.Close();
+        }
+
+        private bool VerifyData()
+        {
+            if (CedulaBox.Text.Replace(" ", "") == string.Empty || !int.TryParse(CedulaBox.Text, result: out _))
+            {
+                return false;
+            }
+            if (LastNamesBox.Text.Replace(" ", "") == string.Empty || FirstNamesBox.Text.Replace(" ", "") == string.Empty)
+            {
+                return false;
+            }
+            if (BirthPlaceBox.Text.Replace(" ", "") == string.Empty || FederalEnttyBox.Text.Replace(" ", "") == string.Empty)
+            {
+                return false;
+            }
+            if (AddressBox.Text.Replace(" ", "") == string.Empty || PhoneNumberBox.Text.Replace(" ", "") == string.Empty)
+            {
+                return false;
+            }
+            if (EmailBox.Text.Replace(" ", "") == string.Empty || YearBox.SelectedIndex == -1)
+            {
+                return false;
+            }
+            if (MentionBox.SelectedIndex == -1 || SectionBox.SelectedIndex == -1)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

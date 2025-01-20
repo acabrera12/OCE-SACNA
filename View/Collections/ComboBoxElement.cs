@@ -72,6 +72,28 @@ namespace OCESACNA.View.Collections
     }
 
     /// <summary>
+    /// Clase <see cref="SexComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="string"/>
+    /// </summary>
+    public class SexComboBoxElement : ComboBoxElement
+    {
+        /// <summary>
+        /// Valor interno
+        /// </summary>
+        public new Student.SEXS Value { get; set; }
+
+        /// <summary>
+        /// Inicializa una instancia de la clase <see cref="SexComboBoxElement"/>
+        /// </summary>
+        /// <param name="Text">texto a mostrar</param>
+        /// <param name="Value">valor a almacenar</param>
+        public SexComboBoxElement(string Text, Student.SEXS Value)
+        {
+            this.Text = Text;
+            this.Value = Value;
+        }
+    }
+
+    /// <summary>
     /// Clase <see cref="BoolComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="bool"/>
     /// </summary>
     public class BoolComboBoxElement : ComboBoxElement
@@ -109,6 +131,28 @@ namespace OCESACNA.View.Collections
         /// <param name="Text">texto a mostrar</param>
         /// <param name="Value">valor a almacenar</param>
         public StringComboBoxElement(string Text, string Value)
+        {
+            this.Text = Text;
+            this.Value = Value;
+        }
+    }
+
+    /// <summary>
+    /// Clase <see cref="IntComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="string"/>
+    /// </summary>
+    public class IntComboBoxElement : ComboBoxElement
+    {
+        /// <summary>
+        /// Valor interno
+        /// </summary>
+        public new int Value { get; set; }
+
+        /// <summary>
+        /// Inicializa una instancia de la clase <see cref="IntComboBoxElement"/>
+        /// </summary>
+        /// <param name="Text">texto a mostrar</param>
+        /// <param name="Value">valor a almacenar</param>
+        public IntComboBoxElement(string Text, int Value)
         {
             this.Text = Text;
             this.Value = Value;

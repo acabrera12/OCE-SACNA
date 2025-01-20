@@ -45,8 +45,9 @@ namespace OCESACNA.View.Module
             this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SexValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Birthdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BirthPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FederalEntty = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -131,8 +132,9 @@ namespace OCESACNA.View.Module
             this.Cedula,
             this.LastNames,
             this.FirstNames,
-            this.Age,
+            this.SexValue,
             this.Sex,
+            this.Age,
             this.Birthdate,
             this.BirthPlace,
             this.FederalEntty,
@@ -243,6 +245,7 @@ namespace OCESACNA.View.Module
             this.ID.MaxInputLength = 16;
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             this.ID.Width = 57;
             // 
             // Cedula
@@ -265,12 +268,12 @@ namespace OCESACNA.View.Module
             this.FirstNames.ReadOnly = true;
             this.FirstNames.Width = 150;
             // 
-            // Age
+            // SexValue
             // 
-            this.Age.HeaderText = "Edad";
-            this.Age.Name = "Age";
-            this.Age.ReadOnly = true;
-            this.Age.Width = 50;
+            this.SexValue.HeaderText = "SexValue";
+            this.SexValue.Name = "SexValue";
+            this.SexValue.ReadOnly = true;
+            this.SexValue.Visible = false;
             // 
             // Sex
             // 
@@ -278,6 +281,13 @@ namespace OCESACNA.View.Module
             this.Sex.Name = "Sex";
             this.Sex.ReadOnly = true;
             this.Sex.Width = 50;
+            // 
+            // Age
+            // 
+            this.Age.HeaderText = "Edad";
+            this.Age.Name = "Age";
+            this.Age.ReadOnly = true;
+            this.Age.Width = 50;
             // 
             // Birthdate
             // 
@@ -394,8 +404,9 @@ namespace OCESACNA.View.Module
         private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastNames;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstNames;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Age;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SexValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sex;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Age;
         private System.Windows.Forms.DataGridViewTextBoxColumn Birthdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn BirthPlace;
         private System.Windows.Forms.DataGridViewTextBoxColumn FederalEntty;

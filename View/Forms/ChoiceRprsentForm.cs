@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OCESACNA.Engine.Collections;
+using System;
 using System.Windows.Forms;
-using OCESACNA.Engine.Collections;
-using OCESACNA.Engine.DBCollections;
-using OCESACNA.View.Collections;
 
 namespace OCESACNA.View.Forms
 {
@@ -35,24 +26,21 @@ namespace OCESACNA.View.Forms
 
         private void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (DataGrid.Columns[e.ColumnIndex].Name != "Selection")
+            int index = e.RowIndex;
+
+            if (DataGrid.Columns[e.ColumnIndex].Name != "Selection" || index < 0)
             {
                 return;
             }
 
-            int index = e.RowIndex;
+            Choiced = new Representative(
+                int.Parse(DataGrid.Rows[index].Cells["ID"].Value.ToString()),
+                DataGrid.Rows[index].Cells["FullName"].Value.ToString(),
+                DataGrid.Rows[index].Cells["PhoneNumber"].Value.ToString(),
+                DataGrid.Rows[index].Cells["Email"].Value.ToString()
+            );
 
-            if (index >= 0)
-            {
-                Choiced = new Representative(
-                    int.Parse(DataGrid.Rows[index].Cells["ID"].Value.ToString()),
-                    DataGrid.Rows[index].Cells["FullName"].Value.ToString(),
-                    DataGrid.Rows[index].Cells["PhoneNumber"].Value.ToString(),
-                    DataGrid.Rows[index].Cells["Email"].Value.ToString()
-                );
-
-                DataElementChoiced.Emit(EventArgs.Empty);
-            }
+            DataElementChoiced.Emit(EventArgs.Empty);
         }
     }
 }

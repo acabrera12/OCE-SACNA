@@ -2,7 +2,7 @@
 namespace OCESACNA.Engine.Collections
 {
     /// <summary>
-    /// Clase interna <c>Connection</c> usada para conectar con la base de datos
+    /// Clase interna <see cref="Connection"/> usada para conectar con la base de datos
     /// </summary>
     internal class Connection
     {
@@ -14,7 +14,7 @@ namespace OCESACNA.Engine.Collections
         private readonly string password = "";
 
         /// <summary>
-        /// Inicializa una instancia de la clase <c>Connection</c>
+        /// Inicializa una instancia de la clase <see cref="Connection"/>
         /// </summary>
         /// <param name="server"><c>URI</c> del host de la base de datos</param>
         public Connection(string server = "localhost")
@@ -27,7 +27,7 @@ namespace OCESACNA.Engine.Collections
         /// <summary>
         /// Obtiene la conexión con la base de datos de la instancia
         /// </summary>
-        /// <returns>Una conexión <c>MySqlConnection</c></returns>
+        /// <returns>Una conexión <see cref="MySqlConnection"/></returns>
         public MySqlConnection GetConnection()
         {
             if (connection == null)

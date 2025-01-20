@@ -14,6 +14,8 @@ namespace OCESACNA.Engine.Core
         private static Connection DBConnection;
         private static readonly List<Request> RequestQueue = new List<Request>();
         private static bool isRequesting = false;
+        private static readonly string DBDateTimeFormat = Engine.DBDateTimeFormat;
+
         /// <summary>
         /// Señal emitida cuando los datos en la base de datos son modificados
         /// </summary>
@@ -85,23 +87,27 @@ namespace OCESACNA.Engine.Core
 
             List<Dictionary<string, dynamic>> list = new List<Dictionary<string, dynamic>>();
 
-            if (Data != null)
+            if (Data == null)
             {
-                while (Data.Read())
-                {
-                    Dictionary<string, dynamic> current = new Dictionary<string, dynamic>();
-
-                    foreach (string key in request.Keys)
-                    {
-                        current.Add(key, Data[key]);
-                    }
-
-                    list.Add(current);
-                }
-                Data.Close();
+                request.Complete(new RequestEventArgs(list));
+                isRequesting = false;
+                return;
             }
-            request.Complete(new RequestEventArgs(list));
+
+            while (Data.Read())
+            {
+                Dictionary<string, dynamic> current = new Dictionary<string, dynamic>();
+
+                foreach (string key in request.Keys)
+                {
+                    current.Add(key, Data[key]);
+                }
+
+                list.Add(current);
+            }
+            Data.Close();
             isRequesting = false;
+            request.Complete(new RequestEventArgs(list));
         }
 
         /// <summary>
@@ -381,11 +387,11 @@ namespace OCESACNA.Engine.Core
 
         public static void AddStudent(DBStudent std)
         {
-            Request r = new Request("INSERT INTO students (`Cedula, `LastNames`, `FirstNames`, `Age`, `Sex`, `Birthdate`, " +
+            Request r = new Request("INSERT INTO students (`Cedula`, `LastNames`, `FirstNames`, `Age`, `Sex`, `Birthdate`, " +
                 "`BirthPlace`, `FederalEntty`, `Address`, `PhoneNumber`, `Email`, `RprsentID`, `CourseID`) VALUES " +
-                $"('{std.Cedula}', '{std.LastNames}', '{std.FirstNames}', '{std.Age}', '{std.Sex}', '{std.Birthdate}', " +
-                $"'{std.BirthPlace}', '{std.FederalEntty}', '{std.Address}', '{std.PhoneNumber}', '{std.Email}'), " +
-                $"{std.RprsentID}, {std.CourseID}");
+                $"('{std.Cedula}', '{std.LastNames}', '{std.FirstNames}', '{std.Age}', '{std.Sex}', '{std.Birthdate.ToString(DBDateTimeFormat)}', " +
+                $"'{std.BirthPlace}', '{std.FederalEntty}', '{std.Address}', '{std.PhoneNumber}', '{std.Email}', " +
+                $"'{std.RprsentID}', '{std.CourseID}')");
             r.Connect(OnDataModified);
             RequestQueue.Add(r);
         }
@@ -393,7 +399,7 @@ namespace OCESACNA.Engine.Core
         public static void UpdateStudent(DBStudent std)
         {
             Request r = new Request($"UPDATE students SET `Cedula` ='{std.Cedula}', `LastNames` ='{std.LastNames}', " +
-                $"`FirstNames` ='{std.FirstNames}', `Age` ='{std.Age}', `Sex` ='{std.Sex}', `Birthdate` ='{std.Birthdate}', " +
+                $"`FirstNames` ='{std.FirstNames}', `Age` ='{std.Age}', `Sex` ='{std.Sex}', `Birthdate` ='{std.Birthdate.ToString(DBDateTimeFormat)}', " +
                 $"`BirthPlace` ='{std.BirthPlace}', `FederalEntty` ='{std.FederalEntty}', `Address` ='{std.Address}', " +
                 $"`PhoneNumber` ='{std.PhoneNumber}', `Email` ='{std.Email}', `RprsentID` ='{std.RprsentID}', " +
                 $"`CourseID` ='{std.CourseID}' WHERE `StudentID` ='{std.StudentID}'");

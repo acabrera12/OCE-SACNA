@@ -96,9 +96,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\Abstract\Entity.cs" />
-    <Compile Include="Collections\Abstract\Version.cs" />
+    <Compile Include="Collections\Abstract\RequestBase.cs" />
+    <Compile Include="Collections\Abstract\VersionBase.cs" />
     <Compile Include="Collections\Connection.cs" />
     <Compile Include="Collections\Course.cs" />
+    <Compile Include="Collections\DynamicRequest.cs" />
     <Compile Include="Collections\Representative.cs" />
     <Compile Include="Collections\Request.cs" />
     <Compile Include="Collections\Score.cs" />
@@ -117,7 +119,6 @@
     <Compile Include="Core\UpdateManager.cs" />
     <Compile Include="DBCollections\Course.cs" />
     <Compile Include="DBCollections\Representative.cs" />
-    <Compile Include="DBCollections\Response.cs" />
     <Compile Include="DBCollections\Score.cs" />
     <Compile Include="DBCollections\Student.cs" />
     <Compile Include="DBCollections\Subject.cs" />

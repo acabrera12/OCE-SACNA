@@ -36,7 +36,7 @@ namespace OCESACNA.Engine.Core
         /// </summary>
         public enum ResultCode
         {
-            SUSSCES = 0,
+            SUCCESS = 0,
             INVALID_USER_ID = 1,
             INVALID_USER_RANK = 2,
             INVALID_USER_STATE = 3,
@@ -57,7 +57,7 @@ namespace OCESACNA.Engine.Core
         {
             ResultCode result = ValidateUser(user);
 
-            if (result != ResultCode.SUSSCES)
+            if (result != ResultCode.SUCCESS)
             {
                 return result;
             }
@@ -98,7 +98,7 @@ namespace OCESACNA.Engine.Core
 
             Console.WriteLine("Login successfull");
 
-            return ResultCode.SUSSCES;
+            return ResultCode.SUCCESS;
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace OCESACNA.Engine.Core
         {
             ResultCode result = ValidateUser(LoggedUser);
 
-            if (result != ResultCode.SUSSCES)
+            if (result != ResultCode.SUCCESS)
             {
                 Console.WriteLine($"Error trying to log out, error: {result}");
                 return result;
@@ -119,7 +119,7 @@ namespace OCESACNA.Engine.Core
 
             Console.WriteLine("Successfull logout");
 
-            return ResultCode.SUSSCES;
+            return ResultCode.SUCCESS;
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace OCESACNA.Engine.Core
                 return ResultCode.USER_PASSWORD_EMPTY;
             }
 
-            return ResultCode.SUSSCES;
+            return ResultCode.SUCCESS;
         }
 
         private static void GetDBUsers(object sender, RequestEventArgs eventArgs)

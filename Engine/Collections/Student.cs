@@ -9,7 +9,7 @@ namespace OCESACNA.Engine.Collections
         public string LastNames { get; set; }
         public string FirstNames { get; set; }
         public int Age { get; set; }
-        public bool Sex { get; set; }
+        public SEXS Sex { get; set; }
         public DateTime Birthdate { get; set; }
         public string BirthPlace { get; set; }
         public string FederalEntty { get; set; }
@@ -19,6 +19,14 @@ namespace OCESACNA.Engine.Collections
         public Representative Rprsent { get; set; }
         public Course Course { get; set; }
 
+
+        public enum SEXS
+        {
+            N = 0,
+            M = 1,
+            F = 2
+        }
+
         public Student()
         {
             this.StudentID = -1;
@@ -26,7 +34,7 @@ namespace OCESACNA.Engine.Collections
             this.LastNames = string.Empty;
             this.FirstNames = string.Empty;
             this.Age = -1;
-            this.Sex = false;
+            this.Sex = SEXS.N;
             this.Birthdate = DateTime.Now;
             this.BirthPlace = string.Empty;
             this.FederalEntty = string.Empty;
@@ -37,7 +45,7 @@ namespace OCESACNA.Engine.Collections
             this.Course = new Course();
         }
 
-        public Student(int id, DateTime birthdate, Representative rprsent, Course course, int cedula = -1, string lastnames = "", string firstnames = "", int age = -1, bool sex = false, string birthplace = "", string federalentity = "", string address = "", string phone = "", string email = "")
+        public Student(int id, DateTime birthdate, Representative rprsent, Course course, int cedula = -1, string lastnames = "", string firstnames = "", int age = -1, SEXS sex = SEXS.N, string birthplace = "", string federalentity = "", string address = "", string phone = "", string email = "")
         {
             this.StudentID = id;
             this.Cedula = cedula;

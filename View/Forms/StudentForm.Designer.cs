@@ -187,11 +187,12 @@ namespace OCESACNA.View.Forms
             // 
             // BirthdateBox
             // 
+            this.BirthdateBox.CustomFormat = "dd/MM/yyyy";
             this.BirthdateBox.Location = new System.Drawing.Point(6, 77);
             this.BirthdateBox.Name = "BirthdateBox";
             this.BirthdateBox.Size = new System.Drawing.Size(108, 20);
             this.BirthdateBox.TabIndex = 10;
-            this.BirthdateBox.Value = new System.DateTime(2025, 1, 14, 9, 44, 17, 0);
+            this.BirthdateBox.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
             // BirthdateLabel
             // 

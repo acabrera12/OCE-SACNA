@@ -16,7 +16,7 @@ namespace OCESACNA.View.Module
         Course[] coursesList;
         Representative[] representativesList;
 
-        StudentForm StudentDataForm;
+        readonly StudentForm StudentDataForm;
 
         public ManageStudentsModule()
         {
@@ -41,9 +41,7 @@ namespace OCESACNA.View.Module
                     SearchByBox.Items.Add(new ComboBoxElement() { Value = column.Name, Text = column.HeaderText });
                 }
             }
-            SearchByBox.DisplayMember = "Text";
-            SearchByBox.ValueMember = "Value";
-            SearchByBox.SelectedIndex = 0;
+            ComboBoxElement.AjustComboBox(SearchByBox);
         }
 
         private void UpdateData(object sender, EventArgs e)
@@ -128,12 +126,16 @@ namespace OCESACNA.View.Module
             {
                 DataGrid.Rows.Clear();
             }
+
+            string[] names = Engine.Engine.YearsNames;
+
             foreach (Student s in list)
             {
                 DataGrid.Rows.Add(new object[] {
-                    "", s.StudentID, s.Cedula, s.LastNames, s.FirstNames, s.Age, s.Sex, s.Birthdate, s.BirthPlace,
-                    s.FederalEntty, s.Address, s.PhoneNumber, s.Email, s.Rprsent.RprsentID, s.Rprsent.FullName,
-                    s.Course.CourseID, s.Course.Year, s.Course.Mention, s.Course.Section
+                    "", s.StudentID, s.Cedula, s.LastNames, s.FirstNames, s.Sex, s.Sex.ToString(),
+                    s.Age, s.Birthdate, s.BirthPlace, s.FederalEntty, s.Address, s.PhoneNumber,
+                    s.Email, s.Rprsent.RprsentID, s.Rprsent.FullName, s.Course.CourseID,
+                    names[s.Course.Year], s.Course.Mention, s.Course.Section
                 });
             }
         }
@@ -154,6 +156,7 @@ namespace OCESACNA.View.Module
             }
 
             StudentDataForm.FormType = StudentForm.DataFormType.Update;
+            StudentDataForm.SetData(Engine.Engine.Students.Find(t => t.StudentID == selectedID));
             StudentDataForm.ShowDialog();
         }
 
@@ -165,7 +168,14 @@ namespace OCESACNA.View.Module
                 return;
             }
 
-            //borrar datos
+            string name = Engine.Engine.Students.Find(t => t.StudentID == selectedID).FirstNames;
+
+            if (MessageBox.Show($"¿Quieres eliminar el estudiante {name} (ID:{selectedID})?\nEsta acción no se puede revertir", "Confirmar Acción", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            ConnectManager.DeleteStudent(selectedID);
 
             selectedID = -1;
             Clear();
@@ -189,18 +199,46 @@ namespace OCESACNA.View.Module
         private void StudentDataForm_Canceled(object sender, EventArgs e)
         {
             StudentForm.DataFormType s = StudentDataForm.FormType;
-            StudentDataForm.FormType = StudentForm.DataFormType.None;
             Console.WriteLine($"{GetType()}: action {s} canceled");
+
+            StudentDataForm.FormType = StudentForm.DataFormType.None;
         }
 
         private void CreateConfirmed()
         {
+            Student student;
+            try
+            {
+                 student = StudentDataForm.GetDataAndHide();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"{GetType()}: {e}");
+                MessageBox.Show("Alguno de los campos es inválido");
+                return;
+            }
 
+            ConnectManager.AddStudent(ConversionManager.StudentToDBStudent(student));
+            Clear();
         }
 
         private void UpdateConfirmed()
         {
+            Student student;
+            try
+            {
+                student = StudentDataForm.GetDataAndHide();
+                student.StudentID = selectedID;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"{GetType()}: {e}");
+                MessageBox.Show("Alguno de los campos es inválido");
+                return;
+            }
 
+            ConnectManager.UpdateStudent(ConversionManager.StudentToDBStudent(student));
+            Clear();
         }
 
         private void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -220,7 +258,7 @@ namespace OCESACNA.View.Module
 
         private void Clear()
         {
-
+            StudentDataForm.ClearData();
         }
     }
 }

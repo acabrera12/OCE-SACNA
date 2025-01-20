@@ -1,7 +1,7 @@
 namespace OCESACNA.Engine.Collections.Abstract
 {
     /// <summary>
-    /// Clase abstracta <c>Entity</c> de la cual derivan las entidades
+    /// Clase abstracta <see cref="Entity"/> de la cual derivan las entidades
     /// </summary>
     public abstract class Entity
     {
@@ -14,7 +14,7 @@ namespace OCESACNA.Engine.Collections.Abstract
         /// Determina si un ID es válido dentro del contexto de las entidades
         /// </summary>
         /// <param name="id">ID a comprobar</param>
-        /// <returns><c>True</c> si es válido, de lo contrario <c>False</c></returns>
+        /// <returns><see langword="true"/> si es válido, de lo contrario <see langword="false"/></returns>
         public bool IsValidID(int id)
         {
             if (id > MaxID || id < 0)

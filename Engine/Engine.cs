@@ -16,14 +16,17 @@ namespace OCESACNA.Engine
         /// </summary>
         public static void Initialize()
         {
-            ConnectManager.DataModified.Connect(UpdateData);
-            UpdateManager.Updated.Connect(Update);
-
+            AuthManager.Init();
             UpdateManager.Init();
             ConnectManager.Init("localhost");
-            AuthManager.Init();
+            ConnectManager.DataModified.Connect(UpdateData);
+            UpdateManager.Updated.Connect(Update);
         }
 
+        /// <summary>
+        /// Obtiene una cadena de referencia para la conversion de fomatos <see cref="DateTime"/> de la base de datos
+        /// </summary>
+        public const string DBDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
         /// <summary>
         /// Usado como referencia para mostrar texto que utilize <see cref="YearsKeys"></see>
         /// </summary>
@@ -99,9 +102,11 @@ namespace OCESACNA.Engine
         {
             Course[] list = new Course[e.Response.Count];
 
+            int index = 0;
             foreach (Dictionary<string, dynamic> dic in e.Response)
             {
-                list.Append(ConversionManager.DictionaryToCourse(dic));
+                list.SetValue(ConversionManager.DictionaryToCourse(dic), index);
+                index++;
             }
 
             Courses = list.ToList();
@@ -111,9 +116,11 @@ namespace OCESACNA.Engine
         {
             Representative[] list = new Representative[e.Response.Count];
 
+            int index = 0;
             foreach (Dictionary<string, dynamic> dic in e.Response)
             {
-                list.Append(ConversionManager.DictionaryToRprsentative(dic));
+                list.SetValue(ConversionManager.DictionaryToRprsentative(dic), index);
+                index++;
             }
 
             Representatives = list.ToList();
@@ -123,9 +130,11 @@ namespace OCESACNA.Engine
         {
             Score[] list = new Score[e.Response.Count];
 
+            int index = 0;
             foreach (Dictionary<string, dynamic> dic in e.Response)
             {
-                list.Append(ConversionManager.DictionaryToScore(dic));
+                list.SetValue(ConversionManager.DictionaryToScore(dic), index);
+                index++;
             }
 
             Scores = list.ToList();
@@ -135,9 +144,11 @@ namespace OCESACNA.Engine
         {
             Student[] list = new Student[e.Response.Count];
 
+            int index = 0;
             foreach (Dictionary<string, dynamic> dic in e.Response)
             {
-                list.Append(ConversionManager.DictonaryToStudent(dic));
+                list.SetValue(ConversionManager.DictonaryToStudent(dic), index);
+                index++;
             }
 
             Students = list.ToList();
@@ -147,9 +158,11 @@ namespace OCESACNA.Engine
         {
             Subject[] list = new Subject[e.Response.Count];
 
+            int index = 0;
             foreach (Dictionary<string, dynamic> dic in e.Response)
             {
-                list.Append(ConversionManager.DictionaryToSubject(dic));
+                list.SetValue(ConversionManager.DictionaryToSubject(dic), index);
+                index++;
             }
 
             Subjects = list.ToList();
@@ -159,9 +172,11 @@ namespace OCESACNA.Engine
         {
             SubjectModule[] list = new SubjectModule[e.Response.Count];
 
+            int index = 0;
             foreach (Dictionary<string, dynamic> dic in e.Response)
             {
-                list.Append(ConversionManager.DictionaryToSbjetModule(dic));
+                list.SetValue(ConversionManager.DictionaryToSbjetModule(dic), index);
+                index++;
             }
 
             SubjectModules = list.ToList();
@@ -171,9 +186,11 @@ namespace OCESACNA.Engine
         {
             Teacher[] list = new Teacher[e.Response.Count];
 
+            int index = 0;
             foreach (Dictionary<string, dynamic> dic in e.Response)
             {
-                list.Append(ConversionManager.DictionaryToTeacher(dic));
+                list.SetValue(ConversionManager.DictionaryToTeacher(dic), index);
+                index++;
             }
 
             Teachers = list.ToList();

@@ -93,15 +93,15 @@ namespace OCESACNA.Engine.Core
                 LastNames = input["LastNames"],
                 FirstNames = input["FirstNames"],
                 Age = input["Age"],
-                Sex = input["Sex"],
+                Sex = (Student.SEXS)input["Sex"],
                 Birthdate = input["Birthdate"],
                 BirthPlace = input["BirthPlace"],
                 FederalEntty = input["FederalEntty"],
                 Address = input["Address"],
                 PhoneNumber = input["PhoneNumber"],
                 Email = input["Email"],
-                Rprsent = input["Rprsent"],
-                Course = input["Course"]
+                Rprsent = Engine.Representatives.Find(t => t.RprsentID == input["RprsentID"]),
+                Course = Engine.Courses.Find(t => t.CourseID == input["CourseID"])
             };
 
             return student;
@@ -200,6 +200,29 @@ namespace OCESACNA.Engine.Core
             };
 
             return DBSubject;
+        }
+
+        public static DBStudent StudentToDBStudent(Student std)
+        {
+            DBStudent DBStudent = new DBStudent()
+            {
+                StudentID = std.StudentID,
+                Cedula = std.Cedula,
+                LastNames = std.LastNames,
+                FirstNames = std.FirstNames,
+                Age = std.Age,
+                Sex = Convert.ToInt32(std.Sex),
+                Birthdate = std.Birthdate,
+                BirthPlace = std.BirthPlace,
+                FederalEntty = std.FederalEntty,
+                Address = std.Address,
+                PhoneNumber = std.PhoneNumber,
+                Email = std.Email,
+                RprsentID = std.Rprsent.RprsentID,
+                CourseID = std.Course.CourseID
+            };
+
+            return DBStudent;
         }
     }
 }

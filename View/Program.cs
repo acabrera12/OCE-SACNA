@@ -13,18 +13,10 @@ namespace OCESACNA
         [STAThread]
         static void Main()
         {
-            Engine.Engine.Initialize();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            try
-            {
-                Application.Run(new AuthMenu());
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            Engine.Engine.Initialize();
+            Application.Run(new AuthMenu());
         }
     }
 }

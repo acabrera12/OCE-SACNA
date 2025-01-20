@@ -14,17 +14,13 @@ namespace OCESACNA.View.Module
 
         private void StartModule_Load(object sender, EventArgs e)
         {
-            string username = AuthManager.GetLoggedUsername();
-            bool isAdmin = AuthManager.GetAdministratorAuthorization();
-
-            if (isAdmin)
+            if (AuthManager.GetAdministratorAuthorization())
             {
                 UserTitle.Text = "Administrador";
             }
 
-            UserLabel.Text = username;
-
-            ConnectManager.GetAllStudents(GetStudents);
+            UserLabel.Text = AuthManager.GetLoggedUsername();
+            StudentsLabel.Text = $"{Engine.Engine.Students.Count} estudiante(s) registrado(s)";
         }
 
         public void GetStudents(object sender, RequestEventArgs eventArgs)

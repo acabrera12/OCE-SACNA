@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\ComboBoxElement.cs" />
-    <Compile Include="Collections\IDataForm.cs" />
     <Compile Include="Forms\ChoiceRprsentForm.cs">
       <SubType>Form</SubType>
     </Compile>
