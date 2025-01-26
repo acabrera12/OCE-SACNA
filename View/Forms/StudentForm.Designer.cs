@@ -302,6 +302,7 @@ namespace OCESACNA.View.Forms
             this.RprsentBox.Location = new System.Drawing.Point(6, 32);
             this.RprsentBox.MaxLength = 100;
             this.RprsentBox.Name = "RprsentBox";
+            this.RprsentBox.ReadOnly = true;
             this.RprsentBox.Size = new System.Drawing.Size(336, 20);
             this.RprsentBox.TabIndex = 22;
             // 

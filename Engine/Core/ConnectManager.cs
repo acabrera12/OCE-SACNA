@@ -291,6 +291,7 @@ namespace OCESACNA.Engine.Core
         public static void DeleteTeacher(int id)
         {
             Request r = new Request($"DELETE FROM teachers WHERE TeachID ={id}");
+            r.Connect(OnDataModified);
             RequestQueue.Add(r);
         }
         #endregion

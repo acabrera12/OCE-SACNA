@@ -189,6 +189,7 @@ namespace OCESACNA.Engine
             int index = 0;
             foreach (Dictionary<string, dynamic> dic in e.Response)
             {
+                dic["Course"] = Courses.Find(t => t.CourseID == dic["CourseID"]);
                 list.SetValue(ConversionManager.DictionaryToTeacher(dic), index);
                 index++;
             }

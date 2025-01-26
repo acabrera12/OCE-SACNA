@@ -57,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\ComboBoxElement.cs" />
+    <Compile Include="Forms\ChoiceCourseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChoiceCourseForm.Designer.cs">
+      <DependentUpon>ChoiceCourseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ChoiceRprsentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +155,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\ChoiceCourseForm.resx">
+      <DependentUpon>ChoiceCourseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChoiceRprsentForm.resx">
       <DependentUpon>ChoiceRprsentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Module\ManageStudentsModule.resx">
       <DependentUpon>ManageStudentsModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\ManageTeachersModule.resx">
+      <DependentUpon>ManageTeachersModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
