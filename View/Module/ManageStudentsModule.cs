@@ -62,7 +62,7 @@ namespace OCESACNA.View.Module
                 {
                     Course c = coursesList.Where(i => i.CourseID == dic["CourseID"]).First();
                     Representative r = representativesList.Where(i => i.RprsentID == dic["RprsentID"]).First();
-                    
+
                     if (c == null || r == null)
                     {
                         MessageBox.Show($"No se pudo cargar un valor dependencia de\n'{dic["FirstNames"]}' (ID:{dic["StudentID"]})", "Error al cargar datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -209,7 +209,7 @@ namespace OCESACNA.View.Module
             Student student;
             try
             {
-                 student = StudentDataForm.GetDataAndHide();
+                student = StudentDataForm.GetDataAndHide();
             }
             catch (Exception e)
             {

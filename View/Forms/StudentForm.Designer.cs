@@ -83,7 +83,7 @@ namespace OCESACNA.View.Forms
             // CancelBtn
             // 
             this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CancelBtn.Location = new System.Drawing.Point(305, 328);
+            this.CancelBtn.Location = new System.Drawing.Point(310, 328);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(75, 23);
             this.CancelBtn.TabIndex = 1;

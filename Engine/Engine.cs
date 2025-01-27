@@ -72,10 +72,10 @@ namespace OCESACNA.Engine
             ConnectManager.GetAllCourses(ReciveCourses);
             ConnectManager.GetAllRepresentatives(ReciveRepresentatives);
             ConnectManager.GetAllSbjetModules(ReciveSubjectModules);
+            ConnectManager.GetAllTeachers(ReciveTeachers);
             ConnectManager.GetAllScores(ReciveScores);
             ConnectManager.GetAllStudents(ReciveStudents);
             ConnectManager.GetAllSubjects(ReciveSubjects);
-            ConnectManager.GetAllTeachers(ReciveTeachers);
         }
 
         /// <summary>

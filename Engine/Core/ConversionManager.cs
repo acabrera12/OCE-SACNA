@@ -72,6 +72,10 @@ namespace OCESACNA.Engine.Core
 
         public static Subject DictionaryToSubject(Dictionary<string, dynamic> input)
         {
+            input["Course"] = Engine.Courses.Find(t => t.CourseID == input["CourseID"]);
+            input["SbjetModule"] = Engine.SubjectModules.Find(t => t.SbjetModuleID == input["SbjetModuleID"]);
+            input["Teach"] = Engine.Teachers.Find(t => t.TeachID == input["TeachID"]);
+
             Subject subject = new Subject()
             {
                 SubjectID = input["SubjectID"],

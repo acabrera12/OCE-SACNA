@@ -342,14 +342,14 @@ namespace OCESACNA.Engine.Core
 
         public static void GetSubjectByID(int id, Request.CompleEventHandle callback)
         {
-            Request r = new Request($"SELECT * FROM subjecs WHERE `SubjectID` ='{id}'", SubjectKeys);
+            Request r = new Request($"SELECT * FROM subjects WHERE `SubjectID` ='{id}'", SubjectKeys);
             r.Connect(callback);
             RequestQueue.Add(r);
         }
 
         public static void AddSubject(DBSubject sbjet)
         {
-            Request r = new Request($"INSERT INTO subjecs (`SbjetModuleID`, `Name`, `TeachID`, `CourseID`) VALUES " +
+            Request r = new Request($"INSERT INTO subjects (`SbjetModuleID`, `Name`, `TeachID`, `CourseID`) VALUES " +
                 $"('{sbjet.SbjetModuleID}', '{sbjet.Name}', '{sbjet.TeachID}', '{sbjet.CourseID}')");
             r.Connect(OnDataModified);
             RequestQueue.Add(r);
@@ -357,7 +357,7 @@ namespace OCESACNA.Engine.Core
 
         public static void UpdateSubject(DBSubject sbjet)
         {
-            Request r = new Request($"UPDATE subjecs SET `SbjetModuleID` ='{sbjet.SbjetModuleID}', " +
+            Request r = new Request($"UPDATE subjects SET `SbjetModuleID` ='{sbjet.SbjetModuleID}', " +
                 $"`Name` ='{sbjet.Name}', `TeachID` ='{sbjet.TeachID}', `CourseID` ='{sbjet.CourseID}' " +
                 $"WHERE `SubjectID` ='{sbjet.SubjectID}'");
             r.Connect(OnDataModified);

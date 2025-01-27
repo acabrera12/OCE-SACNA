@@ -69,11 +69,29 @@
     <Compile Include="Forms\ChoiceRprsentForm.Designer.cs">
       <DependentUpon>ChoiceRprsentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ChoiceSbjetModuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChoiceSbjetModuleForm.Designer.cs">
+      <DependentUpon>ChoiceSbjetModuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChoiceTeacherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChoiceTeacherForm.Designer.cs">
+      <DependentUpon>ChoiceTeacherForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\StudentForm.Designer.cs">
       <DependentUpon>StudentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubjectForm.Designer.cs">
+      <DependentUpon>SubjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\AuthMenu.cs">
       <SubType>Form</SubType>
@@ -161,8 +179,17 @@
     <EmbeddedResource Include="Forms\ChoiceRprsentForm.resx">
       <DependentUpon>ChoiceRprsentForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChoiceSbjetModuleForm.resx">
+      <DependentUpon>ChoiceSbjetModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChoiceTeacherForm.resx">
+      <DependentUpon>ChoiceTeacherForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubjectForm.resx">
+      <DependentUpon>SubjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\InfoMenu.resx">
       <DependentUpon>InfoMenu.cs</DependentUpon>
@@ -175,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Module\ManageStudentsModule.resx">
       <DependentUpon>ManageStudentsModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\ManageSubjectsModule.resx">
+      <DependentUpon>ManageSubjectsModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\ManageTeachersModule.resx">
       <DependentUpon>ManageTeachersModule.cs</DependentUpon>

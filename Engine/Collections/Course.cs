@@ -38,5 +38,15 @@ namespace OCESACNA.Engine.Collections
             this.Mention = mention;
             this.Section = section;
         }
+
+        /// <summary>
+        /// Obtiene una cadena de texto que representa el curso proporcionado en <paramref name="course"/>
+        /// </summary>
+        /// <param name="course">Curso a representar</param>
+        /// <returns>Una cadena <see cref="string"/> resultante</returns>
+        public static string MakeFormat(Course course)
+        {
+            return $"{Engine.YearsNames[course.Year]} de {course.Mention} '{course.Section}'";
+        }
     }
 }
