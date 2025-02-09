@@ -35,11 +35,6 @@ namespace OCESACNA.View.Module
             this.SearchByBox = new System.Windows.Forms.ComboBox();
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.DataGrid = new System.Windows.Forms.DataGridView();
-            this.LeftPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.CreateBtn = new FontAwesome.Sharp.IconButton();
-            this.EditBtn = new FontAwesome.Sharp.IconButton();
-            this.EraseBtn = new FontAwesome.Sharp.IconButton();
             this.Selection = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +55,11 @@ namespace OCESACNA.View.Module
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mention = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Section = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LeftPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CreateBtn = new FontAwesome.Sharp.IconButton();
+            this.EditBtn = new FontAwesome.Sharp.IconButton();
+            this.EraseBtn = new FontAwesome.Sharp.IconButton();
             this.MainContainer.SuspendLayout();
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
@@ -154,83 +154,6 @@ namespace OCESACNA.View.Module
             this.DataGrid.Size = new System.Drawing.Size(576, 382);
             this.DataGrid.TabIndex = 1;
             this.DataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellContentClick);
-            // 
-            // LeftPanel
-            // 
-            this.LeftPanel.BackColor = System.Drawing.Color.White;
-            this.LeftPanel.Controls.Add(this.label1);
-            this.LeftPanel.Controls.Add(this.CreateBtn);
-            this.LeftPanel.Controls.Add(this.EditBtn);
-            this.LeftPanel.Controls.Add(this.EraseBtn);
-            this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LeftPanel.Location = new System.Drawing.Point(0, 0);
-            this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(200, 450);
-            this.LeftPanel.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 24);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Estudiante";
-            // 
-            // CreateBtn
-            // 
-            this.CreateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CreateBtn.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
-            this.CreateBtn.IconColor = System.Drawing.Color.Black;
-            this.CreateBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.CreateBtn.IconSize = 16;
-            this.CreateBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CreateBtn.Location = new System.Drawing.Point(12, 357);
-            this.CreateBtn.Name = "CreateBtn";
-            this.CreateBtn.Size = new System.Drawing.Size(176, 23);
-            this.CreateBtn.TabIndex = 10;
-            this.CreateBtn.Text = "Crear";
-            this.CreateBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CreateBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CreateBtn.UseVisualStyleBackColor = true;
-            this.CreateBtn.Click += new System.EventHandler(this.CreateBtn_Click);
-            // 
-            // EditBtn
-            // 
-            this.EditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.EditBtn.IconChar = FontAwesome.Sharp.IconChar.Pen;
-            this.EditBtn.IconColor = System.Drawing.Color.Black;
-            this.EditBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.EditBtn.IconSize = 16;
-            this.EditBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.EditBtn.Location = new System.Drawing.Point(12, 386);
-            this.EditBtn.Name = "EditBtn";
-            this.EditBtn.Size = new System.Drawing.Size(176, 23);
-            this.EditBtn.TabIndex = 9;
-            this.EditBtn.Text = "Editar";
-            this.EditBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EditBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.EditBtn.UseVisualStyleBackColor = true;
-            this.EditBtn.Click += new System.EventHandler(this.EditBtn_Click);
-            // 
-            // EraseBtn
-            // 
-            this.EraseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.EraseBtn.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.EraseBtn.IconColor = System.Drawing.Color.Black;
-            this.EraseBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.EraseBtn.IconSize = 16;
-            this.EraseBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.EraseBtn.Location = new System.Drawing.Point(12, 415);
-            this.EraseBtn.Name = "EraseBtn";
-            this.EraseBtn.Size = new System.Drawing.Size(176, 23);
-            this.EraseBtn.TabIndex = 8;
-            this.EraseBtn.Text = "Eliminar";
-            this.EraseBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EraseBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.EraseBtn.UseVisualStyleBackColor = true;
-            this.EraseBtn.Click += new System.EventHandler(this.EraseBtn_Click);
             // 
             // Selection
             // 
@@ -366,6 +289,83 @@ namespace OCESACNA.View.Module
             this.Section.Name = "Section";
             this.Section.ReadOnly = true;
             // 
+            // LeftPanel
+            // 
+            this.LeftPanel.BackColor = System.Drawing.Color.White;
+            this.LeftPanel.Controls.Add(this.label1);
+            this.LeftPanel.Controls.Add(this.CreateBtn);
+            this.LeftPanel.Controls.Add(this.EditBtn);
+            this.LeftPanel.Controls.Add(this.EraseBtn);
+            this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LeftPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftPanel.Name = "LeftPanel";
+            this.LeftPanel.Size = new System.Drawing.Size(200, 450);
+            this.LeftPanel.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 24);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Estudiante";
+            // 
+            // CreateBtn
+            // 
+            this.CreateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.CreateBtn.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.CreateBtn.IconColor = System.Drawing.Color.Black;
+            this.CreateBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.CreateBtn.IconSize = 16;
+            this.CreateBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CreateBtn.Location = new System.Drawing.Point(12, 357);
+            this.CreateBtn.Name = "CreateBtn";
+            this.CreateBtn.Size = new System.Drawing.Size(176, 23);
+            this.CreateBtn.TabIndex = 10;
+            this.CreateBtn.Text = "Crear";
+            this.CreateBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CreateBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CreateBtn.UseVisualStyleBackColor = true;
+            this.CreateBtn.Click += new System.EventHandler(this.CreateBtn_Click);
+            // 
+            // EditBtn
+            // 
+            this.EditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.EditBtn.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            this.EditBtn.IconColor = System.Drawing.Color.Black;
+            this.EditBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.EditBtn.IconSize = 16;
+            this.EditBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.EditBtn.Location = new System.Drawing.Point(12, 386);
+            this.EditBtn.Name = "EditBtn";
+            this.EditBtn.Size = new System.Drawing.Size(176, 23);
+            this.EditBtn.TabIndex = 9;
+            this.EditBtn.Text = "Editar";
+            this.EditBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.EditBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.EditBtn.UseVisualStyleBackColor = true;
+            this.EditBtn.Click += new System.EventHandler(this.EditBtn_Click);
+            // 
+            // EraseBtn
+            // 
+            this.EraseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.EraseBtn.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.EraseBtn.IconColor = System.Drawing.Color.Black;
+            this.EraseBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.EraseBtn.IconSize = 16;
+            this.EraseBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.EraseBtn.Location = new System.Drawing.Point(12, 415);
+            this.EraseBtn.Name = "EraseBtn";
+            this.EraseBtn.Size = new System.Drawing.Size(176, 23);
+            this.EraseBtn.TabIndex = 8;
+            this.EraseBtn.Text = "Eliminar";
+            this.EraseBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.EraseBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.EraseBtn.UseVisualStyleBackColor = true;
+            this.EraseBtn.Click += new System.EventHandler(this.EraseBtn_Click);
+            // 
             // ManageStudentsModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,7 +374,7 @@ namespace OCESACNA.View.Module
             this.Controls.Add(this.LeftPanel);
             this.Controls.Add(this.MainContainer);
             this.Name = "ManageStudentsModule";
-            this.Text = "ManageStudentsModule";
+            this.Text = "Estudiantes";
             this.Load += new System.EventHandler(this.ManageStudentsModule_Load);
             this.MainContainer.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);

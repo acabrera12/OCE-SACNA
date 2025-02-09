@@ -30,9 +30,9 @@
         {
             this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.StudentsPanel = new System.Windows.Forms.Panel();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.StudentsTitle = new System.Windows.Forms.Label();
             this.StudentsLabel = new System.Windows.Forms.Label();
+            this.StudentsTitle = new System.Windows.Forms.Label();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.HightScorePanel = new System.Windows.Forms.Panel();
             this.HightScoreLabel = new System.Windows.Forms.Label();
             this.HigthScoreTitle = new System.Windows.Forms.Label();
@@ -58,8 +58,8 @@
             // 
             // FlowPanel
             // 
-            this.FlowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.FlowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FlowPanel.Controls.Add(this.StudentsPanel);
             this.FlowPanel.Controls.Add(this.HightScorePanel);
@@ -81,6 +81,27 @@
             this.StudentsPanel.Size = new System.Drawing.Size(163, 64);
             this.StudentsPanel.TabIndex = 0;
             // 
+            // StudentsLabel
+            // 
+            this.StudentsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.StudentsLabel.Location = new System.Drawing.Point(67, 20);
+            this.StudentsLabel.Name = "StudentsLabel";
+            this.StudentsLabel.Size = new System.Drawing.Size(93, 41);
+            this.StudentsLabel.TabIndex = 2;
+            this.StudentsLabel.Text = "- estudiantes";
+            // 
+            // StudentsTitle
+            // 
+            this.StudentsTitle.AutoSize = true;
+            this.StudentsTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StudentsTitle.Location = new System.Drawing.Point(67, 3);
+            this.StudentsTitle.Name = "StudentsTitle";
+            this.StudentsTitle.Size = new System.Drawing.Size(93, 17);
+            this.StudentsTitle.TabIndex = 1;
+            this.StudentsTitle.Text = "Estudiantes";
+            // 
             // iconPictureBox1
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.White;
@@ -94,27 +115,6 @@
             this.iconPictureBox1.Size = new System.Drawing.Size(58, 58);
             this.iconPictureBox1.TabIndex = 0;
             this.iconPictureBox1.TabStop = false;
-            // 
-            // StudentsTitle
-            // 
-            this.StudentsTitle.AutoSize = true;
-            this.StudentsTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StudentsTitle.Location = new System.Drawing.Point(67, 3);
-            this.StudentsTitle.Name = "StudentsTitle";
-            this.StudentsTitle.Size = new System.Drawing.Size(93, 17);
-            this.StudentsTitle.TabIndex = 1;
-            this.StudentsTitle.Text = "Estudiantes";
-            // 
-            // StudentsLabel
-            // 
-            this.StudentsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.StudentsLabel.Location = new System.Drawing.Point(67, 20);
-            this.StudentsLabel.Name = "StudentsLabel";
-            this.StudentsLabel.Size = new System.Drawing.Size(93, 41);
-            this.StudentsLabel.TabIndex = 2;
-            this.StudentsLabel.Text = "- estudiantes";
             // 
             // HightScorePanel
             // 
@@ -130,8 +130,8 @@
             // 
             // HightScoreLabel
             // 
-            this.HightScoreLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.HightScoreLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.HightScoreLabel.Location = new System.Drawing.Point(67, 20);
             this.HightScoreLabel.Name = "HightScoreLabel";
@@ -177,8 +177,8 @@
             // 
             // LowScoreLabel
             // 
-            this.LowScoreLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.LowScoreLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LowScoreLabel.Location = new System.Drawing.Point(67, 20);
             this.LowScoreLabel.Name = "LowScoreLabel";
@@ -212,7 +212,7 @@
             // 
             // UserPanel
             // 
-            this.UserPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.UserPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UserPanel.BackColor = System.Drawing.Color.White;
             this.UserPanel.Controls.Add(this.UserLabel);
@@ -225,8 +225,8 @@
             // 
             // UserLabel
             // 
-            this.UserLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.UserLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UserLabel.AutoSize = true;
             this.UserLabel.Location = new System.Drawing.Point(67, 20);
@@ -266,7 +266,7 @@
             this.Controls.Add(this.UserPanel);
             this.Controls.Add(this.FlowPanel);
             this.Name = "StartModule";
-            this.Text = "StartModule";
+            this.Text = "Inicio";
             this.Load += new System.EventHandler(this.StartModule_Load);
             this.FlowPanel.ResumeLayout(false);
             this.FlowPanel.PerformLayout();

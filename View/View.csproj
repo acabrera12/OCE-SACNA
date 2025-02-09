@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\ComboBoxElement.cs" />
+    <Compile Include="Collections\Theme.cs" />
     <Compile Include="Forms\ChoiceCourseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +174,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Forms\ChoiceCourseForm.resx">
       <DependentUpon>ChoiceCourseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +193,9 @@
     <EmbeddedResource Include="Forms\SubjectForm.resx">
       <DependentUpon>SubjectForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menu\AuthMenu.resx">
+      <DependentUpon>AuthMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu\InfoMenu.resx">
       <DependentUpon>InfoMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +205,9 @@
     <EmbeddedResource Include="Module\ManageSbjetModulesModule.resx">
       <DependentUpon>ManageSbjetModulesModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Module\ManageScoresModule.resx">
+      <DependentUpon>ManageScoresModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Module\ManageStudentsModule.resx">
       <DependentUpon>ManageStudentsModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +216,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Module\ManageTeachersModule.resx">
       <DependentUpon>ManageTeachersModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\ManageUsersModule.resx">
+      <DependentUpon>ManageUsersModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\SettingsModule.resx">
+      <DependentUpon>SettingsModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\StartModule.resx">
+      <DependentUpon>StartModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -221,7 +238,7 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">

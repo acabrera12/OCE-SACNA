@@ -11,14 +11,17 @@ namespace OCESACNA.Engine.Collections
         /// Obtiene o establece el ID Correspondiente a la instancia
         /// </summary>
         public int CourseID { get; set; }
+
         /// <summary>
         /// Obtiene o establece el Año correspondiente a la instancia
         /// </summary>
         public int Year { get; set; }
+
         /// <summary>
         /// Obtiene o establece la Mención correspondiente a la instancia
         /// </summary>
         public string Mention { get; set; }
+
         /// <summary>
         /// Obtiene o establece la Sección correspondiente a la instancia
         /// </summary>
@@ -47,6 +50,17 @@ namespace OCESACNA.Engine.Collections
         public static string MakeFormat(Course course)
         {
             return $"{Engine.YearsNames[course.Year]} de {course.Mention} '{course.Section}'";
+        }
+
+        public static implicit operator Course(DBCollections.DBCourse db)
+        {
+            return new Course()
+            {
+                CourseID = db.CourseID,
+                Mention = db.Mention,
+                Section = db.Section.ToString(),
+                Year = db.Year
+            };
         }
     }
 }

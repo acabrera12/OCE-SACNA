@@ -2,33 +2,37 @@ using OCESACNA.Engine.Collections.Abstract;
 namespace OCESACNA.Engine.Collections
 {
     /// <summary>
-    /// Entidad clase <c>Subject</c> que hace referencia a un registro de la base de datos
+    /// Entidad clase <see cref="Subject"/> que hace referencia a un registro de la base de datos
     /// </summary>
     public class Subject : Entity
     {
         /// <summary>
-        /// ID correspondiente al registro
+        /// Obtiene o establece el ID correspondiente a la instancia
         /// </summary>
         public int SubjectID { get; set; }
+
         /// <summary>
-        /// Área de formación asociada al registro
+        /// Obtiene o establece el Área de formación asociado a la instancia
         /// </summary>
         public SubjectModule SbjetModule { get; set; }
+
         /// <summary>
-        /// Nombre correspondiente al registro
+        /// Obtiene o establece el Nombre correspondiente a la instancia
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
-        /// Docente asociado al registro
+        /// Obtiene o establece el Docente asociado al registro
         /// </summary>
         public Teacher Teach { get; set; }
+
         /// <summary>
-        /// Curso asociado al registro
+        /// Obtiene o establece el Curso asociado al registro
         /// </summary>
         public Course Course { get; set; }
 
         /// <summary>
-        /// Inicializa una instancia vacía del la entidad <c>Subjetc</c>
+        /// Inicializa una instancia vacía del la entidad <see cref="Subject"/>
         /// </summary>
         public Subject()
         {
@@ -40,7 +44,7 @@ namespace OCESACNA.Engine.Collections
         }
 
         /// <summary>
-        /// Inicializa una instancia de la entidad <c>Subject</c>
+        /// Inicializa una instancia de la entidad <see cref="Subject"/>
         /// </summary>
         /// <param name="id">ID del registro</param>
         /// <param name="module">Área de formación asociado</param>

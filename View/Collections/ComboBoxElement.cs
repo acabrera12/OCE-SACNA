@@ -158,4 +158,23 @@ namespace OCESACNA.View.Collections
             this.Value = Value;
         }
     }
+
+    public class CourseComboBoxElement : ComboBoxElement
+    {
+        /// <summary>
+        /// Valor interno
+        /// </summary>
+        public new Course Value { get; set; }
+
+        /// <summary>
+        /// Inicializa una instancia de la clase <see cref="CourseComboBoxElement"/>
+        /// </summary>
+        /// <param name="Text">texto a mostrar</param>
+        /// <param name="Value">valor a almacenar</param>
+        public CourseComboBoxElement(string Text, Course Value)
+        {
+            this.Text = Text;
+            this.Value = Value;
+        }
+    }
 }

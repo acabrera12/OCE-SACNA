@@ -2,24 +2,84 @@ using OCESACNA.Engine.Collections.Abstract;
 using System;
 namespace OCESACNA.Engine.Collections
 {
+    /// <summary>
+    /// Entidad clase <see cref="Student"/> que hace referencia a un registro de la base de datos
+    /// </summary>
     public class Student : Entity
     {
+        /// <summary>
+        /// Obtiene o establece el ID correspondiente a la instancia
+        /// </summary>
         public int StudentID { get; set; }
+
+        /// <summary>
+        /// Obtiene o establecce la cédula correspondiente a la instancias
+        /// </summary>
         public int Cedula { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece los apellidos correspondientes a la instancia
+        /// </summary>
         public string LastNames { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece los nombres correspondientes a la instancia
+        /// </summary>
         public string FirstNames { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece la edad correspondiente a la instanciia
+        /// </summary>
         public int Age { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el sexo correspondiente a la instancia
+        /// </summary>
         public SEXS Sex { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece la fecha de nacimiento correspondiente a la instancia
+        /// </summary>
         public DateTime Birthdate { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el lugar de nacimiento correspondiente a la instancia
+        /// </summary>
         public string BirthPlace { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece la entidad federal correspondiente a la instancia
+        /// </summary>
         public string FederalEntty { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece la dirección correspondiente a la instancia
+        /// </summary>
         public string Address { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el número telefónico correspondiente a la instancia
+        /// </summary>
         public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el E-Mail correspondiente a la instancia
+        /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el Representante correspondiente a la instancia
+        /// </summary>
         public Representative Rprsent { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el Curso correspondiente a la instancia
+        /// </summary>
         public Course Course { get; set; }
 
-
+        /// <summary>
+        /// Sexos disponibles
+        /// </summary>
         public enum SEXS
         {
             N = 0,
@@ -27,6 +87,9 @@ namespace OCESACNA.Engine.Collections
             F = 2
         }
 
+        /// <summary>
+        /// Inicializa una instancia vacía de la clase <see cref="Student"/>
+        /// </summary>
         public Student()
         {
             this.StudentID = -1;

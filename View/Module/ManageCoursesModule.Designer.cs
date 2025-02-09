@@ -29,11 +29,11 @@ namespace OCESACNA.View.Module
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("1° Año");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("2° Año");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("3° Año");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("4° Año");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("5° Año");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("1° Año");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("2° Año");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("3° Año");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("4° Año");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("5° Año");
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.SectionGroup = new System.Windows.Forms.GroupBox();
             this.SectionBox = new System.Windows.Forms.ComboBox();
@@ -289,22 +289,22 @@ namespace OCESACNA.View.Module
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Tree.Location = new System.Drawing.Point(206, 12);
             this.Tree.Name = "Tree";
-            treeNode11.Name = "1thYear";
-            treeNode11.Text = "1° Año";
-            treeNode12.Name = "2thYear";
-            treeNode12.Text = "2° Año";
-            treeNode13.Name = "3thYear";
-            treeNode13.Text = "3° Año";
-            treeNode14.Name = "4thYear";
-            treeNode14.Text = "4° Año";
-            treeNode15.Name = "5thYear";
-            treeNode15.Text = "5° Año";
+            treeNode1.Name = "1thYear";
+            treeNode1.Text = "1° Año";
+            treeNode2.Name = "2thYear";
+            treeNode2.Text = "2° Año";
+            treeNode3.Name = "3thYear";
+            treeNode3.Text = "3° Año";
+            treeNode4.Name = "4thYear";
+            treeNode4.Text = "4° Año";
+            treeNode5.Name = "5thYear";
+            treeNode5.Text = "5° Año";
             this.Tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12,
-            treeNode13,
-            treeNode14,
-            treeNode15});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5});
             this.Tree.Size = new System.Drawing.Size(164, 426);
             this.Tree.TabIndex = 3;
             this.Tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.Tree_NodeMouseClick);
@@ -427,7 +427,7 @@ namespace OCESACNA.View.Module
             this.Controls.Add(this.Tree);
             this.Controls.Add(this.LeftPanel);
             this.Name = "ManageCoursesModule";
-            this.Text = "ManageCoursesModule";
+            this.Text = "Cursos";
             this.Load += new System.EventHandler(this.ManageCoursesModule_Load);
             this.LeftPanel.ResumeLayout(false);
             this.LeftPanel.PerformLayout();

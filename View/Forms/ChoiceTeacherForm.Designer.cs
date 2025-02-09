@@ -165,7 +165,8 @@ namespace OCESACNA.View.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChoiceTeacherForm";
-            this.Text = "ChoiceSbjetModuleForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Seleccionar Docente";
             this.Load += new System.EventHandler(this.ChoiceTeacherForm_Load);
             this.MainContainer.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);

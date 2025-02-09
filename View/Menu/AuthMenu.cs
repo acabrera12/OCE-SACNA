@@ -1,19 +1,60 @@
 ﻿using OCESACNA.Engine.Collections;
 using OCESACNA.Engine.Core;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using OCESACNA.View.Collections;
 
 namespace OCESACNA.View.Menu
 {
-    public partial class AuthMenu : Form
+    public partial class AuthMenu : Form, IColoreable
     {
         public AuthMenu()
         {
             InitializeComponent();
+            ApplyTheme(Program.CurrentTheme);
         }
+
+        public void ApplyTheme(Theme theme)
+        {
+            BackColor = theme.BackgroundColor;
+
+            panel1.BackColor = theme.MainColor;
+
+            label1.ForeColor = theme.FontColor;
+            label1.BackColor = theme.BackgroundColor;
+
+            label2.ForeColor = theme.FontColor;
+            label2.BackColor = theme.BackgroundColor;
+
+            label3.ForeColor = theme.FontColor;
+            label3.BackColor = theme.BackgroundColor;
+
+            UsernameBox.ForeColor = theme.FontColorContrast;
+            UsernameBox.BackColor = theme.SecondaryColor;
+
+            PasswordBox.ForeColor = theme.FontColorContrast;
+            PasswordBox.BackColor = theme.SecondaryColor;
+
+            LogginBtn.ForeColor = theme.FontColorContrast;
+            LogginBtn.IconColor = theme.FontColorContrast;
+            LogginBtn.BackColor = theme.BackgroundColor;
+        }
+
+        private static readonly Dictionary<AuthManager.ResultCode, string> Messages
+            = new Dictionary<AuthManager.ResultCode, string>()
+            {
+                {AuthManager.ResultCode.USER_NAME_EMPTY, "Rellene todos los campos" },
+                {AuthManager.ResultCode.USER_PASSWORD_EMPTY, "Rellene todos los campos" },
+                {AuthManager.ResultCode.INCORRECT_PASSWORD, "Contraseña inválida"},
+                {AuthManager.ResultCode.UNREGISTERED_USER, "Usuario inválido"},
+                {AuthManager.ResultCode.DISABLED_USER, "Usuario suspendido" }
+            };
 
         private void LogginBtn_Click(object sender, EventArgs e)
         {
+            LogginBtn.Enabled = false;
+
             UsernameBox.Text = EraseIvalid(UsernameBox.Text);
             PasswordBox.Text = EraseIvalid(PasswordBox.Text);
 
@@ -26,27 +67,15 @@ namespace OCESACNA.View.Menu
 
             if (resultCode != AuthManager.ResultCode.SUCCESS)
             {
-                switch (resultCode)
+                if (!Messages.ContainsKey(resultCode))
                 {
-                    case AuthManager.ResultCode.USER_NAME_EMPTY:
-                        MessageBox.Show("Rellene todos los campos");
-                        break;
-                    case AuthManager.ResultCode.USER_PASSWORD_EMPTY:
-                        MessageBox.Show("Rellene todos los campos");
-                        break;
-                    case AuthManager.ResultCode.INCORRECT_PASSWORD:
-                        MessageBox.Show("Contraseña incorrecta");
-                        break;
-                    case AuthManager.ResultCode.UNREGISTERED_USER:
-                        MessageBox.Show("Usuario no Registrado");
-                        break;
-                    case AuthManager.ResultCode.DISABLED_USER:
-                        MessageBox.Show("Usuario desactivado por un administrador");
-                        break;
-                    default:
-                        MessageBox.Show($"En sistema ha regresado un valor inprevisto '{resultCode}'");
-                        break;
+                    MessageBox.Show($"El sistema ha devuelto un error\nno planificado ({resultCode})");
+                    LogginBtn.Enabled = true;
+                    return;
                 }
+
+                MessageBox.Show(Messages[resultCode]);
+                LogginBtn.Enabled = true;
                 return;
             }
 
@@ -56,6 +85,7 @@ namespace OCESACNA.View.Menu
 
             UsernameBox.Text = string.Empty;
             PasswordBox.Text = string.Empty;
+            LogginBtn.Enabled = true;
 
             MainMenu.Show();
         }

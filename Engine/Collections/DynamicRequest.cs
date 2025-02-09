@@ -83,23 +83,36 @@ namespace OCESACNA.Engine.Collections
                 return tables[Convert.ToInt32(table)];
             }
         }
-        
+
+        /// <summary>
+        /// Evento llamado cuando se completa la solicitud
+        /// </summary>
         public event CompleteEventHandle Completed;
 
+        /// <summary>
+        /// Delegado del evento <see cref="Completed"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="EventArgs">Argumentos del evento</param>
         public delegate void CompleteEventHandle(object sender, DynamicRequestEventArgs EventArgs);
 
-
+        /// <summary>
+        /// Disparador del evento <see cref="Completed"/>
+        /// </summary>
         protected void OnComplete(object sender, DynamicRequestEventArgs e)
         {
             Completed?.Invoke(sender, e);
         }
 
+        /// <summary>
+        /// Dispara el evento <see cref="Completed"/>
+        /// </summary>
+        /// <param name="sender"><see langword="object"/> que dispara el evento</param>
+        /// <param name="e">Argumentos del evento</param>
         public void CompleteRequest(object sender, DynamicRequestEventArgs e)
         {
             OnComplete(sender, e);
         }
-
-
     }
 
     //<see/>
@@ -108,8 +121,19 @@ namespace OCESACNA.Engine.Collections
     /// </summary>
     public class DynamicRequestEventArgs
     {
+        /// <summary>
+        /// Método CRUD usado en la consulta
+        /// </summary>
         public DynamicRequest.METHODS Method {get;set;}
+
+        /// <summary>
+        /// Código resultado de la solicitud
+        /// </summary>
         public DynamicRequest.ResultCode ResultCode { get; set; }
+
+        /// <summary>
+        /// Respuesta de la consulta
+        /// </summary>
         public Dictionary<string, dynamic>[] Response { get; set; }
 
         /// <summary>

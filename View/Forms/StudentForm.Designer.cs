@@ -443,7 +443,8 @@ namespace OCESACNA.View.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "StudentForm";
-            this.Text = "StudentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Formulario de Estudiante";
             ((System.ComponentModel.ISupportInitialize)(this.AgeBox)).EndInit();
             this.PersonalDataGroup.ResumeLayout(false);
             this.PersonalDataGroup.PerformLayout();

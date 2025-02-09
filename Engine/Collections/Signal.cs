@@ -3,7 +3,7 @@
 namespace OCESACNA.Engine.Collections
 {
     /// <summary>
-    /// Clase <c>Signal</c> usada para crear eventos
+    /// Clase <see cref="Signal"/> usada para crear eventos
     /// </summary>
     public class Signal
     {
@@ -13,8 +13,9 @@ namespace OCESACNA.Engine.Collections
         /// <param name="sender">instancia de la clase que lo envía</param>
         /// <param name="args">Argumentos del Evento</param>
         public delegate void EmitEventHandler(object sender, EventArgs args);
+
         /// <summary>
-        /// Evento <c>Emited</c> de la señal
+        /// Evento llamado cuando se emite la señal
         /// </summary>
         public event EmitEventHandler Emited;
 
@@ -28,7 +29,7 @@ namespace OCESACNA.Engine.Collections
         }
 
         /// <summary>
-        /// Dispara el evento <c>Emited</c>
+        /// Dispara el evento <see cref="Emited"/>
         /// </summary>
         /// <param name="args"></param>
         public void Emit(EventArgs args)
@@ -37,7 +38,7 @@ namespace OCESACNA.Engine.Collections
         }
 
         /// <summary>
-        /// Subscribe <c>Callback</c> al evento de la señal
+        /// Subscribe <paramref name="callback"/> al evento de la señal
         /// </summary>
         /// <param name="callback">Llamada a conectar</param>
         public void Connect(EmitEventHandler callback)

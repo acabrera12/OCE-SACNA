@@ -2,12 +2,12 @@ using OCESACNA.Engine.Collections.Abstract;
 namespace OCESACNA.Engine.Collections
 {
     /// <summary>
-    /// Clase <c>Version2</c> que representa una versión "x.y"
+    /// Clase <see cref="Version2"/> que representa una versión "x.y"
     /// </summary>
     public class Version2 : VersionBase
     {
         /// <summary>
-        /// Sub versión
+        /// Obtiene o establece la Sub versión
         /// </summary>
         public int SubVersion { get; set; }
 
@@ -20,7 +20,7 @@ namespace OCESACNA.Engine.Collections
         }
 
         /// <summary>
-        /// Inicializa una instancia de la clase <c>Version2</c>
+        /// Inicializa una instancia de la clase <see cref="Version2"/>
         /// </summary>
         /// <param name="version">Versión Primaria</param>
         /// <param name="subversion">Vesión Secundaria</param>
@@ -32,16 +32,17 @@ namespace OCESACNA.Engine.Collections
     }
 
     /// <summary>
-    /// Clase <c>Version3</c> que representa una versión "x.y.z"
+    /// Clase <see cref="Version3"/> que representa una versión "x.y.z"
     /// </summary>
     public class Version3 : VersionBase
     {
         /// <summary>
-        /// Sub versión
+        /// Obtiene o establece la Sub versión
         /// </summary>
         public int SubVersion { get; set; }
+
         /// <summary>
-        /// Modificación
+        /// Obtiene o establece la Modificación
         /// </summary>
         public int Modification { get; set; }
 
@@ -54,7 +55,7 @@ namespace OCESACNA.Engine.Collections
         }
 
         /// <summary>
-        /// Inicializa una instancia de la clase <c>Version3</c>
+        /// Inicializa una instancia de la clase <see cref="Version3"/>
         /// </summary>
         /// <param name="version">Versión Principal</param>
         /// <param name="subversion">Versión Secundaria</param>

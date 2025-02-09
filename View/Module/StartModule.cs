@@ -14,22 +14,13 @@ namespace OCESACNA.View.Module
 
         private void StartModule_Load(object sender, EventArgs e)
         {
-            if (AuthManager.GetAdministratorAuthorization())
+            if (AuthManager.IsAdminUser())
             {
                 UserTitle.Text = "Administrador";
             }
 
-            UserLabel.Text = AuthManager.GetLoggedUsername();
+            UserLabel.Text = AuthManager.GetLogedUserName();
             StudentsLabel.Text = $"{Engine.Engine.Students.Count} estudiante(s) registrado(s)";
-        }
-
-        public void GetStudents(object sender, RequestEventArgs eventArgs)
-        {
-            var count = eventArgs.Response.Count;
-            if (InvokeRequired)
-            {
-                Invoke(new Action(() => StudentsLabel.Text = $"{count} estudiante(s) registrado(s)"));
-            }
         }
     }
 }

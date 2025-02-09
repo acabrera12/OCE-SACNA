@@ -143,6 +143,10 @@ namespace OCESACNA.Engine.Core
         }
 
         #region user commands
+        /// <summary>
+        /// Obtiene todos los usuarios de la base de datos y los devuelve en la llamada a <paramref name="callback"/>
+        /// </summary>
+        /// <param name="callback">Llamada a devolver</param>
         public static void GetAllUsers(Request.CompleEventHandle callback)
         {
             Request r = new Request("SELECT * FROM users", UserKeys);
@@ -150,6 +154,11 @@ namespace OCESACNA.Engine.Core
             RequestQueue.Add(r);
         }
 
+        /// <summary>
+        /// Obtiene el usuario de la base de datos que coincida con el <paramref name="id"/> y lo devuelve en la llamada a <paramref name="callback"/>
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="callback">Llamada a devolver</param>
         public static void GetUserByID(int id, Request.CompleEventHandle callback)
         {
             Request r = new Request($"SELECT * FROM users WHERE UserID = '{id}'", UserKeys);
@@ -157,6 +166,10 @@ namespace OCESACNA.Engine.Core
             RequestQueue.Add(r);
         }
 
+        /// <summary>
+        /// Añade un usuario a la base de datos
+        /// </summary>
+        /// <param name="user">Usuario</param>
         public static void AddUser(DBUser user)
         {
             Request r = new Request($"INSERT INTO users (`UserName`, `Password`, `Rank`, `State`) VALUES" +
@@ -165,6 +178,10 @@ namespace OCESACNA.Engine.Core
             RequestQueue.Add(r);
         }
 
+        /// <summary>
+        /// Actualiza el usuario de la base de datos que coincida con el ID de <paramref name="user"/>
+        /// </summary>
+        /// <param name="user">Usuario</param>
         public static void UpdateUser(DBUser user)
         {
             Request r = new Request($"UPDATE users SET `UserName` ='{user.UserName}', " +
@@ -174,6 +191,10 @@ namespace OCESACNA.Engine.Core
             RequestQueue.Add(r);
         }
 
+        /// <summary>
+        /// Elimina de la base de datos al usuario que posea el <paramref name="id"/> proporcionado
+        /// </summary>
+        /// <param name="id">ID</param>
         public static void DeleteUser(int id)
         {
             Request r = new Request($"DELETE FROM users WHERE `UserID` ='{id}'");

@@ -9,7 +9,14 @@ namespace OCESACNA.Engine.Core
     /// </summary>
     public static class AuthManager
     {
-        private static User LoggedUser = new User();
+        /// <summary>
+        /// Obtiene o establece el usuario logeado
+        /// </summary>
+        private static User LogedUser { get; set; } = new User();
+
+        /// <summary>
+        /// Lista de usuarios
+        /// </summary>
         private readonly static List<User> UserList = new List<User>();
 
         /// <summary>
@@ -25,12 +32,29 @@ namespace OCESACNA.Engine.Core
         /// Actualiza los datos
         /// </summary>
         /// <param name="s">Objeto que envía el evento</param>
-        /// <param name="e">Argumentos de evento</param>
+        /// <param name="e">Argumentos del evento</param>
         private static void UpdateData(object s, EventArgs e)
         {
             ConnectManager.GetAllUsers(GetDBUsers);
         }
-        
+
+        /// <summary>
+        /// Obtiene los usuarios desde la base de datos
+        /// </summary>
+        /// <param name="sender">Objeto que envía el evento</param>
+        /// <param name="eventArgs">Argumentos del evento</param>
+        private static void GetDBUsers(object sender, RequestEventArgs eventArgs)
+        {
+            List<Dictionary<string, dynamic>> list = eventArgs.Response;
+
+            foreach (Dictionary<string, dynamic> dic in list)
+            {
+                User user = ConversionManager.DictionaryToUser(dic);
+
+                UserList.Add(user);
+            }
+        }
+
         /// <summary>
         /// Posibles Resultados de métodos del administrador
         /// </summary>
@@ -49,52 +73,37 @@ namespace OCESACNA.Engine.Core
         }
 
         /// <summary>
-        /// Intenta iniciar sesión como el usuario indicado
+        /// Intenta iniciar sesión como el usuario indicado en <paramref name="user"/>
         /// </summary>
         /// <param name="user">Usuario</param>
-        /// <returns>Un <see cref="ResultCode">resultado del administrador</see></returns>
+        /// <returns>Un <see cref="ResultCode"/> correspondiente al resultado</returns>
         public static ResultCode TryLogginAs(User user)
         {
-            ResultCode result = ValidateUser(user);
+            ResultCode result = IsValidUser(user);
 
             if (result != ResultCode.SUCCESS)
             {
                 return result;
             }
 
-            User DBUser = UserList.Find(x => x.UserName == user.UserName);
+            User FoundUser = UserList.Find(x => x.UserName == user.UserName);
 
-            if (DBUser == null)
+            if (FoundUser == null)
             {
                 return ResultCode.UNREGISTERED_USER;
             }
 
-            if (DBUser.UserID > User.MaxID || user.UserID < 0)
-            {
-                return ResultCode.INVALID_USER_ID;
-            }
-
-            if (DBUser.Rank == User.RANKING.NONE)
-            {
-                return ResultCode.INVALID_USER_RANK;
-            }
-
-            if (DBUser.State == User.STATES.NONE)
-            {
-                return ResultCode.INVALID_USER_STATE;
-            }
-
-            if (DBUser.Password != user.Password)
+            if (FoundUser.Password != user.Password)
             {
                 return ResultCode.INCORRECT_PASSWORD;
             }
 
-            if (DBUser.State == User.STATES.INACTIVE)
+            if (FoundUser.State == User.STATES.INACTIVE)
             {
                 return ResultCode.DISABLED_USER;
             }
 
-            LoggedUser = user;
+            LogedUser = FoundUser;
 
             Console.WriteLine("Login successfull");
 
@@ -107,28 +116,19 @@ namespace OCESACNA.Engine.Core
         /// <returns>Un <see cref="ResultCode">Resultado del administrador</see></returns>
         public static ResultCode Logout()
         {
-            ResultCode result = ValidateUser(LoggedUser);
-
-            if (result != ResultCode.SUCCESS)
-            {
-                Console.WriteLine($"Error trying to log out, error: {result}");
-                return result;
-            }
-
-            LoggedUser = new User();
+            LogedUser = new User();
 
             Console.WriteLine("Successfull logout");
-
             return ResultCode.SUCCESS;
         }
 
         /// <summary>
         /// Obtiene autorización de usuario administrador
         /// </summary>
-        /// <returns><c>True</c> si el usuario es administrador, <c>False</c> si no</returns>
-        public static bool GetAdministratorAuthorization()
+        /// <returns><see langword="true"/> si el usuario logeado es administrador, <see langword="false"/> si no</returns>
+        public static bool IsAdminUser()
         {
-            if (LoggedUser.Rank == User.RANKING.ADMIN || LoggedUser.Rank == User.RANKING.DEFAULT)
+            if (LogedUser.Rank == User.RANKING.ADMIN || LogedUser.Rank == User.RANKING.DEFAULT)
             {
                 return true;
             }
@@ -137,39 +137,52 @@ namespace OCESACNA.Engine.Core
         }
 
         /// <summary>
-        /// Obtiene el nombre de usuario del usuario activo
+        /// Obtiene el nombre del usuario logeado
         /// </summary>
-        /// <returns>Cadena de texto que representa el nombre de usuario</returns>
-        public static string GetLoggedUsername()
+        /// <returns>(<see langword="string"/>) el nombre del usuario</returns>
+        public static string GetLogedUserName()
         {
-            return LoggedUser.UserName;
+            return LogedUser.UserName;
         }
 
-        private static ResultCode ValidateUser(User user)
+        /// <summary>
+        /// Valida si el usuario proporcionado es válido
+        /// </summary>
+        /// <param name="user">usuario</param>
+        /// <returns><see cref="ResultCode"/> acorde a la validéz de <paramref name="user"/></returns>
+        private static ResultCode IsValidUser(User user)
         {
-            if (user.UserName == String.Empty)
+            if (user == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            if (user.UserName == string.Empty)
             {
                 return ResultCode.USER_NAME_EMPTY;
             }
 
-            if (user.Password == String.Empty)
+            if (user.Password == string.Empty)
             {
                 return ResultCode.USER_PASSWORD_EMPTY;
             }
 
-            return ResultCode.SUCCESS;
-        }
-
-        private static void GetDBUsers(object sender, RequestEventArgs eventArgs)
-        {
-            List<Dictionary<string, dynamic>> list = eventArgs.Response;
-
-            foreach (Dictionary<string, dynamic> dic in list)
+            if (user.Rank == User.RANKING.NONE)
             {
-                User user = ConversionManager.DictionaryToUser(dic);
-
-                UserList.Add(user);
+                return ResultCode.INVALID_USER_RANK;
             }
+
+            if (user.State == User.STATES.NONE)
+            {
+                return ResultCode.INVALID_USER_STATE;
+            }
+
+            if (!Collections.Abstract.Entity.IsValidID(user.UserID))
+            {
+                return ResultCode.INVALID_USER_ID;
+            }
+
+            return ResultCode.SUCCESS;
         }
     }
 }

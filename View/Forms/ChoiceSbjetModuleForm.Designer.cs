@@ -147,7 +147,8 @@ namespace OCESACNA.View.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChoiceSbjetModuleForm";
-            this.Text = "ChoiceSbjetModuleForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Seleccionar Área de Formación";
             this.Load += new System.EventHandler(this.ChoiceSbjetModuleForm_Load);
             this.MainContainer.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);

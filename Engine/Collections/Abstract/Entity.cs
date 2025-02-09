@@ -15,7 +15,7 @@ namespace OCESACNA.Engine.Collections.Abstract
         /// </summary>
         /// <param name="id">ID a comprobar</param>
         /// <returns><see langword="true"/> si es válido, de lo contrario <see langword="false"/></returns>
-        public bool IsValidID(int id)
+        public static bool IsValidID(int id)
         {
             if (id > MaxID || id < 0)
             {

@@ -251,7 +251,7 @@ namespace OCESACNA.View.Module
             this.Controls.Add(this.MainContainer);
             this.Controls.Add(this.LeftPanel);
             this.Name = "ManageSbjetModulesModule";
-            this.Text = "ManageSbjetModulesModule";
+            this.Text = "Áreas de Formación";
             this.Load += new System.EventHandler(this.ManageSbjetModulesModule_Load);
             this.LeftPanel.ResumeLayout(false);
             this.LeftPanel.PerformLayout();

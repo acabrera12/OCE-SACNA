@@ -14,11 +14,13 @@ namespace OCESACNA.Engine
         /// <summary>
         /// Inicializa todos los administradores
         /// </summary>
-        public static void Initialize()
+        public static void Initialize(string ServerHost = "localhost")
         {
             AuthManager.Init();
             UpdateManager.Init();
-            ConnectManager.Init("localhost");
+            ConnectManager.Init(ServerHost);
+
+            UpdateData(null, EventArgs.Empty);
             ConnectManager.DataModified.Connect(UpdateData);
             UpdateManager.Updated.Connect(Update);
         }
@@ -35,6 +37,10 @@ namespace OCESACNA.Engine
         /// Usado como referencia para acceder a valores relacionados al los cursos
         /// </summary>
         public static string[] YearsKeys = { "1thYear", "2thYear", "3thYear", "4thYear", "5thYear" };
+        /// <summary>
+        /// Usado como referencia para mostrar los lapsos
+        /// </summary>
+        public static string[] Lapses = { "Primer Lapso", "Segundo Lapso", "Tercer Lapso" };
         /// <summary>
         /// Lista de cursos
         /// </summary>

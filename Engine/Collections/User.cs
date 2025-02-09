@@ -1,34 +1,40 @@
 using OCESACNA.Engine.Collections.Abstract;
+using System.Collections.Generic;
+
 namespace OCESACNA.Engine.Collections
 {
     /// <summary>
-    /// Entidad clase <c>User</c> que hace referencia a un registro de la base de datos
+    /// Entidad clase <see cref="User"/> que hace referencia a un registro de la base de datos
     /// </summary>
     public class User : Entity
     {
         /// <summary>
-        /// ID correspondiente al registro
+        /// Obtiene o establece el ID correspondiente a la instancia
         /// </summary>
         public int UserID { get; set; }
+
         /// <summary>
-        /// Nombre de usuario correspondiente al registro
+        /// Obtiene o establece el Nombre de usuario correspondiente a la instancia
         /// </summary>
         public string UserName { get; set; }
+
         /// <summary>
-        /// Contrasseña correspondiente al registro
+        /// Obtiene o establece la Contrasseña correspondiente a la instancia
         /// </summary>
         public string Password { get; set; }
+
         /// <summary>
-        /// Autoridad correspondiente al registro
+        /// Obtiene o establece la Autoridad correspondiente a la instancia
         /// </summary>
         public RANKING Rank { get; set; }
+
         /// <summary>
-        /// Estado del usuario correspondiente al registro
+        /// Obtiene o establece el Estado del usuario correspondiente a la instancia
         /// </summary>
         public STATES State { get; set; }
 
         /// <summary>
-        /// Autoridades posibles de la entidad <c>User</c>
+        /// Autoridades posibles de la entidad <see cref="User"/>
         /// </summary>
         public enum RANKING
         {
@@ -39,7 +45,7 @@ namespace OCESACNA.Engine.Collections
         }
 
         /// <summary>
-        /// Estados posibled de la entidad <c>User</c>
+        /// Estados posibled de la entidad <see cref="User"/>
         /// </summary>
         public enum STATES
         {
@@ -49,7 +55,7 @@ namespace OCESACNA.Engine.Collections
         }
 
         /// <summary>
-        /// Inicializa una instancia de la entidad <c>User</c>
+        /// Inicializa una instancia de la entidad <see cref="User"/>
         /// </summary>
         /// <param name="id">ID del registro</param>
         /// <param name="username">Nombre de usuario del registro</param>
@@ -65,46 +71,47 @@ namespace OCESACNA.Engine.Collections
             this.State = state;
         }
 
+        private static readonly Dictionary<RANKING, string> RankingString = new Dictionary<RANKING, string>()
+        {
+            {RANKING.NONE, "Ninguno" },
+            {RANKING.DEFAULT, "Predeterminado" },
+            {RANKING.USER, "Usuario" },
+            {RANKING.ADMIN, "Administrador" }
+        };
+
         /// <summary>
         /// Obtiene una cedena de texto acorde a la autoridad
         /// </summary>
         /// <param name="r">Autoridad</param>
-        /// <returns>Una cadena que representa la autoridad del parámetro <c>r</c></returns>
+        /// <returns>Una cadena que representa la autoridad del parámetro <paramref name="r"/></returns>
         public static string GetRankingText(RANKING r)
         {
-            switch (r)
+            if (!RankingString.ContainsKey(r))
             {
-                case RANKING.NONE:
-                    return "Ninguno";
-                case RANKING.DEFAULT:
-                    return "Predeterminado";
-                case RANKING.USER:
-                    return "Usuarrio";
-                case RANKING.ADMIN:
-                    return "Administrador";
-                default:
-                    return "Nulo";
+                throw new System.ArgumentOutOfRangeException();
             }
+            return RankingString[r];
         }
+
+        private static readonly Dictionary<STATES, string> StatesString = new Dictionary<STATES, string>()
+        {
+            {STATES.NONE, "Ninguno" },
+            {STATES.ACTIVE, "Activo" },
+            {STATES.INACTIVE, "Suspendido" }
+        };
 
         /// <summary>
         /// Obtiene una cadena de texto acorde al estado
         /// </summary>
         /// <param name="s">Estado</param>
-        /// <returns>Una cadena que representa el estado del parámetro <c>s</c></returns>
+        /// <returns>Una cadena que representa el estado del parámetro <paramref name="s"/></returns>
         public static string GetStateText(STATES s)
         {
-            switch (s)
+            if (!StatesString.ContainsKey(s))
             {
-                case STATES.NONE:
-                    return "Ninguno";
-                case STATES.ACTIVE:
-                    return "Activo";
-                case STATES.INACTIVE:
-                    return "Inactivo";
-                default:
-                    return "Nulo";
+                throw new System.ArgumentOutOfRangeException();
             }
+            return StatesString[s];
         }
     }
 }

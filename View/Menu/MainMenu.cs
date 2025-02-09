@@ -11,11 +11,14 @@ namespace OCESACNA.View.Menu
         private readonly List<Form> ActiveModulesList = new List<Form>();
         private Form ActiveModule = null;
 
+        private string originalName;
+
         public AuthMenu authMenu;
         public MainMenu(AuthMenu authMenu)
         {
             this.authMenu = authMenu;
             InitializeComponent();
+            originalName = Text;
         }
 
         private void ShowModule(Type type)
@@ -24,28 +27,20 @@ namespace OCESACNA.View.Menu
             {
                 if (ActiveModule.GetType() == type)
                 {
-                    Console.WriteLine($"{this.GetType()}: Allready in Module({type})");
+                    Console.WriteLine($"{GetType()}: Allready in Module({type})");
                     return;
                 }
             }
 
-            Form toActivate = null;
-
-            foreach (Form md in ActiveModulesList)
-            {
-                if (md.GetType() == type)
-                {
-                    toActivate = md;
-                    break;
-                }
-            }
+            Form toActivate = ActiveModulesList.Find(md => md.GetType() == type);
 
             if (toActivate != null)
             {
                 ActiveModule.Hide();
                 ActiveModule = toActivate;
                 toActivate.Show();
-                Console.WriteLine($"{this.GetType()}: Showing Module({type})");
+                Console.WriteLine($"{GetType()}: Showing Module({type})");
+                Text = $"{originalName} - {toActivate.Text}";
                 return;
             }
 
@@ -53,10 +48,7 @@ namespace OCESACNA.View.Menu
 
             ActiveModulesList.Add(instance);
 
-            if (ActiveModule != null)
-            {
-                ActiveModule.Hide();
-            }
+            ActiveModule?.Hide();
 
             instance.TopLevel = false;
             instance.FormBorderStyle = FormBorderStyle.None;
@@ -68,6 +60,7 @@ namespace OCESACNA.View.Menu
 
             ActiveModule = instance;
             Console.WriteLine($"{this.GetType()}: Created a New Module({type})");
+            Text = $"{originalName} - {instance.Text}";
         }
 
         private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
@@ -83,12 +76,17 @@ namespace OCESACNA.View.Menu
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
             ShowModule(typeof(StartModule));
+
+            if (!AuthManager.IsAdminUser())
+            {
+                AdminBtn.Visible = false;
+            }
         }
 
         private void MainMenuBtn_Click(object sender, EventArgs e)

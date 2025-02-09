@@ -9,7 +9,7 @@ namespace OCESACNA.Engine.Collections
     public class Request : Abstract.RequestBase
     {
         /// <summary>
-        /// Inicializa una instancia de la clase <see cref="Request"/> con <param name="keys">Llaves</param> aúxiliares
+        /// Inicializa una instancia de la clase <see cref="Request"/> con <paramref name="keys"/> aúxiliares
         /// </summary>
         /// <param name="query">sentencia MySQL</param>
         /// <param name="keys">Llave(s) aúxiliar(es)</param>
@@ -58,7 +58,7 @@ namespace OCESACNA.Engine.Collections
         }
 
         /// <summary>
-        /// Subscribe la lamada <param name="callback">callback</param> al evento <see cref="Completed"/> de la instancia
+        /// Subscribe la lamada <paramref name="callback"/> al evento <see cref="Completed"/> de la instancia
         /// </summary>
         /// <param name="callback">Llamada a conectar</param>
         public void Connect(CompleEventHandle callback)

@@ -311,7 +311,7 @@ namespace OCESACNA.View.Module
             this.Controls.Add(this.LeftPanel);
             this.Controls.Add(this.MainContainer);
             this.Name = "ManageTeachersModule";
-            this.Text = "ManageTeachersModule";
+            this.Text = "Docentes";
             this.Load += new System.EventHandler(this.ManageTeachersModule_Load);
             this.MainContainer.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);

@@ -282,7 +282,7 @@ namespace OCESACNA.View.Module
             this.Controls.Add(this.MainContainer);
             this.Controls.Add(this.LeftPanel);
             this.Name = "ManageSubjectsModule";
-            this.Text = "ManageSubjectsModule";
+            this.Text = "Asignaturas";
             this.Load += new System.EventHandler(this.ManageSubjectsModule_Load);
             this.LeftPanel.ResumeLayout(false);
             this.LeftPanel.PerformLayout();

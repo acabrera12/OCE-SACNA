@@ -165,7 +165,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChoiceRprsentForm";
-            this.Text = "ChoiceRprsentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Seleccionar Representante";
             this.Load += new System.EventHandler(this.ChoiceRprsentForm_Load);
             this.MainContainer.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);

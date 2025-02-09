@@ -313,7 +313,7 @@ namespace OCESACNA.View.Module
             this.Controls.Add(this.MainContainer);
             this.Controls.Add(this.LeftPanel);
             this.Name = "ManageRepresentativesModule";
-            this.Text = "ManageRepresentativesModule";
+            this.Text = "Representantes";
             this.Load += new System.EventHandler(this.ManageRepresentativesModule_Load);
             this.LeftPanel.ResumeLayout(false);
             this.LeftPanel.PerformLayout();

@@ -222,7 +222,8 @@ namespace OCESACNA.View.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SubjectForm";
-            this.Text = "SubjectForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Formulario de Asignatura";
             this.DataGroup.ResumeLayout(false);
             this.DataGroup.PerformLayout();
             this.ResumeLayout(false);

@@ -45,11 +45,6 @@ namespace OCESACNA.View.Module
             this.PasswordBox = new System.Windows.Forms.TextBox();
             this.UserNameBox = new System.Windows.Forms.TextBox();
             this.DataGrid = new System.Windows.Forms.DataGridView();
-            this.TopPanel = new System.Windows.Forms.Panel();
-            this.SearchLabel = new System.Windows.Forms.Label();
-            this.SearchByBox = new System.Windows.Forms.ComboBox();
-            this.SearchBox = new System.Windows.Forms.TextBox();
-            this.MainContainer = new System.Windows.Forms.Panel();
             this.Selection = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +53,11 @@ namespace OCESACNA.View.Module
             this.Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StateValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TopPanel = new System.Windows.Forms.Panel();
+            this.SearchLabel = new System.Windows.Forms.Label();
+            this.SearchByBox = new System.Windows.Forms.ComboBox();
+            this.SearchBox = new System.Windows.Forms.TextBox();
+            this.MainContainer = new System.Windows.Forms.Panel();
             this.LeftPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.TopPanel.SuspendLayout();
@@ -266,57 +266,6 @@ namespace OCESACNA.View.Module
             this.DataGrid.TabIndex = 1;
             this.DataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellContentClick);
             // 
-            // TopPanel
-            // 
-            this.TopPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TopPanel.BackColor = System.Drawing.Color.White;
-            this.TopPanel.Controls.Add(this.SearchLabel);
-            this.TopPanel.Controls.Add(this.SearchByBox);
-            this.TopPanel.Controls.Add(this.SearchBox);
-            this.TopPanel.Location = new System.Drawing.Point(3, 3);
-            this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(576, 32);
-            this.TopPanel.TabIndex = 2;
-            // 
-            // SearchLabel
-            // 
-            this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Location = new System.Drawing.Point(3, 10);
-            this.SearchLabel.Name = "SearchLabel";
-            this.SearchLabel.Size = new System.Drawing.Size(58, 13);
-            this.SearchLabel.TabIndex = 14;
-            this.SearchLabel.Text = "Buscar por";
-            // 
-            // SearchByBox
-            // 
-            this.SearchByBox.FormattingEnabled = true;
-            this.SearchByBox.Location = new System.Drawing.Point(67, 6);
-            this.SearchByBox.Name = "SearchByBox";
-            this.SearchByBox.Size = new System.Drawing.Size(138, 21);
-            this.SearchByBox.TabIndex = 14;
-            // 
-            // SearchBox
-            // 
-            this.SearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchBox.Location = new System.Drawing.Point(211, 6);
-            this.SearchBox.MaxLength = 255;
-            this.SearchBox.Name = "SearchBox";
-            this.SearchBox.Size = new System.Drawing.Size(362, 20);
-            this.SearchBox.TabIndex = 14;
-            // 
-            // MainContainer
-            // 
-            this.MainContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainContainer.Controls.Add(this.TopPanel);
-            this.MainContainer.Controls.Add(this.DataGrid);
-            this.MainContainer.Location = new System.Drawing.Point(206, 12);
-            this.MainContainer.Name = "MainContainer";
-            this.MainContainer.Size = new System.Drawing.Size(582, 426);
-            this.MainContainer.TabIndex = 3;
-            // 
             // Selection
             // 
             this.Selection.HeaderText = "•••";
@@ -375,6 +324,57 @@ namespace OCESACNA.View.Module
             this.State.Name = "State";
             this.State.ReadOnly = true;
             // 
+            // TopPanel
+            // 
+            this.TopPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TopPanel.BackColor = System.Drawing.Color.White;
+            this.TopPanel.Controls.Add(this.SearchLabel);
+            this.TopPanel.Controls.Add(this.SearchByBox);
+            this.TopPanel.Controls.Add(this.SearchBox);
+            this.TopPanel.Location = new System.Drawing.Point(3, 3);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(576, 32);
+            this.TopPanel.TabIndex = 2;
+            // 
+            // SearchLabel
+            // 
+            this.SearchLabel.AutoSize = true;
+            this.SearchLabel.Location = new System.Drawing.Point(3, 10);
+            this.SearchLabel.Name = "SearchLabel";
+            this.SearchLabel.Size = new System.Drawing.Size(58, 13);
+            this.SearchLabel.TabIndex = 14;
+            this.SearchLabel.Text = "Buscar por";
+            // 
+            // SearchByBox
+            // 
+            this.SearchByBox.FormattingEnabled = true;
+            this.SearchByBox.Location = new System.Drawing.Point(67, 6);
+            this.SearchByBox.Name = "SearchByBox";
+            this.SearchByBox.Size = new System.Drawing.Size(138, 21);
+            this.SearchByBox.TabIndex = 14;
+            // 
+            // SearchBox
+            // 
+            this.SearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchBox.Location = new System.Drawing.Point(211, 6);
+            this.SearchBox.MaxLength = 255;
+            this.SearchBox.Name = "SearchBox";
+            this.SearchBox.Size = new System.Drawing.Size(362, 20);
+            this.SearchBox.TabIndex = 14;
+            // 
+            // MainContainer
+            // 
+            this.MainContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainContainer.Controls.Add(this.TopPanel);
+            this.MainContainer.Controls.Add(this.DataGrid);
+            this.MainContainer.Location = new System.Drawing.Point(206, 12);
+            this.MainContainer.Name = "MainContainer";
+            this.MainContainer.Size = new System.Drawing.Size(582, 426);
+            this.MainContainer.TabIndex = 3;
+            // 
             // ManageUsersModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,7 +383,7 @@ namespace OCESACNA.View.Module
             this.Controls.Add(this.MainContainer);
             this.Controls.Add(this.LeftPanel);
             this.Name = "ManageUsersModule";
-            this.Text = "ManageUsersModule";
+            this.Text = "Usuarios";
             this.Load += new System.EventHandler(this.ManageUsersModule_Load);
             this.LeftPanel.ResumeLayout(false);
             this.LeftPanel.PerformLayout();
