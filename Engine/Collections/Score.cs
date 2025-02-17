@@ -76,6 +76,28 @@ namespace OCESACNA.Engine.Collections
             this.Third = third;
             this.Final = final;
         }
+
+        /// <summary>
+        /// Obtiene el modulo de calificacion perteneciente al índice proporcionado
+        /// </summary>
+        /// <param name="lapse"></param>
+        /// <returns><see cref="ScoreModule"/> conjunto de calificaciones</returns>
+        public ScoreModule GetScoreModuleByLapse(int lapse)
+        {
+            switch (lapse)
+            {
+                case 0:
+                    return First;
+                case 1:
+                    return Second;
+                case 2:
+                    return Third;
+                case 3:
+                    return Final;
+                default:
+                    throw new System.ArgumentOutOfRangeException();
+            }
+        }
     }
 
     /// <summary>

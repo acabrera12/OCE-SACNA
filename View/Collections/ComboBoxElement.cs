@@ -17,13 +17,18 @@ namespace OCESACNA.View.Collections
         public object Value { get; set; }
 
         /// <summary>
-        /// Ajustar un control <see cref="System.Windows.Forms.ComboBox"/> para mostrar correctamente los datos
+        /// Ajusta el <paramref name="comboBox"/> para funcionar correctamente con objetos <see cref="ComboBoxElement"/>
         /// </summary>
-        /// <param name="comboBox"> <see cref="System.Windows.Forms.ComboBox"/></param> a ajustar</param>
-        public static void AjustComboBox(System.Windows.Forms.ComboBox comboBox)
+        /// <param name="comboBox"><see cref="System.Windows.Forms.ComboBox"/> a ajustar</param>
+        /// <param name="setIndexZero">establecer índice en 0</param>
+        public static void AjustComboBox(System.Windows.Forms.ComboBox comboBox, bool setIndexZero = false)
         {
             comboBox.DisplayMember = "Text";
             comboBox.ValueMember = "Value";
+            if (setIndexZero)
+            {
+                comboBox.SelectedIndex = 0;
+            }
         }
     }
 
@@ -72,7 +77,7 @@ namespace OCESACNA.View.Collections
     }
 
     /// <summary>
-    /// Clase <see cref="SexComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="string"/>
+    /// Clase <see cref="SexComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="Student.SEXS"/>
     /// </summary>
     public class SexComboBoxElement : ComboBoxElement
     {
@@ -138,7 +143,7 @@ namespace OCESACNA.View.Collections
     }
 
     /// <summary>
-    /// Clase <see cref="IntComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="string"/>
+    /// Clase <see cref="IntComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="int"/>
     /// </summary>
     public class IntComboBoxElement : ComboBoxElement
     {
@@ -159,6 +164,9 @@ namespace OCESACNA.View.Collections
         }
     }
 
+    /// <summary>
+    /// Clase <see cref="CourseComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="Course"/>
+    /// </summary>
     public class CourseComboBoxElement : ComboBoxElement
     {
         /// <summary>
@@ -172,6 +180,28 @@ namespace OCESACNA.View.Collections
         /// <param name="Text">texto a mostrar</param>
         /// <param name="Value">valor a almacenar</param>
         public CourseComboBoxElement(string Text, Course Value)
+        {
+            this.Text = Text;
+            this.Value = Value;
+        }
+    }
+
+    /// <summary>
+    /// Clase <see cref="SubjectComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="Subject"/>
+    /// </summary>
+    public class SubjectComboBoxElement : ComboBoxElement
+    {
+        /// <summary>
+        /// Valor interno
+        /// </summary>
+        public new Subject Value { get; set; }
+
+        /// <summary>
+        /// Inicializa una instancia de la clase <see cref="SubjectComboBoxElement"/>
+        /// </summary>
+        /// <param name="Text">texto a mostrar</param>
+        /// <param name="Value">valor a almacenar</param>
+        public SubjectComboBoxElement(string Text, Subject Value)
         {
             this.Text = Text;
             this.Value = Value;

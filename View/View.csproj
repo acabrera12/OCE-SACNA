@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\ComboBoxElement.cs" />
+    <Compile Include="Collections\DataGridViewScoreModuleCell.cs" />
+    <Compile Include="Collections\DataGridViewScoreModuleColumn.cs" />
+    <Compile Include="Collections\TextFiltering.cs" />
     <Compile Include="Collections\Theme.cs" />
     <Compile Include="Forms\ChoiceCourseForm.cs">
       <SubType>Form</SubType>

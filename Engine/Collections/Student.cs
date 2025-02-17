@@ -28,6 +28,11 @@ namespace OCESACNA.Engine.Collections
         public string FirstNames { get; set; }
 
         /// <summary>
+        /// Obtiene el nombre completo correspondiente a la instancia
+        /// </summary>
+        public string FullName { get { return $"{LastNames} {FirstNames}"; } }
+
+        /// <summary>
         /// Obtiene o establece la edad correspondiente a la instanciia
         /// </summary>
         public int Age { get; set; }
