@@ -1,29 +1,50 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using ScoreModule = OCESACNA.Controller.ScoreModule;
 
 namespace OCESACNA.View.Collections
 {
-    class DataGridViewScoreModuleCell : DataGridViewTextBoxCell
+    /// <summary>
+    /// Representa una celda individual del control <see cref="DataGridView"/> con valores <see cref="ScoreModule"/>
+    /// </summary>
+    public class DataGridViewScoreModuleCell : DataGridViewCell
     {
-        public new Engine.Collections.ScoreModule Value { get; set; }
+        /// <summary>
+        /// Obtiene o establece el valor de la celda
+        /// </summary>
+        public new ScoreModule Value { get; set; }
 
+        /// <summary>
+        /// Inicializa una instancia de la clase <see cref="DataGridViewScoreModuleCell"/> vacía
+        /// </summary>
         public DataGridViewScoreModuleCell()
         {
-            this.Value = new Engine.Collections.ScoreModule();
+            Value = new ScoreModule();
+        }
+
+        /// <summary>
+        /// Inicializa una instancia de la clase <see cref="DataGridViewScoreModuleCell"/>
+        /// </summary>
+        /// <param name="scoreModule">Conjunto de valores de una calificación</param>
+        public DataGridViewScoreModuleCell(ScoreModule scoreModule)
+        {
+            Value = scoreModule;
         }
 
         public override object Clone()
         {
-            DataGridViewScoreModuleCell cell = (DataGridViewScoreModuleCell)base.Clone();
-            cell.Value = this.Value;
+            using (DataGridViewScoreModuleCell cell = (DataGridViewScoreModuleCell)base.Clone())
+            {
+                cell.Value = Value;
 
-            return cell;
+                return cell;
+            }
         }
 
         protected override void OnMouseClick(DataGridViewCellMouseEventArgs e)
         {
-
+            base.OnMouseClick(e);
         }
 
         protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
@@ -32,12 +53,13 @@ namespace OCESACNA.View.Collections
 
             int widthPerValue = cellBounds.Width / 3;
 
-            Rectangle react1 = new Rectangle(cellBounds.Left, cellBounds.Top, widthPerValue, cellBounds.Height);
-            Rectangle react2 = new Rectangle(cellBounds.Left + widthPerValue, cellBounds.Top, widthPerValue, cellBounds.Height);
-            Rectangle react3 = new Rectangle(cellBounds.Left + 2 * widthPerValue, cellBounds.Top, widthPerValue, cellBounds.Height);
+            Rectangle
+                react1 = new Rectangle(cellBounds.Left, cellBounds.Top, widthPerValue, cellBounds.Height),
+                react2 = new Rectangle(cellBounds.Left + widthPerValue, cellBounds.Top, widthPerValue, cellBounds.Height),
+                react3 = new Rectangle(cellBounds.Left + 2 * widthPerValue, cellBounds.Top, widthPerValue, cellBounds.Height);
 
             TextRenderer.DrawText(graphics, Value.Score.ToString(), cellStyle.Font, react1, cellStyle.ForeColor);
-            TextRenderer.DrawText(graphics, Value.DefScore.ToString(), cellStyle.Font, react2, cellStyle.ForeColor);
+            TextRenderer.DrawText(graphics, Value.ScoreDef.ToString(), cellStyle.Font, react2, cellStyle.ForeColor);
             TextRenderer.DrawText(graphics, Value.Inas.ToString(), cellStyle.Font, react3, cellStyle.ForeColor);
 
             Pen pen = new Pen(SystemColors.ControlDark);
@@ -47,10 +69,7 @@ namespace OCESACNA.View.Collections
             graphics.DrawRectangle(pen, react3.Left, react3.Top - 1, react3.Width, react3.Height);
         }
 
-        public override Type EditType
-        {
-            get { return null; }
-        }
+        public override Type EditType => null;
 
         public override Type FormattedValueType => base.FormattedValueType;
 

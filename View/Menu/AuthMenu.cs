@@ -1,107 +1,172 @@
-﻿using OCESACNA.Engine.Collections;
-using OCESACNA.Engine.Core;
-using System;
+﻿using OCESACNA.Controller;
+using OCESACNA.View.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using OCESACNA.View.Collections;
 
 namespace OCESACNA.View.Menu
 {
+    /// <summary>
+    /// Formulario de Autenticación
+    /// </summary>
     public partial class AuthMenu : Form, IColoreable
     {
+        /// <summary>
+        /// Obtiene los mensaje de error
+        /// </summary>
+        private static Dictionary<AuthController.Error, string> ErrorMessages { get; } = new Dictionary<AuthController.Error, string>()
+        {
+            { AuthController.Error.INVALID_USER_ID, "ID inválido" },
+            { AuthController.Error.INVALID_USER_RANK, "Rango inválido" },
+            { AuthController.Error.INVALID_USER_STATE, "Estado inválido" },
+            { AuthController.Error.INVALID_USER_NAME_OR_PASSWORD, "Usuario y/o contraseña inválidos" },
+            { AuthController.Error.USER_DISABLED, "Usuario inhabilitado" }
+        };
+
+        /// <summary>
+        /// Inicializa una instancia del formulario <see cref="AuthMenu"/>
+        /// </summary>
         public AuthMenu()
         {
             InitializeComponent();
+
             ApplyTheme(Program.CurrentTheme);
+
+            Theme.ThemeChanged += Theme_ThemeChanged;
+        }
+
+        /// <summary>
+        /// Es llamado cuando se cambia el tema del programa
+        /// </summary>
+        /// <param name="newTheme"></param>
+        private void Theme_ThemeChanged(Theme newTheme)
+        {
+            ApplyTheme(newTheme);
         }
 
         public void ApplyTheme(Theme theme)
         {
-            BackColor = theme.BackgroundColor;
+            // this
+            BackColor = theme.BackColor;
+            ForeColor = theme.ForeColor;
 
-            panel1.BackColor = theme.MainColor;
+            // leftPanel
+            LeftPanel.BackColor = theme.HighlightColor;
+            LeftPanel.ForeColor = theme.ForeColor;
 
-            label1.ForeColor = theme.FontColor;
-            label1.BackColor = theme.BackgroundColor;
+            // toptTitleLabel
+            TopTitleLabel.BackColor = theme.HighlightColor;
+            TopTitleLabel.ForeColor = theme.ContrastForeColor;
 
-            label2.ForeColor = theme.FontColor;
-            label2.BackColor = theme.BackgroundColor;
+            // keyIcon
+            KeyIcon.IconColor = theme.ContrastForeColor;
 
-            label3.ForeColor = theme.FontColor;
-            label3.BackColor = theme.BackgroundColor;
+            // usernameLabel
+            UsernameLabel.BackColor = theme.BackColor;
+            UsernameLabel.ForeColor = theme.ForeColor;
 
-            UsernameBox.ForeColor = theme.FontColorContrast;
-            UsernameBox.BackColor = theme.SecondaryColor;
+            // passwordLabel
+            PasswordLabel.BackColor = theme.BackColor;
+            PasswordLabel.ForeColor = theme.ForeColor;
 
-            PasswordBox.ForeColor = theme.FontColorContrast;
-            PasswordBox.BackColor = theme.SecondaryColor;
+            // aceptBtn
+            AceptBtn.BackColor = theme.HighlightColor;
+            AceptBtn.ForeColor = theme.ContrastForeColor;
+            AceptBtn.FlatAppearance.BorderColor = theme.ContrastForeColor;
 
-            LogginBtn.ForeColor = theme.FontColorContrast;
-            LogginBtn.IconColor = theme.FontColorContrast;
-            LogginBtn.BackColor = theme.BackgroundColor;
+            // cancelBtn
+            CancelBtn.BackColor = theme.ButtonFaceColor;
+            CancelBtn.ForeColor = theme.ForeColor;
+
+            // passwordWarningIcon
+            PasswordWarningIcon.BackColor = theme.BackColor;
+            PasswordWarningIcon.IconColor = theme.ForeColor;
         }
 
-        private static readonly Dictionary<AuthManager.ResultCode, string> Messages
-            = new Dictionary<AuthManager.ResultCode, string>()
-            {
-                {AuthManager.ResultCode.USER_NAME_EMPTY, "Rellene todos los campos" },
-                {AuthManager.ResultCode.USER_PASSWORD_EMPTY, "Rellene todos los campos" },
-                {AuthManager.ResultCode.INCORRECT_PASSWORD, "Contraseña inválida"},
-                {AuthManager.ResultCode.UNREGISTERED_USER, "Usuario inválido"},
-                {AuthManager.ResultCode.DISABLED_USER, "Usuario suspendido" }
-            };
-
-        private void LogginBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Es llamado al momento de hacer click en el botón <see cref="AceptBtn"/>
+        /// </summary>
+        private void AceptBtn_Click(object sender, System.EventArgs e)
         {
-            LogginBtn.Enabled = false;
+            AceptBtn.Enabled = false;
 
-            UsernameBox.Text = EraseIvalid(UsernameBox.Text);
-            PasswordBox.Text = EraseIvalid(PasswordBox.Text);
+            UsernameBox.Text = UsernameBox.Text.Replace(" ", "");
+            PasswordBox.Text = PasswordBox.Text.Replace(" ", "");
 
-            string username = UsernameBox.Text;
-            string password = PasswordBox.Text;
-
-            User user = new User(0, username, password, User.RANKING.USER, User.STATES.ACTIVE);
-
-            AuthManager.ResultCode resultCode = AuthManager.TryLogginAs(user);
-
-            if (resultCode != AuthManager.ResultCode.SUCCESS)
+            if (UsernameBox.Text == string.Empty || PasswordBox.Text == string.Empty)
             {
-                if (!Messages.ContainsKey(resultCode))
-                {
-                    MessageBox.Show($"El sistema ha devuelto un error\nno planificado ({resultCode})");
-                    LogginBtn.Enabled = true;
-                    return;
-                }
-
-                MessageBox.Show(Messages[resultCode]);
-                LogginBtn.Enabled = true;
+                MessageBox.Show("No deje campos vacíos");
+                AceptBtn.Enabled = true;
                 return;
             }
 
-            MainMenu MainMenu = new MainMenu(this);
+            AuthController.Error err = AuthController.Login(UsernameBox.Text, PasswordBox.Text);
 
-            Hide();
-
-            UsernameBox.Text = string.Empty;
-            PasswordBox.Text = string.Empty;
-            LogginBtn.Enabled = true;
-
-            MainMenu.Show();
-        }
-
-        private string EraseIvalid(string input)
-        {
-            string[] toErase = { " ", "'", "/", @"\", "~" };
-
-            string output = input;
-
-            for (int i = 0; i < toErase.Length; i++)
+            if (err != AuthController.Error.OK)
             {
-                output = output.Replace(toErase[i], "");
+                if (ErrorMessages.ContainsKey(err))
+                {
+                    MessageBox.Show(ErrorMessages[err], "Intento de inicio de sesión");
+                    AceptBtn.Enabled = true;
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show($"El sistema ha devuelto un valor inesperado:\n'{err}'", "Intento de inicio de sesión");
+                    AceptBtn.Enabled = true;
+                    return;
+                }
             }
 
-            return output;
+            Hide();
+            Clear();
+            new MainMenu(this).Show();
+        }
+
+        /// <summary>
+        /// Es llamado al momento de hacer click en el botón <see cref="CancelBtn"/>
+        /// </summary>
+        private void CancelBtn_Click(object sender, System.EventArgs e)
+        {
+            Close();
+        }
+
+        /// <summary>
+        /// Es llamado al momento de cerrar el formulario
+        /// </summary>
+        private void AuthMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (AuthController.IsUserLoged)
+            {
+                AuthController.Logout();
+            }
+        }
+
+        /// <summary>
+        /// Es llamado al momento de modificar el texto de <see cref="PasswordBox"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PasswordBox_TextChanged(object sender, System.EventArgs e)
+        {
+            if (!TextFilter.IsValidPasswordText(PasswordBox.Text))
+            {
+                AceptBtn.Enabled = false;
+                PasswordWarningIcon.Visible = true;
+            }
+            else
+            {
+                AceptBtn.Enabled = true;
+                PasswordWarningIcon.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Limpia los datos ingresados
+        /// </summary>
+        private void Clear()
+        {
+            UsernameBox.Text = string.Empty;
+            PasswordBox.Text = string.Empty;
         }
     }
 }

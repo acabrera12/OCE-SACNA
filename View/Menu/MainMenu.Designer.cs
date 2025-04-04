@@ -29,242 +29,205 @@ namespace OCESACNA.View.Menu
         /// </summary>
         private void InitializeComponent()
         {
-            this.menu = new System.Windows.Forms.MenuStrip();
-            this.MainMenuBtn = new FontAwesome.Sharp.IconMenuItem();
-            this.SettingBtn = new FontAwesome.Sharp.IconMenuItem();
-            this.ManagementBtn = new FontAwesome.Sharp.IconMenuItem();
-            this.ManageStudentBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageRpresentBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageSubjectsBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageTeachersBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageScoresBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.AdminBtn = new FontAwesome.Sharp.IconMenuItem();
-            this.ManageUsersBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageCoursesBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageSbjectModulesBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLabels = new System.Windows.Forms.MenuStrip();
-            this.infoBtn = new FontAwesome.Sharp.IconMenuItem();
-            this.ExitBtn = new FontAwesome.Sharp.IconMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.MainContainer = new System.Windows.Forms.Panel();
-            this.menu.SuspendLayout();
-            this.menuLabels.SuspendLayout();
+            this.TopMenu = new System.Windows.Forms.MenuStrip();
+            this.HomeBtn = new FontAwesome.Sharp.IconMenuItem();
+            this.SettingsBtn = new FontAwesome.Sharp.IconMenuItem();
+            this.ManageMenuBtn = new FontAwesome.Sharp.IconMenuItem();
+            this.SubjectManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.TeacherManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.StudentManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.RepresentativeManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScoreManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.AdminMenuBtn = new FontAwesome.Sharp.IconMenuItem();
+            this.SubjectModuleManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.CourseManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.SACNABtn = new FontAwesome.Sharp.IconMenuItem();
+            this.MainPanel = new System.Windows.Forms.Panel();
+            this.TopMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menu
+            // TopMenu
             // 
-            this.menu.BackColor = System.Drawing.Color.White;
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MainMenuBtn,
-            this.SettingBtn,
-            this.ManagementBtn,
-            this.AdminBtn});
-            this.menu.Location = new System.Drawing.Point(0, 24);
-            this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(808, 55);
-            this.menu.TabIndex = 0;
-            this.menu.Text = "menuStrip1";
+            this.TopMenu.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TopMenu.GripMargin = new System.Windows.Forms.Padding(2);
+            this.TopMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.HomeBtn,
+            this.SettingsBtn,
+            this.ManageMenuBtn,
+            this.AdminMenuBtn,
+            this.SACNABtn});
+            this.TopMenu.Location = new System.Drawing.Point(0, 0);
+            this.TopMenu.Name = "TopMenu";
+            this.TopMenu.Padding = new System.Windows.Forms.Padding(0);
+            this.TopMenu.Size = new System.Drawing.Size(800, 63);
+            this.TopMenu.TabIndex = 0;
+            this.TopMenu.Text = "TopMenu";
             // 
-            // MainMenuBtn
+            // HomeBtn
             // 
-            this.MainMenuBtn.BackColor = System.Drawing.Color.White;
-            this.MainMenuBtn.IconChar = FontAwesome.Sharp.IconChar.HomeLg;
-            this.MainMenuBtn.IconColor = System.Drawing.Color.Black;
-            this.MainMenuBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MainMenuBtn.IconSize = 32;
-            this.MainMenuBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MainMenuBtn.Name = "MainMenuBtn";
-            this.MainMenuBtn.Size = new System.Drawing.Size(65, 51);
-            this.MainMenuBtn.Text = "Principal";
-            this.MainMenuBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.MainMenuBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.MainMenuBtn.Click += new System.EventHandler(this.MainMenuBtn_Click);
+            this.HomeBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HomeBtn.IconChar = FontAwesome.Sharp.IconChar.HomeLg;
+            this.HomeBtn.IconColor = System.Drawing.SystemColors.ControlText;
+            this.HomeBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.HomeBtn.IconSize = 38;
+            this.HomeBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.HomeBtn.Name = "HomeBtn";
+            this.HomeBtn.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.HomeBtn.Size = new System.Drawing.Size(67, 63);
+            this.HomeBtn.Text = "Principal";
+            this.HomeBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.HomeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
             // 
-            // SettingBtn
+            // SettingsBtn
             // 
-            this.SettingBtn.BackColor = System.Drawing.Color.White;
-            this.SettingBtn.IconChar = FontAwesome.Sharp.IconChar.Cog;
-            this.SettingBtn.IconColor = System.Drawing.Color.Black;
-            this.SettingBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.SettingBtn.IconSize = 32;
-            this.SettingBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.SettingBtn.Name = "SettingBtn";
-            this.SettingBtn.Size = new System.Drawing.Size(95, 51);
-            this.SettingBtn.Text = "Configuración";
-            this.SettingBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.SettingBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.SettingBtn.Click += new System.EventHandler(this.SettingBtn_Click);
+            this.SettingsBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.SettingsBtn.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.SettingsBtn.IconColor = System.Drawing.SystemColors.ControlText;
+            this.SettingsBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SettingsBtn.IconSize = 38;
+            this.SettingsBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SettingsBtn.Name = "SettingsBtn";
+            this.SettingsBtn.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.SettingsBtn.Size = new System.Drawing.Size(97, 63);
+            this.SettingsBtn.Text = "Configuración";
+            this.SettingsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.SettingsBtn.Click += new System.EventHandler(this.SettingsBtn_Click);
             // 
-            // ManagementBtn
+            // ManageMenuBtn
             // 
-            this.ManagementBtn.BackColor = System.Drawing.Color.White;
-            this.ManagementBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ManageStudentBtn,
-            this.ManageRpresentBtn,
-            this.ManageSubjectsBtn,
-            this.ManageTeachersBtn,
-            this.ManageScoresBtn});
-            this.ManagementBtn.IconChar = FontAwesome.Sharp.IconChar.School;
-            this.ManagementBtn.IconColor = System.Drawing.Color.Black;
-            this.ManagementBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ManagementBtn.IconSize = 32;
-            this.ManagementBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ManagementBtn.Name = "ManagementBtn";
-            this.ManagementBtn.Size = new System.Drawing.Size(62, 51);
-            this.ManagementBtn.Text = "Nómina";
-            this.ManagementBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.ManagementBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ManageMenuBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SubjectManagementBtn,
+            this.TeacherManagementBtn,
+            this.StudentManagementBtn,
+            this.RepresentativeManagementBtn,
+            this.ScoreManagementBtn});
+            this.ManageMenuBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ManageMenuBtn.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
+            this.ManageMenuBtn.IconColor = System.Drawing.SystemColors.ControlText;
+            this.ManageMenuBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ManageMenuBtn.IconSize = 38;
+            this.ManageMenuBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ManageMenuBtn.Name = "ManageMenuBtn";
+            this.ManageMenuBtn.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.ManageMenuBtn.Size = new System.Drawing.Size(64, 63);
+            this.ManageMenuBtn.Text = "Nómina";
+            this.ManageMenuBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // ManageStudentBtn
+            // SubjectManagementBtn
             // 
-            this.ManageStudentBtn.Name = "ManageStudentBtn";
-            this.ManageStudentBtn.Size = new System.Drawing.Size(162, 22);
-            this.ManageStudentBtn.Text = "Estudiantes";
-            this.ManageStudentBtn.Click += new System.EventHandler(this.ManageStudentBtn_Click);
+            this.SubjectManagementBtn.Name = "SubjectManagementBtn";
+            this.SubjectManagementBtn.Size = new System.Drawing.Size(180, 22);
+            this.SubjectManagementBtn.Text = "Asignaturas";
+            this.SubjectManagementBtn.Click += new System.EventHandler(this.SubjectManagementBtn_Click);
             // 
-            // ManageRpresentBtn
+            // TeacherManagementBtn
             // 
-            this.ManageRpresentBtn.Name = "ManageRpresentBtn";
-            this.ManageRpresentBtn.Size = new System.Drawing.Size(162, 22);
-            this.ManageRpresentBtn.Text = "Representantes";
-            this.ManageRpresentBtn.Click += new System.EventHandler(this.ManageRpresentBtn_Click);
+            this.TeacherManagementBtn.Name = "TeacherManagementBtn";
+            this.TeacherManagementBtn.Size = new System.Drawing.Size(180, 22);
+            this.TeacherManagementBtn.Text = "Docentes";
+            this.TeacherManagementBtn.Click += new System.EventHandler(this.TeacherManagementBtn_Click);
             // 
-            // ManageSubjectsBtn
+            // StudentManagementBtn
             // 
-            this.ManageSubjectsBtn.Name = "ManageSubjectsBtn";
-            this.ManageSubjectsBtn.Size = new System.Drawing.Size(162, 22);
-            this.ManageSubjectsBtn.Text = "Asignaturas";
-            this.ManageSubjectsBtn.Click += new System.EventHandler(this.ManageSubjectsBtn_Click);
+            this.StudentManagementBtn.Name = "StudentManagementBtn";
+            this.StudentManagementBtn.Size = new System.Drawing.Size(180, 22);
+            this.StudentManagementBtn.Text = "Estudiantes";
+            this.StudentManagementBtn.Click += new System.EventHandler(this.StudentManagementBtn_Click);
             // 
-            // ManageTeachersBtn
+            // RepresentativeManagementBtn
             // 
-            this.ManageTeachersBtn.Name = "ManageTeachersBtn";
-            this.ManageTeachersBtn.Size = new System.Drawing.Size(162, 22);
-            this.ManageTeachersBtn.Text = "Docentes";
-            this.ManageTeachersBtn.Click += new System.EventHandler(this.ManageTeachersBtn_Click);
+            this.RepresentativeManagementBtn.Name = "RepresentativeManagementBtn";
+            this.RepresentativeManagementBtn.Size = new System.Drawing.Size(180, 22);
+            this.RepresentativeManagementBtn.Text = "Representantes";
+            this.RepresentativeManagementBtn.Click += new System.EventHandler(this.RepresentativeManagementBtn_Click);
             // 
-            // ManageScoresBtn
+            // ScoreManagementBtn
             // 
-            this.ManageScoresBtn.Name = "ManageScoresBtn";
-            this.ManageScoresBtn.Size = new System.Drawing.Size(162, 22);
-            this.ManageScoresBtn.Text = "Sábana de Notas";
-            this.ManageScoresBtn.Click += new System.EventHandler(this.ManageScoresBtn_Click);
+            this.ScoreManagementBtn.Name = "ScoreManagementBtn";
+            this.ScoreManagementBtn.Size = new System.Drawing.Size(180, 22);
+            this.ScoreManagementBtn.Text = "Sábana de Notas";
+            this.ScoreManagementBtn.Click += new System.EventHandler(this.ScoreManagementBtn_Click);
             // 
-            // AdminBtn
+            // AdminMenuBtn
             // 
-            this.AdminBtn.BackColor = System.Drawing.Color.White;
-            this.AdminBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ManageUsersBtn,
-            this.ManageCoursesBtn,
-            this.ManageSbjectModulesBtn});
-            this.AdminBtn.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
-            this.AdminBtn.IconColor = System.Drawing.Color.Black;
-            this.AdminBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.AdminBtn.IconSize = 32;
-            this.AdminBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.AdminBtn.Name = "AdminBtn";
-            this.AdminBtn.Size = new System.Drawing.Size(59, 51);
-            this.AdminBtn.Text = "Gestión";
-            this.AdminBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.AdminBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.AdminMenuBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SubjectModuleManagementBtn,
+            this.CourseManagementBtn,
+            this.UserManagementBtn});
+            this.AdminMenuBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.AdminMenuBtn.IconChar = FontAwesome.Sharp.IconChar.UserGear;
+            this.AdminMenuBtn.IconColor = System.Drawing.SystemColors.ControlText;
+            this.AdminMenuBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.AdminMenuBtn.IconSize = 38;
+            this.AdminMenuBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.AdminMenuBtn.Name = "AdminMenuBtn";
+            this.AdminMenuBtn.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.AdminMenuBtn.Size = new System.Drawing.Size(61, 63);
+            this.AdminMenuBtn.Text = "Gestión";
+            this.AdminMenuBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // ManageUsersBtn
+            // SubjectModuleManagementBtn
             // 
-            this.ManageUsersBtn.Name = "ManageUsersBtn";
-            this.ManageUsersBtn.Size = new System.Drawing.Size(180, 22);
-            this.ManageUsersBtn.Text = "Usuarios";
-            this.ManageUsersBtn.Click += new System.EventHandler(this.ManageUsersBtn_Click);
+            this.SubjectModuleManagementBtn.Name = "SubjectModuleManagementBtn";
+            this.SubjectModuleManagementBtn.Size = new System.Drawing.Size(179, 22);
+            this.SubjectModuleManagementBtn.Text = "Áreas de Formación";
+            this.SubjectModuleManagementBtn.Click += new System.EventHandler(this.SubjectModuleManagementBtn_Click);
             // 
-            // ManageCoursesBtn
+            // CourseManagementBtn
             // 
-            this.ManageCoursesBtn.Name = "ManageCoursesBtn";
-            this.ManageCoursesBtn.Size = new System.Drawing.Size(180, 22);
-            this.ManageCoursesBtn.Text = "Cursos";
-            this.ManageCoursesBtn.Click += new System.EventHandler(this.ManageCoursesBtn_Click);
+            this.CourseManagementBtn.Name = "CourseManagementBtn";
+            this.CourseManagementBtn.Size = new System.Drawing.Size(179, 22);
+            this.CourseManagementBtn.Text = "Cursos";
+            this.CourseManagementBtn.Click += new System.EventHandler(this.CourseManagementBtn_Click);
             // 
-            // ManageSbjectModulesBtn
+            // UserManagementBtn
             // 
-            this.ManageSbjectModulesBtn.Name = "ManageSbjectModulesBtn";
-            this.ManageSbjectModulesBtn.Size = new System.Drawing.Size(180, 22);
-            this.ManageSbjectModulesBtn.Text = "Áreas de Formación";
-            this.ManageSbjectModulesBtn.Click += new System.EventHandler(this.ManageSbjectModulesBtn_Click);
+            this.UserManagementBtn.Name = "UserManagementBtn";
+            this.UserManagementBtn.Size = new System.Drawing.Size(179, 22);
+            this.UserManagementBtn.Text = "Usuarios";
+            this.UserManagementBtn.Click += new System.EventHandler(this.UserManagementBtn_Click);
             // 
-            // menuLabels
+            // SACNABtn
             // 
-            this.menuLabels.BackColor = System.Drawing.Color.SteelBlue;
-            this.menuLabels.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.infoBtn,
-            this.ExitBtn});
-            this.menuLabels.Location = new System.Drawing.Point(0, 0);
-            this.menuLabels.Name = "menuLabels";
-            this.menuLabels.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuLabels.Size = new System.Drawing.Size(808, 24);
-            this.menuLabels.TabIndex = 1;
-            this.menuLabels.Text = "menuStrip2";
+            this.SACNABtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.SACNABtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.SACNABtn.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
+            this.SACNABtn.IconColor = System.Drawing.SystemColors.ControlText;
+            this.SACNABtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SACNABtn.IconSize = 38;
+            this.SACNABtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SACNABtn.Name = "SACNABtn";
+            this.SACNABtn.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.SACNABtn.Size = new System.Drawing.Size(60, 63);
+            this.SACNABtn.Text = "SACNA";
+            this.SACNABtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.SACNABtn.Click += new System.EventHandler(this.SACNABtn_Click);
             // 
-            // infoBtn
+            // MainPanel
             // 
-            this.infoBtn.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
-            this.infoBtn.IconColor = System.Drawing.Color.White;
-            this.infoBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.infoBtn.Name = "infoBtn";
-            this.infoBtn.Size = new System.Drawing.Size(28, 20);
-            this.infoBtn.Click += new System.EventHandler(this.InfoBtn_Click);
-            // 
-            // ExitBtn
-            // 
-            this.ExitBtn.ForeColor = System.Drawing.Color.White;
-            this.ExitBtn.IconChar = FontAwesome.Sharp.IconChar.Key;
-            this.ExitBtn.IconColor = System.Drawing.Color.White;
-            this.ExitBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ExitBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ExitBtn.Name = "ExitBtn";
-            this.ExitBtn.Size = new System.Drawing.Size(104, 20);
-            this.ExitBtn.Text = "Cerrar Sesión";
-            this.ExitBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.SteelBlue;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 24);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "OCE SACNA";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // MainContainer
-            // 
-            this.MainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainContainer.Location = new System.Drawing.Point(0, 79);
-            this.MainContainer.Name = "MainContainer";
-            this.MainContainer.Size = new System.Drawing.Size(808, 371);
-            this.MainContainer.TabIndex = 3;
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(0, 63);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(800, 410);
+            this.MainPanel.TabIndex = 1;
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 450);
-            this.Controls.Add(this.MainContainer);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.menu);
-            this.Controls.Add(this.menuLabels);
-            this.MainMenuStrip = this.menu;
-            this.MinimumSize = new System.Drawing.Size(489, 489);
+            this.ClientSize = new System.Drawing.Size(800, 473);
+            this.Controls.Add(this.MainPanel);
+            this.Controls.Add(this.TopMenu);
+            this.MainMenuStrip = this.TopMenu;
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menú Principal";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainMenu_FormClosed);
             this.Load += new System.EventHandler(this.MainMenu_Load);
-            this.Shown += new System.EventHandler(this.MainMenu_Shown);
-            this.menu.ResumeLayout(false);
-            this.menu.PerformLayout();
-            this.menuLabels.ResumeLayout(false);
-            this.menuLabels.PerformLayout();
+            this.TopMenu.ResumeLayout(false);
+            this.TopMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,23 +235,20 @@ namespace OCESACNA.View.Menu
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menu;
-        private System.Windows.Forms.MenuStrip menuLabels;
-        private System.Windows.Forms.Label label1;
-        private FontAwesome.Sharp.IconMenuItem MainMenuBtn;
-        private FontAwesome.Sharp.IconMenuItem SettingBtn;
-        private FontAwesome.Sharp.IconMenuItem infoBtn;
-        private FontAwesome.Sharp.IconMenuItem ManagementBtn;
-        private System.Windows.Forms.ToolStripMenuItem ManageStudentBtn;
-        private System.Windows.Forms.ToolStripMenuItem ManageRpresentBtn;
-        private System.Windows.Forms.ToolStripMenuItem ManageSubjectsBtn;
-        private System.Windows.Forms.ToolStripMenuItem ManageTeachersBtn;
-        private System.Windows.Forms.ToolStripMenuItem ManageScoresBtn;
-        private FontAwesome.Sharp.IconMenuItem ExitBtn;
-        private FontAwesome.Sharp.IconMenuItem AdminBtn;
-        private System.Windows.Forms.Panel MainContainer;
-        private System.Windows.Forms.ToolStripMenuItem ManageUsersBtn;
-        private System.Windows.Forms.ToolStripMenuItem ManageCoursesBtn;
-        private System.Windows.Forms.ToolStripMenuItem ManageSbjectModulesBtn;
+        private System.Windows.Forms.MenuStrip TopMenu;
+        private FontAwesome.Sharp.IconMenuItem HomeBtn;
+        private FontAwesome.Sharp.IconMenuItem SettingsBtn;
+        private FontAwesome.Sharp.IconMenuItem ManageMenuBtn;
+        private FontAwesome.Sharp.IconMenuItem AdminMenuBtn;
+        private System.Windows.Forms.Panel MainPanel;
+        private FontAwesome.Sharp.IconMenuItem SACNABtn;
+        private System.Windows.Forms.ToolStripMenuItem SubjectManagementBtn;
+        private System.Windows.Forms.ToolStripMenuItem TeacherManagementBtn;
+        private System.Windows.Forms.ToolStripMenuItem StudentManagementBtn;
+        private System.Windows.Forms.ToolStripMenuItem RepresentativeManagementBtn;
+        private System.Windows.Forms.ToolStripMenuItem ScoreManagementBtn;
+        private System.Windows.Forms.ToolStripMenuItem SubjectModuleManagementBtn;
+        private System.Windows.Forms.ToolStripMenuItem CourseManagementBtn;
+        private System.Windows.Forms.ToolStripMenuItem UserManagementBtn;
     }
 }

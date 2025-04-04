@@ -1,96 +1,147 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OCESACNA.View.Collections
 {
     /// <summary>
-    /// Clase destinada al re-coloreado de las innterfaces
+    /// Representa un conjunto de colores que conforman un tema
     /// </summary>
     public class Theme
     {
         /// <summary>
-        /// Obtiene o establece el color del fondo
+        /// Obtiene o establece la enumeración del tema
         /// </summary>
-        public Color BackgroundColor { get; set; }
+        public Themes ThemeEnumeration { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el color principal
+        /// Obtiene o establece el color de fondo
         /// </summary>
-        public Color MainColor { get; set; }
+        public Color BackColor { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el color secundario
+        /// Obtiene o establece el color frontal
         /// </summary>
-        public Color SecondaryColor { get; set; }
+        public Color Color { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el color de resaltado
+        /// </summary>
+        public Color HighlightColor { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el color de primer plano
+        /// </summary>
+        public Color ForeColor { get; set; }
 
         /// <summary>
         /// Obtiene o establece el color de la fuente contrastado
         /// </summary>
-        public Color FontColorContrast { get; set; }
+        public Color ContrastForeColor { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el color de la fuente
+        /// Obtiene o establece el color de los botones
         /// </summary>
-        public Color FontColor { get; set; }
+        public Color ButtonFaceColor { get; set; }
+
+        /// <summary>
+        /// Enumeración de los temas disponibles
+        /// </summary>
+        public enum Themes
+        {
+            System = 0,
+            LigthBlack = 1
+        }
+
+        /// <summary>
+        /// Inicializa una instancia de la clase <see cref="Theme"/> con valores predeterminados
+        /// </summary>
+        public Theme()
+        {
+            ThemeEnumeration = Themes.System;
+            BackColor = SystemColors.Control;
+            Color = SystemColors.ControlLightLight;
+            HighlightColor = Color.MediumPurple;
+            ForeColor = SystemColors.ControlText;
+            ContrastForeColor = SystemColors.ControlLightLight;
+            ButtonFaceColor = SystemColors.ButtonFace;
+        }
 
         /// <summary>
         /// Inicializa una instancia de la clase <see cref="Theme"/>
         /// </summary>
-        /// <param name="BackgroundColor">Color del fondo</param>
-        /// <param name="MainColor">Color principal</param>
-        /// <param name="SecondaryColor">Color secundario</param>
-        /// <param name="FontColorContrast">Color de la fuente contrastado</param>
-        /// <param name="FontColor">Color de la fuente</param>
-        public Theme(Color BackgroundColor, Color MainColor, Color SecondaryColor, Color FontColorContrast, Color FontColor)
+        /// <param name="back">Color del fondo</param>
+        /// <param name="color">Color frontal</param>
+        /// <param name="highlightColor">Color del resaltado</param>
+        /// <param name="fore">Color de la fuente</param>
+        /// <param name="contrastFontColor">Color de la fuente contrastado</param>
+        /// <param name="btnColor">Color para los botones</param>
+        /// <param name="themeEnumeration">Enumeración del tema</param>
+        public Theme(Color back, Color color, Color highlightColor, Color fore, Color contrastFontColor, Color btnColor, Themes themeEnumeration)
         {
-            this.BackgroundColor = BackgroundColor;
-            this.MainColor = MainColor;
-            this.SecondaryColor = SecondaryColor;
-            this.FontColorContrast = FontColorContrast;
-            this.FontColor = FontColor;
+            BackColor = back;
+            Color = color;
+            HighlightColor = highlightColor;
+            ForeColor = fore;
+            ContrastForeColor = contrastFontColor;
+            ButtonFaceColor = btnColor;
+            ThemeEnumeration = themeEnumeration;
         }
 
         /// <summary>
-        /// Temas disponibles
+        /// Obtiene el tema enumerado
         /// </summary>
-        public enum Themes
+        /// <param name="theme">Enumeración del tema</param>
+        /// <returns><see cref="Theme"/> asociado a la enumeración proporcinada</returns>
+        public static Theme GetTheme(Themes theme)
         {
-            Default = 0
+            return ThemesList[theme];
         }
 
         /// <summary>
-        /// Obtiene el tema relacionado a la enumeración proporcionada en <paramref name="t"/>
+        /// Representa un método que controlará un evento
         /// </summary>
-        /// <param name="t">Tema enumerado</param>
-        /// <returns><see cref="Theme"/> relacionado a la enumeración</returns>
-        public static Theme GetTheme(Themes t)
+        /// <param name="newTheme"></param>
+        public delegate void ThemeChangedEventHandler(Theme newTheme);
+
+        /// <summary>
+        /// Evento de cambiar el tema del programa
+        /// </summary>
+        public static event ThemeChangedEventHandler ThemeChanged;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newTheme"></param>
+        protected static void OnThemeChanged(Theme newTheme)
         {
-            Theme[] list = { Default };
-            return list[(int)t];
+            ThemeChanged?.Invoke(newTheme);
         }
 
-        #region Defined Themes
+        public static void ChangeTheme(Theme newTheme)
+        {
+            OnThemeChanged(newTheme);
+        }
+
+        #region temas de color
         /// <summary>
-        /// Tema predeterminado
+        /// Tema predeterminado. Usa colores del sistema
         /// </summary>
-        public static Theme Default { get; } = new Theme(SystemColors.Control, Color.SteelBlue, SystemColors.Window, SystemColors.ControlText, SystemColors.ControlText);
+        public static Theme System { get; } = new Theme();
+
+        /// <summary>
+        /// Tema claro con color de resaltado oscuro
+        /// </summary>
+        public static Theme LigthBlack { get; } = new Theme(SystemColors.Control, SystemColors.ControlLightLight, Color.FromArgb(30, 30, 30), SystemColors.ControlText, SystemColors.ControlLightLight, SystemColors.ButtonFace, Themes.LigthBlack);
 
         #endregion
-    }
 
-    /// <summary>
-    /// Interfaz destinada a la implementación en formularios para colorear la interfaz con la clase <see cref="Theme"/>
-    /// </summary>
-    public interface IColoreable
-    {
         /// <summary>
-        /// Aplica el tema proporcionado
+        /// Lista de temas
         /// </summary>
-        /// <param name="theme">Tema a aplicar</param>
-        void ApplyTheme(Theme theme);
+        private static readonly Dictionary<Themes, Theme> ThemesList = new Dictionary<Themes, Theme>()
+        {
+            { Themes.System, System },
+            { Themes.LigthBlack, LigthBlack }
+        };
     }
 }

@@ -1,148 +1,291 @@
-﻿using OCESACNA.Engine.Core;
+﻿using OCESACNA.Controller;
+using OCESACNA.View.Collections;
 using OCESACNA.View.Module;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using IconMenuItem = FontAwesome.Sharp.IconMenuItem;
 
 namespace OCESACNA.View.Menu
 {
-    public partial class MainMenu : Form
+    /// <summary>
+    /// Formulario principal
+    /// </summary>
+    public partial class MainMenu : Form, IColoreable
     {
-        private readonly List<Form> ActiveModulesList = new List<Form>();
-        private Form ActiveModule = null;
+        /// <summary>
+        /// Obtiene o establece el módulo actual
+        /// </summary>
+        private Form CurrentModule { get; set; }
 
-        private string originalName;
+        /// <summary>
+        /// Lista de módulos activos
+        /// </summary>
+        private readonly List<Form> ActiveModules = new List<Form>();
 
-        public AuthMenu authMenu;
+        /// <summary>
+        /// Nombre original del formulario
+        /// </summary>
+        private readonly string OriginalName;
+
+        /// <summary>
+        /// Obtiene o establece la referencia al menú de autenticación
+        /// </summary>
+        AuthMenu AuthMenu { get; set; }
+
+        /// <summary>
+        /// Inicializa una instancia del formulario <see cref="MainMenu"/>
+        /// </summary>
         public MainMenu(AuthMenu authMenu)
         {
-            this.authMenu = authMenu;
+            AuthMenu = authMenu;
+
             InitializeComponent();
-            originalName = Text;
+
+            OriginalName = Text;
+
+            ApplyTheme(Program.CurrentTheme);
+
+            Theme.ThemeChanged += Theme_ThemeChanged;
+
+            BtnList = new IconMenuItem[] { HomeBtn, SettingsBtn, ManageMenuBtn, AdminMenuBtn, SACNABtn };
         }
 
-        private void ShowModule(Type type)
+        /// <summary>
+        /// Es llamado cuando se cambia el tema del programa
+        /// </summary>
+        /// <param name="newTheme"></param>
+        private void Theme_ThemeChanged(Theme newTheme)
         {
-            if (ActiveModule != null)
+            ApplyTheme(newTheme);
+        }
+
+        public void ApplyTheme(Theme theme)
+        {
+            // this
+            BackColor = theme.BackColor;
+            ForeColor = theme.ForeColor;
+
+            // topMenu
+            TopMenu.BackColor = theme.Color;
+            TopMenu.ForeColor = theme.ForeColor;
+
+            // homeBtn
+            HomeBtn.BackColor = theme.Color;
+            HomeBtn.ForeColor = theme.ForeColor;
+            HomeBtn.IconColor = theme.ForeColor;
+
+            // settingsBtn
+            SettingsBtn.BackColor = theme.Color;
+            SettingsBtn.ForeColor = theme.ForeColor;
+            SettingsBtn.IconColor = theme.ForeColor;
+
+            // manageMenuBtn
+            ManageMenuBtn.BackColor = theme.Color;
+            ManageMenuBtn.ForeColor = theme.ForeColor;
+            ManageMenuBtn.IconColor = theme.ForeColor;
+
+            // adminMenuBtn
+            AdminMenuBtn.BackColor = theme.Color;
+            AdminMenuBtn.ForeColor = theme.ForeColor;
+            AdminMenuBtn.IconColor = theme.ForeColor;
+
+            // mainPanel
+            MainPanel.BackColor = theme.BackColor;
+            MainPanel.ForeColor = theme.ForeColor;
+
+            // SACNABtn
+            SACNABtn.BackColor = theme.Color;
+            SACNABtn.ForeColor = theme.ForeColor;
+            SACNABtn.IconColor = theme.ForeColor;
+        }
+
+        /// <summary>
+        /// Es llamado al momento de cerrar el formulario
+        /// </summary>
+        private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            AuthMenu?.Show();
+        }
+
+        /// <summary>
+        /// Es llamado al momento de cargar el fomulario
+        /// </summary>
+        private void MainMenu_Load(object sender, System.EventArgs e)
+        {
+            if (!AuthController.LogedUserIsAdmin)
             {
-                if (ActiveModule.GetType() == type)
-                {
-                    Console.WriteLine($"{GetType()}: Allready in Module({type})");
-                    return;
-                }
+                AdminMenuBtn.Visible = false;
             }
 
-            Form toActivate = ActiveModulesList.Find(md => md.GetType() == type);
+            ShowModule(typeof(MainModule));
+            HighlightBtn(HomeBtn);
+        }
 
-            if (toActivate != null)
+        /// <summary>
+        /// Muestra el módulo proporcionado
+        /// </summary>
+        /// <param name="module"></param>
+        private void ShowModule(Type moduleType)
+        {
+            if (CurrentModule != null && CurrentModule.GetType() == moduleType)
             {
-                ActiveModule.Hide();
-                ActiveModule = toActivate;
-                toActivate.Show();
-                Console.WriteLine($"{GetType()}: Showing Module({type})");
-                Text = $"{originalName} - {toActivate.Text}";
+                Console.WriteLine($"{typeof(MainMenu)}: Allready in Module({moduleType})");
                 return;
             }
 
-            var instance = (Form)Activator.CreateInstance(type);
+            Form newModule = ActiveModules.Find(md => md.GetType() == moduleType);
 
-            ActiveModulesList.Add(instance);
+            if (newModule != null)
+            {
+                CurrentModule.Hide();
+                CurrentModule = newModule;
+                CurrentModule.Show();
 
-            ActiveModule?.Hide();
+                Console.WriteLine($"{typeof(MainMenu)}: Showing module; {moduleType}");
 
+                Text = $"{OriginalName} - {CurrentModule.Text}";
+
+                return;
+            }
+
+            Form instance = (Form)Activator.CreateInstance(moduleType);
             instance.TopLevel = false;
             instance.FormBorderStyle = FormBorderStyle.None;
             instance.Dock = DockStyle.Fill;
 
-            MainContainer.Controls.Add(instance);
+            ActiveModules.Add(instance);
+            CurrentModule?.Hide();
+            MainPanel.Controls.Add(instance);
+            CurrentModule = instance;
+            CurrentModule.Show();
+            Text = $"{OriginalName} - {CurrentModule.Text}";
 
-            instance.Show();
-
-            ActiveModule = instance;
-            Console.WriteLine($"{this.GetType()}: Created a New Module({type})");
-            Text = $"{originalName} - {instance.Text}";
+            Console.WriteLine($"{typeof(MainMenu)}: Created a New Module({moduleType})");
         }
 
-        private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            AuthManager.Logout();
-            authMenu.Show();
-        }
+        /// <summary>
+        /// Obtiene o establece la lista de botones
+        /// </summary>
+        private IconMenuItem[] BtnList { get; set; }
 
-        private void MainMenu_Shown(object sender, EventArgs e)
+        /// <summary>
+        /// Resalta el botón proporcionado
+        /// </summary>
+        /// <param name="iconMenuItem">Botón</param>
+        private void HighlightBtn(IconMenuItem iconMenuItem)
         {
-            MessageBox.Show("Se ha iniciado sesión correctamente");
-        }
+            Theme theme = Program.CurrentTheme;
 
-        private void ExitBtn_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void MainMenu_Load(object sender, EventArgs e)
-        {
-            ShowModule(typeof(StartModule));
-
-            if (!AuthManager.IsAdminUser())
+            foreach (IconMenuItem btn in BtnList)
             {
-                AdminBtn.Visible = false;
+                btn.BackColor = theme.Color;
+                btn.ForeColor = theme.ForeColor;
+                btn.IconColor = theme.ForeColor;
             }
+
+            iconMenuItem.BackColor = theme.HighlightColor;
+            iconMenuItem.ForeColor = theme.ContrastForeColor;
+            iconMenuItem.IconColor = theme.ContrastForeColor;
         }
 
-        private void MainMenuBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Es llamado al momeno de hacer click en <see cref="HomeBtn"/>
+        /// </summary>
+        private void HomeBtn_Click(object sender, EventArgs e)
         {
-            ShowModule(typeof(StartModule));
+            ShowModule(typeof(MainModule));
+            HighlightBtn(HomeBtn);
         }
 
-        private void SettingBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Es llamado al momento de hacer click en <see cref="SettingsBtn"/>
+        /// </summary>
+        private void SettingsBtn_Click(object sender, EventArgs e)
         {
             ShowModule(typeof(SettingsModule));
+            HighlightBtn(SettingsBtn);
         }
 
-        private void InfoBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  Es llamado al momento de hacer click en <see cref="SubjectManagementBtn"/>
+        /// </summary>
+        private void SubjectManagementBtn_Click(object sender, EventArgs e)
         {
-            InfoMenu infoMenu = new InfoMenu();
-            infoMenu.ShowDialog();
+            ShowModule(typeof(SubjectManagementModule));
+            HighlightBtn(ManageMenuBtn);
         }
 
-        private void ManageStudentBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  Es llamado al momento de hacer click en <see cref="TeacherManagementBtn"/>
+        /// </summary>
+        private void TeacherManagementBtn_Click(object sender, EventArgs e)
         {
-            ShowModule(typeof(ManageStudentsModule));
+            ShowModule(typeof(TeacherManagementModule));
+            HighlightBtn(ManageMenuBtn);
         }
 
-        private void ManageRpresentBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  Es llamado al momento de hacer click en <see cref="StudentManagementBtn"/>
+        /// </summary>
+        private void StudentManagementBtn_Click(object sender, EventArgs e)
         {
-            ShowModule(typeof(ManageRepresentativesModule));
+            ShowModule(typeof(StudentManagementModule));
+            HighlightBtn(ManageMenuBtn);
         }
 
-        private void ManageSubjectsBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  Es llamado al momento de hacer click en <see cref="RepresentativeManagementBtn"/>
+        /// </summary>
+        private void RepresentativeManagementBtn_Click(object sender, EventArgs e)
         {
-            ShowModule(typeof(ManageSubjectsModule));
+            ShowModule(typeof(RepresentativeManagementModule));
+            HighlightBtn(ManageMenuBtn);
         }
 
-        private void ManageTeachersBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  Es llamado al momento de hacer click en <see cref="ScoreManagementBtn"/>
+        /// </summary>
+        private void ScoreManagementBtn_Click(object sender, EventArgs e)
         {
-            ShowModule(typeof(ManageTeachersModule));
+            ShowModule(typeof(ScoreManagementModule));
+            HighlightBtn(ManageMenuBtn);
         }
 
-        private void ManageScoresBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  Es llamado al momento de hacer click en <see cref="SubjectModuleManagementBtn"/>
+        /// </summary>
+        private void SubjectModuleManagementBtn_Click(object sender, EventArgs e)
         {
-            ShowModule(typeof(ManageScoresModule));
+            ShowModule(typeof(SubjectModuleManagementModule));
+            HighlightBtn(AdminMenuBtn);
         }
 
-        private void ManageUsersBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  Es llamado al momento de hacer click en <see cref="CourseManagementBtn"/>
+        /// </summary>
+        private void CourseManagementBtn_Click(object sender, EventArgs e)
         {
-            ShowModule(typeof(ManageUsersModule));
+            ShowModule(typeof(CourseManagementModule));
+            HighlightBtn(AdminMenuBtn);
         }
 
-        private void ManageCoursesBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  Es llamado al momento de hacer click en <see cref="UserManagementBtn"/>
+        /// </summary>
+        private void UserManagementBtn_Click(object sender, EventArgs e)
         {
-            ShowModule(typeof(ManageCoursesModule));
+            ShowModule(typeof(UserManagementModule));
+            HighlightBtn(AdminMenuBtn);
         }
 
-        private void ManageSbjectModulesBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  Es llamado al momento de hacer click en <see cref="SACNABtn"/>
+        /// </summary>
+        private void SACNABtn_Click(object sender, EventArgs e)
         {
-            ShowModule(typeof(ManageSbjetModulesModule));
+            ShowModule(typeof(SACNAModule));
+            HighlightBtn(SACNABtn);
         }
     }
 }

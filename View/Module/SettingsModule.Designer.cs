@@ -1,5 +1,4 @@
-﻿
-namespace OCESACNA.View.Module
+﻿namespace OCESACNA.View.Module
 {
     partial class SettingsModule
     {

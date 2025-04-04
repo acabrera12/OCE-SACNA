@@ -1,210 +1,48 @@
-﻿using OCESACNA.Engine.Collections;
+﻿using ComboBox = System.Windows.Forms.ComboBox;
 
 namespace OCESACNA.View.Collections
 {
     /// <summary>
-    /// Clase <see cref="ComboBoxElement"/> usada para crear elementos con valores para controles <see cref="System.Windows.Forms.ComboBox">ComboBox</see>
+    /// Representa un elemento con Texto y Valor para controles <see cref="ComboBox"/>
     /// </summary>
-    public class ComboBoxElement
+    /// <typeparam name="T">Tipo de valor interno</typeparam>
+    public class ComboBoxElement<T>
     {
         /// <summary>
-        /// Texto a mostrar en controles <see cref="System.Windows.Forms.ComboBox"/>
+        /// Obtiene o establece el texto a mostrar como miembro de visualización en controles <see cref="ComboBox"/>
         /// </summary>
         public string Text { get; set; }
-        /// <summary>
-        /// Valor interno a almacenar
-        /// </summary>
-        public object Value { get; set; }
 
         /// <summary>
-        /// Ajusta el <paramref name="comboBox"/> para funcionar correctamente con objetos <see cref="ComboBoxElement"/>
+        /// Obtiene o establece el valor a almacenar como interno para los controles <see cref="ComboBox"/>
         /// </summary>
-        /// <param name="comboBox"><see cref="System.Windows.Forms.ComboBox"/> a ajustar</param>
-        /// <param name="setIndexZero">establecer índice en 0</param>
-        public static void AjustComboBox(System.Windows.Forms.ComboBox comboBox, bool setIndexZero = false)
+        public T Value { get; set; }
+
+        /// <summary>
+        /// Configura el <paramref name="comboBox"/> proporcionado para mostrar correctamente los valres del <see cref="ComboBoxElement{T}"/>
+        /// </summary>
+        /// <param name="comboBox">ComboBox a configurar</param>
+        /// <param name="setSelectedIndex">Establecer el índice seleccionado del <paramref name="comboBox"/> en elv alor 0</param>
+        public static void SetupComboBox(ComboBox comboBox, bool setSelectedIndex)
         {
             comboBox.DisplayMember = "Text";
             comboBox.ValueMember = "Value";
-            if (setIndexZero)
+
+            if (setSelectedIndex)
             {
                 comboBox.SelectedIndex = 0;
             }
         }
-    }
-
-    /// <summary>
-    /// Clase <see cref="RankComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="User.RANKING"/>
-    /// </summary>
-    public class RankComboBoxElement : ComboBoxElement
-    {
-        /// <summary>
-        /// Valor interno
-        /// </summary>
-        public new User.RANKING Value { get; set; }
 
         /// <summary>
-        /// Inicializa una instancia de la clase <see cref="RankComboBoxElement"/>
+        /// Inicializa una instancia de la clase <see cref="ComboBoxElement{T}"/>
         /// </summary>
-        /// <param name="Text">texto a mostrar</param>
-        /// <param name="Value">valor a almacenar</param>
-        public RankComboBoxElement(string Text, User.RANKING Value)
+        /// <param name="text">Texto que se usuará como miembro de visualización</param>
+        /// <param name="value">Valor que se usuará como miembro inteno de tipo <typeparamref name="T"/></param>
+        public ComboBoxElement(string text, T value)
         {
-            this.Text = Text;
-            this.Value = Value;
-        }
-    }
-
-    /// <summary>
-    /// Clase <see cref="StateComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="User.STATES"/>
-    /// </summary>
-    public class StateComboBoxElement : ComboBoxElement
-    {
-        /// <summary>
-        /// Valor interno
-        /// </summary>
-        public new User.STATES Value { get; set; }
-
-        /// <summary>
-        /// Inicializa una instancia de la clase <see cref="StateComboBoxElement"/>
-        /// </summary>
-        /// <param name="Text">texto a mostrar</param>
-        /// <param name="Value">valor a almacenar</param>
-        public StateComboBoxElement(string Text, User.STATES Value)
-        {
-            this.Text = Text;
-            this.Value = Value;
-        }
-    }
-
-    /// <summary>
-    /// Clase <see cref="SexComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="Student.SEXS"/>
-    /// </summary>
-    public class SexComboBoxElement : ComboBoxElement
-    {
-        /// <summary>
-        /// Valor interno
-        /// </summary>
-        public new Student.SEXS Value { get; set; }
-
-        /// <summary>
-        /// Inicializa una instancia de la clase <see cref="SexComboBoxElement"/>
-        /// </summary>
-        /// <param name="Text">texto a mostrar</param>
-        /// <param name="Value">valor a almacenar</param>
-        public SexComboBoxElement(string Text, Student.SEXS Value)
-        {
-            this.Text = Text;
-            this.Value = Value;
-        }
-    }
-
-    /// <summary>
-    /// Clase <see cref="BoolComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="bool"/>
-    /// </summary>
-    public class BoolComboBoxElement : ComboBoxElement
-    {
-        /// <summary>
-        /// Valor interno
-        /// </summary>
-        public new bool Value { get; set; }
-
-        /// <summary>
-        /// Inicializa una instancia de la clase <see cref="BoolComboBoxElement"/>
-        /// </summary>
-        /// <param name="Text">texto a mostrar</param>
-        /// <param name="Value">valor a almacenar</param>
-        public BoolComboBoxElement(string Text, bool Value)
-        {
-            this.Text = Text;
-            this.Value = Value;
-        }
-    }
-
-    /// <summary>
-    /// Clase <see cref="StringComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="string"/>
-    /// </summary>
-    public class StringComboBoxElement : ComboBoxElement
-    {
-        /// <summary>
-        /// Valor interno
-        /// </summary>
-        public new string Value { get; set; }
-
-        /// <summary>
-        /// Inicializa una instancia de la clase <see cref="StringComboBoxElement"/>
-        /// </summary>
-        /// <param name="Text">texto a mostrar</param>
-        /// <param name="Value">valor a almacenar</param>
-        public StringComboBoxElement(string Text, string Value)
-        {
-            this.Text = Text;
-            this.Value = Value;
-        }
-    }
-
-    /// <summary>
-    /// Clase <see cref="IntComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="int"/>
-    /// </summary>
-    public class IntComboBoxElement : ComboBoxElement
-    {
-        /// <summary>
-        /// Valor interno
-        /// </summary>
-        public new int Value { get; set; }
-
-        /// <summary>
-        /// Inicializa una instancia de la clase <see cref="IntComboBoxElement"/>
-        /// </summary>
-        /// <param name="Text">texto a mostrar</param>
-        /// <param name="Value">valor a almacenar</param>
-        public IntComboBoxElement(string Text, int Value)
-        {
-            this.Text = Text;
-            this.Value = Value;
-        }
-    }
-
-    /// <summary>
-    /// Clase <see cref="CourseComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="Course"/>
-    /// </summary>
-    public class CourseComboBoxElement : ComboBoxElement
-    {
-        /// <summary>
-        /// Valor interno
-        /// </summary>
-        public new Course Value { get; set; }
-
-        /// <summary>
-        /// Inicializa una instancia de la clase <see cref="CourseComboBoxElement"/>
-        /// </summary>
-        /// <param name="Text">texto a mostrar</param>
-        /// <param name="Value">valor a almacenar</param>
-        public CourseComboBoxElement(string Text, Course Value)
-        {
-            this.Text = Text;
-            this.Value = Value;
-        }
-    }
-
-    /// <summary>
-    /// Clase <see cref="SubjectComboBoxElement"/> usada para crear elementos <see cref="ComboBoxElement"/> con valores <see cref="Subject"/>
-    /// </summary>
-    public class SubjectComboBoxElement : ComboBoxElement
-    {
-        /// <summary>
-        /// Valor interno
-        /// </summary>
-        public new Subject Value { get; set; }
-
-        /// <summary>
-        /// Inicializa una instancia de la clase <see cref="SubjectComboBoxElement"/>
-        /// </summary>
-        /// <param name="Text">texto a mostrar</param>
-        /// <param name="Value">valor a almacenar</param>
-        public SubjectComboBoxElement(string Text, Subject Value)
-        {
-            this.Text = Text;
-            this.Value = Value;
+            Text = text;
+            Value = value;
         }
     }
 }
