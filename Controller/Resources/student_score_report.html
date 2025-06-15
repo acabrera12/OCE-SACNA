@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML Document</title>
+        <style>
+        table.bordered {
+            border-collapse: collapse;
+            width:100%;
+            font-size:12px;
+        }
+        table.bordered th,
+        table.bordered td {
+            padding: 5px;
+            border: 1px solid black;
+        }
+        table.bordered thead{
+            background-color:#D8D8D8;
+            text-align:center;
+        }
+        table.bordered tr.over{
+            background-color:#F8F8F8;
+        }
+        p.hash{
+            font-size:10px;
+            text-align:center;
+        }
+    </style>
+    </head>
+
+    <body>
+        <table style="width:100%" border="">
+            <tr>
+                <td style="width:20%">@MINISTERY</td>
+                <td style="width:60%" align="center">
+                    <table>
+                        <tr>
+                            <td align="center">Rep�blica Bolivariana de
+                                Venezuela</td>
+                        </tr>
+                        <tr>
+                            <td align="center">Ministerio del Poder Popular para
+                                la Educaci�n</td>
+                        </tr>
+                        <tr>
+                            <td align="center">@SCHOOL_NAME</td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width:20%">@SCHOOL_ico</td>
+            </tr>
+
+            <tr><td colspan="3" height="45" align="center">Bolet�n de
+                    Calificaciones</td></tr>
+            <tr>
+                <td colspan="3">
+                    <table class="bordered">
+                        <thead>
+                            <tr><td colspan=7 align="center"></td></tr>
+                        </thead>
+                        <tr class="over">
+                            <td>Nombre Completo</td>
+                            <td>C�dula</td>
+                            <td>A�o</td>
+                            <td>Menci�n</td>
+                            <td>Secci�n</td>
+                        </tr>
+                        <tr>
+                            <td>@FULLNAME</td>
+                            <td>@CEDULA</td>
+                            <td width=30>@YEAR</td>
+                            <td>@MENTION</td>
+                            <td width=10>@SECTION</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr><td colspan=3 height=20></td></tr>
+            <tr>
+                <td colspan=3>
+                    <table class="bordered">
+                        <thead>
+                            <tr><td>Rendimiento Acad�mico</td></tr>
+                        </thead>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <p class="hash">@SCORE_HASH</p>
+    </body>
+
+</html>

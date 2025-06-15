@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table.CENTERED
+            {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            table.BORDERED
+            {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 11px;
+            }
+            table.BORDERED tr, table.BORDERED td
+            {
+                padding: 5px;
+                border: 1px solid black;
+            }
+            table.BORDERED thead
+            {
+                background-color: #c8c8c8;
+                text-align: center;
+            }
+            table.BORDERED tr.OVER
+            {
+                background-color: #e8e8e8;
+            }
+            table.BORDERED tr.OVER2
+            {
+                background-color: #f8f8f8;
+            }
+        </style>
+    </head>
+    <body>
+        <table style="width: 100%;" class="CENTERED">
+            <tr>
+                <td style="width: 20%;">@MINISTERY</td>
+                <td style="width: 60%;">
+                    <table class="CENTERED">
+                        <tr>
+                            <td>
+                                República Bolivariana de Venezuela
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Ministerio del Poder Popular para la Educación
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @SCHOOL_NAME
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 20%;">@SCHOOL_ICO</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="CENTERED" height="45">
+                    Boletín de Calificaciones
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <table class="BORDERED">
+                        <thead>
+                            <tr>
+                                <th colspan="7">Datos Personales</th>
+                            </tr>
+                        </thead>
+                        <tr class="OVER">
+                            <td rowspan="2">Nombre Completo</td>
+                            <td rowspan="2">Cedula</td>
+                            <td rowspan="2">Sexo</td>
+                            <td rowspan="2">Edad</td>
+                            <td colspan="3" style="font-size: 9px;">Curso</td>
+                        </tr>
+                        <tr class="OVER2" style="font-size: 9px;">
+                            <td>Año</td>
+                            <td>Mencion</td>
+                            <td>Seccion</td>
+                        </tr>
+                        <tr>
+                            <td>@FULLNAME</td>
+                            <td>@CEDULA</td>
+                            <td>@SEX</td>
+                            <td>@AGE</td>
+                            <td>@Y</td>
+                            <td>@MTION</td>
+                            <td>@STION</td>
+                        </tr>
+                        <tr class="OVER">
+                            <td>Representante</td>
+                            <td>Dirección</td>
+                            <td>ID</td>
+                            <td>N° Lista</td>
+                            <td colspan="3">Dirección del Plantel</td>
+                        </tr>
+                        <tr>
+                            <td>@RPRSENT</td>
+                            <td>@ADDRESS</td>
+                            <td>@ID</td>
+                            <td>@LIST_N</td>
+                            <td colspan="3">@SCHOOL_ADDRESS</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr><td height="15"></td></tr>
+            <tr>
+                <td colspan="3">
+                    <table class="BORDERED" style="font-size: 9px;">
+                        <thead>
+                            <tr>
+                                <th colspan="10">Rendimiento Académico</th>
+                            </tr>
+                        </thead>
+                        <tr class="OVER">
+                            <td rowspan="2">Área de Formacion</td>
+                            <td rowspan="2">Asignatura</td>
+                            <td colspan="2">Primer Lapso</td>
+                            <td colspan="2">Segundo Lapso</td>
+                            <td colspan="2">Tercer Lapso</td>
+                            <td colspan="2">Promedio</td>
+                        </tr>
+                        <tr class="OVER2">
+                            <td>calificacion</td>
+                            <td>definitiva</td>
+                            <td>calificacion</td>
+                            <td>definitiva</td>
+                            <td>calificacion</td>
+                            <td>definitiva</td>
+                            <td>calificacion</td>
+                            <td>definitiva</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="@ROW_SPAN">@SBJET_MODULE</td>
+                            <td>@SBJET</td>
+                            <td>@1SCOR</td>
+                            <td>@1SCORD</td>
+                            <td>@2SCOR</td>
+                            <td>@2SCORD</td>
+                            <td>@3SCOR</td>
+                            <td>@3SCORD</td>
+                            <td>@4SCOR</td>
+                            <td>@4SCORD</td>
+                        </tr>
+                        <ignore/@NEW_SCORE_ROWS>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

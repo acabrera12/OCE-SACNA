@@ -46,58 +46,57 @@ namespace OCESACNA.View.Menu
 
             ApplyTheme(Program.CurrentTheme);
 
-            Theme.ThemeChanged += Theme_ThemeChanged;
+            ColorTheme.ThemeChanged += ColorTheme_ThemeChanged;
 
             BtnList = new IconMenuItem[] { HomeBtn, SettingsBtn, ManageMenuBtn, AdminMenuBtn, SACNABtn };
         }
 
-        /// <summary>
-        /// Es llamado cuando se cambia el tema del programa
-        /// </summary>
-        /// <param name="newTheme"></param>
-        private void Theme_ThemeChanged(Theme newTheme)
+        public void ColorTheme_ThemeChanged(ColorTheme newTheme)
         {
             ApplyTheme(newTheme);
         }
 
-        public void ApplyTheme(Theme theme)
+        public void ColorTheme_DarkModeChanged(bool value)
+        {
+            ApplyTheme(Program.CurrentTheme);
+        }
+
+        public void ApplyTheme(ColorTheme theme)
         {
             // this
-            BackColor = theme.BackColor;
+            BackColor = theme.BackgroundColor;
             ForeColor = theme.ForeColor;
 
             // topMenu
-            TopMenu.BackColor = theme.Color;
-            TopMenu.ForeColor = theme.ForeColor;
+            theme.ApplyForeStyle(TopMenu);
 
             // homeBtn
-            HomeBtn.BackColor = theme.Color;
-            HomeBtn.ForeColor = theme.ForeColor;
-            HomeBtn.IconColor = theme.ForeColor;
+            HomeBtn.BackColor = theme.ForeColor;
+            HomeBtn.ForeColor = theme.FontColor;
+            HomeBtn.IconColor = theme.FontColor;
 
             // settingsBtn
-            SettingsBtn.BackColor = theme.Color;
-            SettingsBtn.ForeColor = theme.ForeColor;
-            SettingsBtn.IconColor = theme.ForeColor;
+            SettingsBtn.BackColor = theme.ForeColor;
+            SettingsBtn.ForeColor = theme.FontColor;
+            SettingsBtn.IconColor = theme.FontColor;
 
             // manageMenuBtn
-            ManageMenuBtn.BackColor = theme.Color;
-            ManageMenuBtn.ForeColor = theme.ForeColor;
-            ManageMenuBtn.IconColor = theme.ForeColor;
+            ManageMenuBtn.BackColor = theme.ForeColor;
+            ManageMenuBtn.ForeColor = theme.FontColor;
+            ManageMenuBtn.IconColor = theme.FontColor;
 
             // adminMenuBtn
-            AdminMenuBtn.BackColor = theme.Color;
-            AdminMenuBtn.ForeColor = theme.ForeColor;
-            AdminMenuBtn.IconColor = theme.ForeColor;
+            AdminMenuBtn.BackColor = theme.ForeColor;
+            AdminMenuBtn.ForeColor = theme.FontColor;
+            AdminMenuBtn.IconColor = theme.FontColor;
 
             // mainPanel
-            MainPanel.BackColor = theme.BackColor;
-            MainPanel.ForeColor = theme.ForeColor;
+            theme.ApplyBackgroundStyle(MainPanel);
 
             // SACNABtn
-            SACNABtn.BackColor = theme.Color;
-            SACNABtn.ForeColor = theme.ForeColor;
-            SACNABtn.IconColor = theme.ForeColor;
+            SACNABtn.BackColor = theme.ForeColor;
+            SACNABtn.ForeColor = theme.FontColor;
+            SACNABtn.IconColor = theme.FontColor;
         }
 
         /// <summary>
@@ -175,18 +174,18 @@ namespace OCESACNA.View.Menu
         /// <param name="iconMenuItem">Botón</param>
         private void HighlightBtn(IconMenuItem iconMenuItem)
         {
-            Theme theme = Program.CurrentTheme;
+            ColorTheme theme = Program.CurrentTheme;
 
             foreach (IconMenuItem btn in BtnList)
             {
-                btn.BackColor = theme.Color;
-                btn.ForeColor = theme.ForeColor;
-                btn.IconColor = theme.ForeColor;
+                btn.BackColor = theme.ForeColor;
+                btn.ForeColor = theme.FontColor;
+                btn.IconColor = theme.FontColor;
             }
 
-            iconMenuItem.BackColor = theme.HighlightColor;
-            iconMenuItem.ForeColor = theme.ContrastForeColor;
-            iconMenuItem.IconColor = theme.ContrastForeColor;
+            iconMenuItem.BackColor = theme.HightlineColor;
+            iconMenuItem.ForeColor = theme.ContrastedFontColor;
+            iconMenuItem.IconColor = theme.ContrastedFontColor;
         }
 
         /// <summary>
@@ -286,6 +285,17 @@ namespace OCESACNA.View.Menu
         {
             ShowModule(typeof(SACNAModule));
             HighlightBtn(SACNABtn);
+        }
+
+        /// <summary>
+        /// Es llamado al momento de hacer click en <see cref="PendingSubjectManagementBtn"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PendingSubjectManagementBtn_Click(object sender, EventArgs e)
+        {
+            ShowModule(typeof(PendingSubjectManagementModule));
+            HighlightBtn(AdminMenuBtn);
         }
     }
 }

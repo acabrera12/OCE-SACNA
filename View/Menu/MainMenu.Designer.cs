@@ -39,11 +39,12 @@ namespace OCESACNA.View.Menu
             this.RepresentativeManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.ScoreManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.AdminMenuBtn = new FontAwesome.Sharp.IconMenuItem();
+            this.SACNABtn = new FontAwesome.Sharp.IconMenuItem();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.SubjectModuleManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.CourseManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.UserManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.SACNABtn = new FontAwesome.Sharp.IconMenuItem();
-            this.MainPanel = new System.Windows.Forms.Panel();
+            this.PendingSubjectManagementBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.TopMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,6 +154,7 @@ namespace OCESACNA.View.Menu
             // 
             this.AdminMenuBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SubjectModuleManagementBtn,
+            this.PendingSubjectManagementBtn,
             this.CourseManagementBtn,
             this.UserManagementBtn});
             this.AdminMenuBtn.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -166,27 +168,6 @@ namespace OCESACNA.View.Menu
             this.AdminMenuBtn.Size = new System.Drawing.Size(61, 63);
             this.AdminMenuBtn.Text = "Gestión";
             this.AdminMenuBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // SubjectModuleManagementBtn
-            // 
-            this.SubjectModuleManagementBtn.Name = "SubjectModuleManagementBtn";
-            this.SubjectModuleManagementBtn.Size = new System.Drawing.Size(179, 22);
-            this.SubjectModuleManagementBtn.Text = "Áreas de Formación";
-            this.SubjectModuleManagementBtn.Click += new System.EventHandler(this.SubjectModuleManagementBtn_Click);
-            // 
-            // CourseManagementBtn
-            // 
-            this.CourseManagementBtn.Name = "CourseManagementBtn";
-            this.CourseManagementBtn.Size = new System.Drawing.Size(179, 22);
-            this.CourseManagementBtn.Text = "Cursos";
-            this.CourseManagementBtn.Click += new System.EventHandler(this.CourseManagementBtn_Click);
-            // 
-            // UserManagementBtn
-            // 
-            this.UserManagementBtn.Name = "UserManagementBtn";
-            this.UserManagementBtn.Size = new System.Drawing.Size(179, 22);
-            this.UserManagementBtn.Text = "Usuarios";
-            this.UserManagementBtn.Click += new System.EventHandler(this.UserManagementBtn_Click);
             // 
             // SACNABtn
             // 
@@ -211,6 +192,34 @@ namespace OCESACNA.View.Menu
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(800, 410);
             this.MainPanel.TabIndex = 1;
+            // 
+            // SubjectModuleManagementBtn
+            // 
+            this.SubjectModuleManagementBtn.Name = "SubjectModuleManagementBtn";
+            this.SubjectModuleManagementBtn.Size = new System.Drawing.Size(197, 22);
+            this.SubjectModuleManagementBtn.Text = "Áreas de Formación";
+            this.SubjectModuleManagementBtn.Click += new System.EventHandler(this.SubjectModuleManagementBtn_Click);
+            // 
+            // CourseManagementBtn
+            // 
+            this.CourseManagementBtn.Name = "CourseManagementBtn";
+            this.CourseManagementBtn.Size = new System.Drawing.Size(197, 22);
+            this.CourseManagementBtn.Text = "Cursos";
+            this.CourseManagementBtn.Click += new System.EventHandler(this.CourseManagementBtn_Click);
+            // 
+            // UserManagementBtn
+            // 
+            this.UserManagementBtn.Name = "UserManagementBtn";
+            this.UserManagementBtn.Size = new System.Drawing.Size(197, 22);
+            this.UserManagementBtn.Text = "Usuarios";
+            this.UserManagementBtn.Click += new System.EventHandler(this.UserManagementBtn_Click);
+            // 
+            // PendingSubjectManagementBtn
+            // 
+            this.PendingSubjectManagementBtn.Name = "PendingSubjectManagementBtn";
+            this.PendingSubjectManagementBtn.Size = new System.Drawing.Size(197, 22);
+            this.PendingSubjectManagementBtn.Text = "Asignaturas Pendientes";
+            this.PendingSubjectManagementBtn.Click += new System.EventHandler(this.PendingSubjectManagementBtn_Click);
             // 
             // MainMenu
             // 
@@ -248,6 +257,7 @@ namespace OCESACNA.View.Menu
         private System.Windows.Forms.ToolStripMenuItem RepresentativeManagementBtn;
         private System.Windows.Forms.ToolStripMenuItem ScoreManagementBtn;
         private System.Windows.Forms.ToolStripMenuItem SubjectModuleManagementBtn;
+        private System.Windows.Forms.ToolStripMenuItem PendingSubjectManagementBtn;
         private System.Windows.Forms.ToolStripMenuItem CourseManagementBtn;
         private System.Windows.Forms.ToolStripMenuItem UserManagementBtn;
     }

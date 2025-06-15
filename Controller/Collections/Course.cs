@@ -12,6 +12,11 @@ namespace OCESACNA.Controller
         public int CourseID { get; set; }
 
         /// <summary>
+        /// Obtiene o establece el docente guía del curso
+        /// </summary>
+        public Teacher Guide { get; set; }
+
+        /// <summary>
         /// Obtiene o establece el Año
         /// </summary>
         public Years Year { get; set; }
@@ -25,6 +30,28 @@ namespace OCESACNA.Controller
         /// Obtiene o establece la Sección
         /// </summary>
         public char Section { get; set; }
+
+        /// <summary>
+        /// Obtiene el nombre completo del curso
+        /// </summary>
+        public string FullName
+        {
+            get
+            {
+                return $"{GetYearsText(Year)} de {Mention} '{Section}'";
+            }
+        }
+
+        /// <summary>
+        /// Obtiene las secciones
+        /// </summary>
+        public static char[] Sections
+        {
+            get
+            {
+                return new char[] { 'A', 'B', 'C', 'D', 'E', 'F' };
+            }
+        }
 
         /// <summary>
         /// Años
@@ -42,12 +69,14 @@ namespace OCESACNA.Controller
         /// Inicializa una instancia de la clase <see cref="Course"/>
         /// </summary>
         /// <param name="id">ID</param>
+        /// <param name="guideID">ID del guia del curso</param>
         /// <param name="year">Año</param>
         /// <param name="mention">Mencion</param>
         /// <param name="section">Sección</param>
-        public Course(int id = -1, Years year = Years.Year1th, string mention = "", char section = '?')
+        public Course(int id = -1, Teacher guide = null, Years year = Years.Year1th, string mention = "", char section = '?')
         {
             CourseID = id;
+            Guide = guide;
             Year = year;
             Mention = mention;
             Section = section;
@@ -85,6 +114,7 @@ namespace OCESACNA.Controller
             return new Course()
             {
                 CourseID = DBCourse.CourseID,
+                Guide = DataController.GetTeacher(DBCourse.GuideID),
                 Year = (Years)DBCourse.Year,
                 Mention = DBCourse.Mention,
                 Section = DBCourse.Section
@@ -99,6 +129,7 @@ namespace OCESACNA.Controller
             return new DBCourse()
             {
                 CourseID = Course.CourseID,
+                GuideID = Course.Guide.TeachID,
                 Year = (int)Course.Year,
                 Mention = Course.Mention,
                 Section = Course.Section

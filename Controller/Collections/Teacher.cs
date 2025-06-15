@@ -17,21 +17,15 @@ namespace OCESACNA.Controller
         public string FullName { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el curso
-        /// </summary>
-        public Course Course { get; set; }
-
-        /// <summary>
         /// Inicializa una instancia de la clase <see cref="Teacher"/>
         /// </summary>
         /// <param name="id">ID</param>
         /// <param name="fullName">Nombre completo</param>
         /// <param name="course">Curso</param>
-        public Teacher(int id = -1, string fullName = "", Course course = null)
+        public Teacher(int id = -1, string fullName = "")
         {
             TeachID = id;
             FullName = fullName;
-            Course = course;
         }
 
         /// <summary>
@@ -42,8 +36,7 @@ namespace OCESACNA.Controller
             return new Teacher()
             {
                 TeachID = DBTeacher.TeachID,
-                FullName = DBTeacher.FullName,
-                Course = DataController.GetCourse(DBTeacher.CourseID)
+                FullName = DBTeacher.FullName
             };
         }
 
@@ -55,8 +48,7 @@ namespace OCESACNA.Controller
             return new DBTeacher()
             {
                 TeachID = teacher.TeachID,
-                FullName = teacher.FullName,
-                CourseID = teacher.Course.CourseID
+                FullName = teacher.FullName
             };
         }
     }

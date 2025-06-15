@@ -10,6 +10,17 @@ namespace OCESACNA.Controller
         /// </summary>
         public static class Cache
         {
+            internal static void Initialize()
+            {
+                CourseCache = new Collection<DBCourse>();
+                RepresentativeCache = new Collection<DBRepresentative>();
+                TeacherCache = new Collection<DBTeacher>();
+                SubjectModulesCache = new Collection<DBSubjectModule>();
+                SubjectCache = new Collection<DBSubject>();
+                StudentCache = new Collection<DBStudent>();
+                PendingSubjectCache = new Collection<DBPendingSubject>();
+            }
+
             #region Course Cache
             /// <summary>
             /// Obtiene o establece la lista de cursos en cache
@@ -149,7 +160,7 @@ namespace OCESACNA.Controller
             /// <summary>
             /// Actualiza el cache de las áreas de formación con los datos proporcionados
             /// </summary>
-            /// <param name="representatives"></param>
+            /// <param name="subjectModules"></param>
             internal static void UpdateSubjectModulesCache(Collection<DBSubjectModule> subjectModules)
             {
                 SubjectModulesCache = subjectModules;
@@ -187,7 +198,7 @@ namespace OCESACNA.Controller
             /// <summary>
             /// Actualiza el cache de las asignaturas con los datos proporcionados
             /// </summary>
-            /// <param name="representatives"></param>
+            /// <param name="subjects"></param>
             internal static void UpdateSubjectsCache(Collection<DBSubject> subjects)
             {
                 SubjectCache = subjects;
@@ -225,7 +236,7 @@ namespace OCESACNA.Controller
             /// <summary>
             /// Actualiza el cache de los estudiantes con los datos proporcionados
             /// </summary>
-            /// <param name="representatives"></param>
+            /// <param name="students"></param>
             internal static void UpdateStudentsCache(Collection<DBStudent> students)
             {
                 StudentCache = students;
@@ -236,6 +247,44 @@ namespace OCESACNA.Controller
             /// Establece el estado del cache de los estudiantes como desactualizado
             /// </summary>
             internal static void SetStudentsCacheOutdated() => StudentsCacheUpdated = false;
+            #endregion
+
+            #region Pending Subjects Cache
+            /// <summary>
+            /// Obtiene o establece la lista de asignaturas pendientes en cache
+            /// </summary>
+            public static Collection<DBPendingSubject> PendingSubjectCache { get; set; }
+
+            /// <summary>
+            /// Determina si los datos en cache de las asignaturas pendientes están actualizados
+            /// </summary>
+            public static bool IsPendingSubjectCacheUpdated
+            {
+                get
+                {
+                    return PendingSubjectUpdated;
+                }
+            }
+
+            /// <summary>
+            /// Obtiene o establece el estado de actualización del cache de los estudiantes
+            /// </summary>
+            private static bool PendingSubjectUpdated { get; set; }
+
+            /// <summary>
+            /// Actualiza el cache de las asignaturas pendientes con los datos proporcionados
+            /// </summary>
+            /// <param name="pendingSubjects"></param>
+            internal static void UpdatePendingSubjectsCache(Collection<DBPendingSubject> pendingSubjects)
+            {
+                PendingSubjectCache = pendingSubjects;
+                PendingSubjectUpdated = true;
+            }
+
+            /// <summary>
+            /// Establece el estado del cache de las asignaturas pendientes como desactualizado
+            /// </summary>
+            internal static void SetPendingSubjectsCacheOutdated() => PendingSubjectUpdated = false;
             #endregion
         }
     }

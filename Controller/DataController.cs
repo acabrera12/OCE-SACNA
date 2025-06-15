@@ -1,8 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
 using OCESACNA.Model;
 using System;
-using System.Linq;
 using System.Collections.ObjectModel;
+using System.Linq;
+
+/// esta versión funciona bien pero presenta fallas
+/// recomendación: refactorizar todo el controlador
+/// y establecer un estandar para la creación de
+/// los comandos del mismo
 
 namespace OCESACNA.Controller
 {
@@ -32,6 +37,8 @@ namespace OCESACNA.Controller
             {
                 throw new DBConnectionException();
             }
+
+            Cache.Initialize();
         }
 
         /// <summary>
@@ -127,6 +134,7 @@ namespace OCESACNA.Controller
             Query("INSERT INTO users (`UserName`, `Password`, `PasswordHash`, `Rank`, `State`) VALUES " +
                 $"('{user.UserName}', '{user.Password}', '{user.PasswordHash}', '{user.Rank}', '{user.State}')")
                 ?.Close();
+            OnUserDataModified();
         }
 
         /// <summary>
@@ -139,6 +147,7 @@ namespace OCESACNA.Controller
                 $"`Rank` = '{user.Rank}', `State` = '{user.State}', `PasswordHash` = '{user.PasswordHash}' " +
                 $"WHERE `UserID` = '{user.UserID}'")
                 ?.Close();
+            OnUserDataModified();
         }
 
         /// <summary>
@@ -149,6 +158,7 @@ namespace OCESACNA.Controller
         {
             Query($"DELETE FROM users WHERE `UserID` = '{id}'")
                 ?.Close();
+            OnUserDataModified();
         }
         #endregion
 
@@ -174,9 +184,10 @@ namespace OCESACNA.Controller
                 DBCourse current = new DBCourse()
                 {
                     CourseID = (int)data["CourseID"],
+                    GuideID = (int)data["GuideID"],
                     Year = (int)data["Year"],
                     Mention = (string)data["Mention"],
-                    Section = (char)data["Section"]
+                    Section = ((string)data["Section"])[0]
                 };
 
                 list.Add(current);
@@ -210,6 +221,7 @@ namespace OCESACNA.Controller
                 course = new DBCourse()
                 {
                     CourseID = (int)data["CourseID"],
+                    GuideID = (int)data["GuideID"],
                     Year = (int)data["Year"],
                     Mention = (string)data["Mention"],
                     Section = (char)data["Section"]
@@ -229,10 +241,11 @@ namespace OCESACNA.Controller
         /// <param name="course">Curso</param>
         public static void AddCourse(DBCourse course)
         {
-            Query("INSERT INTO courses (`Year`, `Mention`, `Section`) VALUES " +
-                $"('{course.Year}', '{course.Mention}', '{course.Section}')")
+            Query("INSERT INTO courses (`GuideID`, `Year`, `Mention`, `Section`) VALUES " +
+                $"('{course.GuideID}', '{course.Year}', '{course.Mention}', '{course.Section}')")
                 ?.Close();
             Cache.SetCoursesCacheOutdated();
+            OnCourseDataModified();
         }
 
         /// <summary>
@@ -241,10 +254,11 @@ namespace OCESACNA.Controller
         /// <param name="course">Curso</param>
         public static void UpdateCourse(DBCourse course)
         {
-            Query($"UPDATE courses SET `Year` = '{course.Year}', `Mention` = '{course.Mention}', " +
+            Query($"UPDATE courses SET `GuideID` = '{course.GuideID}', `Year` = '{course.Year}', `Mention` = '{course.Mention}', " +
                 $"`Section` = '{course.Section}' WHERE `CourseID` = '{course.CourseID}'")
                 ?.Close();
             Cache.SetCoursesCacheOutdated();
+            OnCourseDataModified();
         }
 
         /// <summary>
@@ -256,6 +270,7 @@ namespace OCESACNA.Controller
             Query($"DELETE FROM courses WHERE `CourseID` = '{id}'")
                 ?.Close();
             Cache.SetCoursesCacheOutdated();
+            OnCourseDataModified();
         }
         #endregion
 
@@ -339,6 +354,7 @@ namespace OCESACNA.Controller
                 $"'{representative.Email}')")
                 ?.Close();
             Cache.SetRepresentativesCacheOutdated();
+            OnRepresentativeDataModified();
         }
 
         /// <summary>
@@ -347,11 +363,12 @@ namespace OCESACNA.Controller
         /// <param name="representative">Representante</param>
         public static void UpdateRepresentative(DBRepresentative representative)
         {
-            Query($"UPDATE FROM SET `FullName` = '{representative.FullName}', " +
+            Query($"UPDATE representatives SET `FullName` = '{representative.FullName}', " +
                 $"`PhoneNumber` = '{representative.PhoneNumber}', `Email` = '{representative.Email}' " +
                 $"WHERE `RprsentID` = '{representative.RprsentID}'")
                 ?.Close();
             Cache.SetRepresentativesCacheOutdated();
+            OnRepresentativeDataModified();
         }
 
         /// <summary>
@@ -360,9 +377,10 @@ namespace OCESACNA.Controller
         /// <param name="id">ID</param>
         public static void DeleteRepresenative(int id)
         {
-            Query($"DELETE FROM WHERE `RprsentID` = '{id}'")
+            Query($"DELETE FROM representatives WHERE `RprsentID` = '{id}'")
                 ?.Close();
             Cache.SetRepresentativesCacheOutdated();
+            OnRepresentativeDataModified();
         }
         #endregion
 
@@ -388,8 +406,7 @@ namespace OCESACNA.Controller
                 DBTeacher current = new DBTeacher()
                 {
                     TeachID = (int)data["TeachID"],
-                    FullName = (string)data["FullName"],
-                    CourseID = (int)data["CourseID"]
+                    FullName = (string)data["FullName"]
                 };
 
                 list.Add(current);
@@ -423,13 +440,12 @@ namespace OCESACNA.Controller
                 teacher = new DBTeacher()
                 {
                     TeachID = (int)data["TeachID"],
-                    FullName = (string)data["FullName"],
-                    CourseID = (int)data["CourseID"]
+                    FullName = (string)data["FullName"]
                 };
             }
 
             Cache.TeacherCache.Add((DBTeacher)teacher);
-
+            data?.Close();
             return (DBTeacher)teacher;
         }
 
@@ -439,10 +455,11 @@ namespace OCESACNA.Controller
         /// <param name="teacher">Docente</param>
         public static void AddTeacher(DBTeacher teacher)
         {
-            Query("INSERT INTO teachers (`FullName`, `CourseID`) VALUES " +
-                $"('{teacher.FullName}', '{teacher.CourseID}')")
+            Query("INSERT INTO teachers (`FullName`) VALUES " +
+                $"('{teacher.FullName}')")
                 ?.Close();
             Cache.SetTeachersCacheOutdated();
+            OnTeacherDataModified();
         }
 
         /// <summary>
@@ -451,10 +468,11 @@ namespace OCESACNA.Controller
         /// <param name="teacher">Docente</param>
         public static void UpdateTeacher(DBTeacher teacher)
         {
-            Query($"UPDATE FROM teachers SET `FullName` = '{teacher.FullName}', `CourseID` = '{teacher.CourseID}' " +
+            Query($"UPDATE teachers SET `FullName` = '{teacher.FullName}' " +
                 $"WHERE `TeachID` = '{teacher.TeachID}'")
                 ?.Close();
             Cache.SetTeachersCacheOutdated();
+            OnTeacherDataModified();
         }
 
         /// <summary>
@@ -466,6 +484,7 @@ namespace OCESACNA.Controller
             Query($"DELETE FROM teachers WHERE `TeachID` = '{id}'")
                 ?.Close();
             Cache.SetTeachersCacheOutdated();
+            OnTeacherDataModified();
         }
         #endregion
 
@@ -512,7 +531,7 @@ namespace OCESACNA.Controller
         /// <exception cref="NullReferenceException"></exception>
         public static DBSubjectModule GetSubjectModule(int id)
         {
-            if (Cache.IsSubjectModulesCacheUpdated && Cache.SubjectModulesCache.Where(t => t.SbjetModuleID == id).Count() != 0 )
+            if (Cache.IsSubjectModulesCacheUpdated && Cache.SubjectModulesCache.Where(t => t.SbjetModuleID == id).Count() != 0)
             {
                 return Cache.SubjectModulesCache.Where(t => t.SbjetModuleID == id).First();
             }
@@ -545,6 +564,7 @@ namespace OCESACNA.Controller
             Query($"INSERT INTO subject_module (`Name`) VALUES ('{subjectModule.Name}')")
                 ?.Close();
             Cache.SetSubjectModulesCacheOutdated();
+            OnSubjectModuleDataModified();
         }
 
         /// <summary>
@@ -553,10 +573,11 @@ namespace OCESACNA.Controller
         /// <param name="subjectModule"></param>
         public static void UpdateSubjectModule(DBSubjectModule subjectModule)
         {
-            Query($"UPDATE FROM subject_module SET `Name` = '{subjectModule.Name}' " +
+            Query($"UPDATE subject_module SET `Name` = '{subjectModule.Name}' " +
                 $"WHERE `SbjetModuleID` = '{subjectModule.SbjetModuleID}'")
                 ?.Close();
             Cache.SetSubjectModulesCacheOutdated();
+            OnSubjectModuleDataModified();
         }
 
         /// <summary>
@@ -568,6 +589,7 @@ namespace OCESACNA.Controller
             Query($"DELETE FROM subject_module WHERE `SbjetModuleID` = '{id}'")
                 ?.Close();
             Cache.SetSubjectModulesCacheOutdated();
+            OnSubjectModuleDataModified();
         }
         #endregion
 
@@ -653,6 +675,7 @@ namespace OCESACNA.Controller
                 $"'{subject.CourseID}')")
                 ?.Close();
             Cache.SetSubjectsCacheOutdated();
+            OnSubjectDataModified();
         }
 
         /// <summary>
@@ -661,11 +684,12 @@ namespace OCESACNA.Controller
         /// <param name="subject">Asignatura</param>
         public static void UpdateSubject(DBSubject subject)
         {
-            Query($"UPDATE FROM subjects SET `SbjetModuleID` = '{subject.SbjetModuleID}', " +
+            Query($"UPDATE subjects SET `SbjetModuleID` = '{subject.SbjetModuleID}', " +
                 $"`Name` = '{subject.Name}', `TeachID` = '{subject.TeachID}', " +
                 $"`CourseID` = '{subject.CourseID}' WHERE `SubjetID` = '{subject.SubjetID}'")
                 ?.Close();
             Cache.SetSubjectsCacheOutdated();
+            OnSubjectDataModified();
         }
 
         /// <summary>
@@ -677,6 +701,7 @@ namespace OCESACNA.Controller
             Query($"DELETE FROM subjects WHERE `SubjetID` = '{id}'")
                 ?.Close();
             Cache.SetSubjectsCacheOutdated();
+            OnSubjectDataModified();
         }
         #endregion
 
@@ -741,7 +766,7 @@ namespace OCESACNA.Controller
             }
 
             MySqlDataReader data = Query($"SELECT * FROM students WHERE `StudentID` = '{id}'") ?? throw new NullReferenceException();
-            
+
             DBStudent? student = null;
             while (data.Read())
             {
@@ -786,6 +811,7 @@ namespace OCESACNA.Controller
                 $"'{student.Email}', '{student.RprsentID}', '{student.CourseID}')")
                 ?.Close();
             Cache.SetStudentsCacheOutdated();
+            OnStudentDataModified();
         }
 
         /// <summary>
@@ -803,6 +829,7 @@ namespace OCESACNA.Controller
                 $"`CourseID` ='{student.CourseID}' WHERE `StudentID` ='{student.StudentID}'")
                 ?.Close();
             Cache.SetStudentsCacheOutdated();
+            OnStudentDataModified();
         }
 
         /// <summary>
@@ -814,6 +841,114 @@ namespace OCESACNA.Controller
             Query($"DELETE FROM students WHERE `StudentID` = '{id}'")
                 ?.Close();
             Cache.SetStudentsCacheOutdated();
+            OnStudentDataModified();
+        }
+        #endregion
+
+        #region pending subjects
+        /// <summary>
+        /// Obtiene la lista de asignaturas pendientes de la base de datos
+        /// </summary>
+        /// <returns>Una lista en forma <see cref="Collection{T}"/> de <see cref="DBPendingSubject"/></returns>
+        /// <exception cref="NullReferenceException"></exception>
+        public static Collection<DBPendingSubject> GetAllPendingSubjects()
+        {
+            if (Cache.IsPendingSubjectCacheUpdated)
+            {
+                return Cache.PendingSubjectCache;
+            }
+
+            MySqlDataReader data = Query("SELECT * FROM pending_subjects") ?? throw new NullReferenceException();
+
+            Collection<DBPendingSubject> list = new Collection<DBPendingSubject>();
+
+            while (data.Read())
+            {
+                DBPendingSubject current = new DBPendingSubject()
+                {
+                    PendingSbjetID = (int)data["PendingSbjetID"],
+                    StudentID = (int)data["StudentID"],
+                    Name = (string)data["Name"]
+                };
+
+                list.Add(current);
+            }
+
+            data.Close();
+
+            Cache.UpdatePendingSubjectsCache(list);
+
+            return list;
+        }
+
+        /// <summary>
+        /// Obtiene la asignatura pendiente de la base de datos con el <paramref name="id"/> proporcionado
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>Una asignatura pendiente <see cref="DBPendingSubject"/> si existe, <see langword="null"/> si no</returns>
+        /// <exception cref="NullReferenceException"></exception>
+        public static DBPendingSubject GetPendingSubject(int id)
+        {
+            if (Cache.IsPendingSubjectCacheUpdated && Cache.PendingSubjectCache.Where(t => t.PendingSbjetID == id).Count() != 0)
+            {
+                return Cache.PendingSubjectCache.Where(t => t.PendingSbjetID == id).First();
+            }
+
+            MySqlDataReader data = Query($"SELECT * FROM pending_subjects WHERE `PendingSbjetID` = '{id}'") ?? throw new NullReferenceException();
+
+            DBPendingSubject? pendingSubject = null;
+            while (data.Read())
+            {
+                pendingSubject = new DBPendingSubject()
+                {
+                    PendingSbjetID = (int)data["PendingSbjetID"],
+                    StudentID = (int)data["StudentID"],
+                    Name = (string)data["Name"]
+                };
+            }
+
+            Cache.PendingSubjectCache.Add((DBPendingSubject)pendingSubject);
+
+            return (DBPendingSubject)pendingSubject;
+        }
+
+        /// <summary>
+        /// Añade una asignatura pendiente a la base de datos
+        /// </summary>
+        /// <param name="pendingSubject">Asignatura</param>
+        public static void AddPendingSubject(DBPendingSubject pendingSubject)
+        {
+            Query("INSERT INTO pending_subjects (`StudentID`, `Name`) VALUES " +
+                $"('{pendingSubject.StudentID}', '{pendingSubject.Name}')")
+                ?.Close();
+            Cache.SetPendingSubjectsCacheOutdated();
+            OnPendingSubjectDataModified();
+        }
+
+        /// <summary>
+        /// Actualiza la asignatura pendiente de la base de datos con los datos proporcionados
+        /// </summary>
+        /// <param name="subject">Asignatura</param>
+        public static void UpdateSubject(DBPendingSubject pendingSubject)
+        {
+            Query($"UPDATE pending_subjects SET `StudentID`='{pendingSubject.StudentID}', " +
+                $"`Name`='{pendingSubject.Name}' " +
+                $"WHERE `PendingSbjetID`='{pendingSubject.PendingSbjetID}'")
+                ?.Close();
+            Cache.SetPendingSubjectsCacheOutdated();
+            OnPendingSubjectDataModified();
+        }
+
+        /// <summary>
+        /// Elimina la asignatura pendiente de la base de datos con el <paramref name="id"/> proporcionado
+        /// </summary>
+        /// <param name="id"><ID/param>
+        public static void DeletePendingSubject(int id)
+        {
+            Query($"DELETE FROM PendingSbjetID  WHERE `PendingSbjetID` = '{id}'")
+                ?.Close();
+            Cache.SetPendingSubjectsCacheOutdated();
+            OnPendingSubjectDataModified();
         }
         #endregion
 

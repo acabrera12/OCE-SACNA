@@ -31,55 +31,45 @@ namespace OCESACNA.View.Menu
 
             ApplyTheme(Program.CurrentTheme);
 
-            Theme.ThemeChanged += Theme_ThemeChanged;
+            ColorTheme.ThemeChanged += ColorTheme_ThemeChanged;
         }
 
-        /// <summary>
-        /// Es llamado cuando se cambia el tema del programa
-        /// </summary>
-        /// <param name="newTheme"></param>
-        private void Theme_ThemeChanged(Theme newTheme)
+        public void ColorTheme_ThemeChanged(ColorTheme newTheme)
         {
             ApplyTheme(newTheme);
         }
 
-        public void ApplyTheme(Theme theme)
+        public void ApplyTheme(ColorTheme theme)
         {
             // this
-            BackColor = theme.BackColor;
-            ForeColor = theme.ForeColor;
+            theme.ApplyBackgroundStyle(this);
 
             // leftPanel
-            LeftPanel.BackColor = theme.HighlightColor;
-            LeftPanel.ForeColor = theme.ForeColor;
+            theme.ApplyHightlineStyle(LeftPanel);
 
             // toptTitleLabel
-            TopTitleLabel.BackColor = theme.HighlightColor;
-            TopTitleLabel.ForeColor = theme.ContrastForeColor;
+            theme.ApplyContrastedFontStyle(ColorTheme.BackgroundType.HightlineBackground, TopTitleLabel);
 
             // keyIcon
-            KeyIcon.IconColor = theme.ContrastForeColor;
+            KeyIcon.IconColor = theme.ContrastedFontColor;
 
-            // usernameLabel
-            UsernameLabel.BackColor = theme.BackColor;
-            UsernameLabel.ForeColor = theme.ForeColor;
-
-            // passwordLabel
-            PasswordLabel.BackColor = theme.BackColor;
-            PasswordLabel.ForeColor = theme.ForeColor;
+            // usernameLabel / passwordLabel
+            theme.ApplyFontStyle(ColorTheme.BackgroundType.Background, UsernameLabel, PasswordLabel);
 
             // aceptBtn
-            AceptBtn.BackColor = theme.HighlightColor;
-            AceptBtn.ForeColor = theme.ContrastForeColor;
-            AceptBtn.FlatAppearance.BorderColor = theme.ContrastForeColor;
+            theme.ApplyHightlineButtonStyle(AceptBtn);
 
             // cancelBtn
-            CancelBtn.BackColor = theme.ButtonFaceColor;
-            CancelBtn.ForeColor = theme.ForeColor;
+            theme.ApplyButtonStyle(CancelBtn);
 
             // passwordWarningIcon
-            PasswordWarningIcon.BackColor = theme.BackColor;
-            PasswordWarningIcon.IconColor = theme.ForeColor;
+            PasswordWarningIcon.BackColor = theme.BackgroundColor;
+            PasswordWarningIcon.IconColor = theme.FontColor;
+        }
+
+        public void ColorTheme_DarkModeChanged(bool value)
+        {
+            ApplyTheme(Program.CurrentTheme);
         }
 
         /// <summary>

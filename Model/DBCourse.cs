@@ -11,6 +11,11 @@
         public int CourseID { get; set; }
 
         /// <summary>
+        /// Obtiene o establece el ID del guía del curso
+        /// </summary>
+        public int GuideID { get; set; }
+
+        /// <summary>
         /// Obtiene o establece el Año
         /// </summary>
         public int Year { get; set; }
@@ -28,13 +33,15 @@
         /// <summary>
         /// Inicializa una instancia de la estructura <see cref="DBCourse"/>
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="year"></param>
-        /// <param name="mention"></param>
-        /// <param name="section"></param>
-        public DBCourse(int id = -1, int year = -1, string mention = "", char section = '?')
+        /// <param name="id">ID del curso</param>
+        /// <param name="guideID">ID del guía</param>
+        /// <param name="year">Año</param>
+        /// <param name="mention">Mención</param>
+        /// <param name="section">Sección</param>
+        public DBCourse(int id = -1, int guideID = -1, int year = -1, string mention = "", char section = '?')
         {
             CourseID = id;
+            GuideID = guideID;
             Year = year;
             Mention = mention;
             Section = section;

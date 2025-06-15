@@ -9,9 +9,9 @@ namespace OCESACNA.View.Menu
     public partial class HandlerMenu : Form, IColoreable
     {
         /// <summary>
-        /// Obtiene o establece el valor de salida al guardar
+        /// Obtiene o establece el valor que determina si se cierra al salir del menú de ayuda
         /// </summary>
-        public bool ExitOnSave { get; private set; } = false;
+        public bool CloseOnExit { get; private set; } = false;
 
         /// <summary>
         /// Inicializa una instancia del formulario <see cref="HandlerMenu"/>
@@ -22,21 +22,25 @@ namespace OCESACNA.View.Menu
 
             ApplyTheme(Program.CurrentTheme);
 
-            Theme.ThemeChanged += Theme_ThemeChanged;
+            ColorTheme.ThemeChanged += ColorTheme_ThemeChanged;
         }
 
-        public void ApplyTheme(Theme theme)
+        public void ApplyTheme(ColorTheme theme)
         {
             // this
-            BackColor = theme.BackColor;
-            ForeColor = theme.ForeColor;
+            theme.ApplyBackgroundStyle(this);
+        }
+
+        public void ColorTheme_DarkModeChanged(bool value)
+        {
+            ApplyTheme(Program.CurrentTheme);
         }
 
         /// <summary>
         /// Es llamado cuando se cambia el tema del programa
         /// </summary>
         /// <param name="newTheme"></param>
-        private void Theme_ThemeChanged(Theme newTheme)
+        public void ColorTheme_ThemeChanged(ColorTheme newTheme)
         {
             ApplyTheme(newTheme);
         }

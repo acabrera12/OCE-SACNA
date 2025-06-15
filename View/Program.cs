@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 using Settings = OCESACNA.View.Properties.Settings;
-using Theme = OCESACNA.View.Collections.Theme;
+using Theme = OCESACNA.View.Collections.ColorTheme;
 
 namespace OCESACNA.View
 {
@@ -38,6 +38,7 @@ namespace OCESACNA.View
 
             // Cargar el tema guardado en configuración
             CurrentTheme = Theme.GetTheme((Theme.Themes)Settings.Theme);
+            CurrentTheme.SetDarkMode(Settings.ThemeDarkMode);
 
             // Inicializar controladores
             bool Error = false, ContinueExecution = true;
@@ -63,7 +64,7 @@ namespace OCESACNA.View
             // Ejecución de la aplicación
             if (Error)
             {
-                if ((bool)(Handler?.ExitOnSave))
+                if ((bool)!(Handler?.CloseOnExit))
                 {
                     ContinueExecution = false;
                 }
@@ -76,18 +77,6 @@ namespace OCESACNA.View
 
             // Se ejecuta luego de cerrar la aplicación
             Settings.Save();
-        }
-
-        /// <summary>
-        /// Cambia el tema actual del programa
-        /// </summary>
-        /// <param name="newTheme">Nuevo tema</param>
-        public static void ChangeTheme(Theme newTheme)
-        {
-            CurrentTheme = newTheme;
-            Settings.Theme = (int)newTheme.ThemeEnumeration;
-
-            Theme.ChangeTheme(newTheme);
         }
     }
 }

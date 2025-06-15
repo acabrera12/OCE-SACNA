@@ -54,7 +54,8 @@ namespace OCESACNA.Controller
             D = 3,
             C = 4,
             B = 5,
-            A = 6
+            A = 6,
+            Aa = 7
         }
 
         /// <summary>
@@ -126,8 +127,43 @@ namespace OCESACNA.Controller
                     return "B";
                 case ScoreLetters.A:
                     return "A";
+                case ScoreLetters.Aa:
+                    return "A+";
                 default:
                     return "Error";
+            }
+        }
+
+        /// <summary>
+        /// Obtiene la letra correspondiente a calificación proporcionada
+        /// </summary>
+        /// <param name="score">Calificación</param>
+        /// <returns></returns>
+        public static ScoreLetters GetScoreLetter(float score)
+        {
+            if (score == 20)            //20 puntos
+            {
+                return ScoreLetters.Aa;
+            }
+            else if (score >= 18)       //18-19 puntos
+            {
+                return ScoreLetters.A;
+            }
+            else if (score >= 14)        //14-17 puntos
+            {
+                return ScoreLetters.B;
+            }
+            else if (score >= 12)        //12-13 puntos
+            {
+                return ScoreLetters.C;
+            }
+            else if (score >= 10)        //10-11 puntos
+            {
+                return ScoreLetters.E;
+            }
+            else                        //0-9 puntos
+            {
+                return ScoreLetters.F;
             }
         }
 

@@ -1,5 +1,5 @@
-﻿using ScoreModule = OCESACNA.Controller.ScoreModule;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using ScoreModule = OCESACNA.Controller.ScoreModule;
 
 namespace OCESACNA.View.Collections
 {

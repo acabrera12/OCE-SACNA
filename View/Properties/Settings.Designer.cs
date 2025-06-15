@@ -34,7 +34,22 @@ namespace OCESACNA.View.Properties {
                 this["Theme"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ThemeDarkMode
+        {
+            get
+            {
+                return ((bool)(this["ThemeDarkMode"]));
+            }
+            set
+            {
+                this["ThemeDarkMode"] = value;
+            }
+        }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
