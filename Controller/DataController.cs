@@ -3,6 +3,8 @@ using OCESACNA.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Data;
+using System.Timers;
 
 /// esta versión funciona bien pero presenta fallas
 /// recomendación: refactorizar todo el controlador
@@ -22,9 +24,19 @@ namespace OCESACNA.Controller
         private static Connection DBConnection { get; set; }
 
         /// <summary>
+        /// Obtiene o establece la conexión con la base de datos del sistema
+        /// </summary>
+        private static Connection SysDBConnection { get; set; }
+
+        /// <summary>
         /// Obtiene el formato de guardado de fechas de la base de datos
         /// </summary>
         public const string DBDateFormat = "yyyy-MM-dd";
+
+        /// <summary>
+        /// Obtiene o establece el temporizador
+        /// </summary>
+        private static Timer Timer { get; set; }
 
         /// <summary>
         /// Inicializa el controlador
@@ -33,12 +45,20 @@ namespace OCESACNA.Controller
         {
             DBConnection = new Connection(Server, User, Password);
 
+            SysDBConnection = new Connection(Server, User, Password, "sys_sacna");
+
             if (DBConnection.GetConnection() == null)
             {
                 throw new DBConnectionException();
             }
 
+            if (SysDBConnection.GetConnection() == null)
+            {
+                throw new DBConnectionException();
+            }
+
             Cache.Initialize();
+            InitTimer();
         }
 
         /// <summary>
@@ -53,6 +73,29 @@ namespace OCESACNA.Controller
                 MySqlCommand sqlCommand = new MySqlCommand(query)
                 {
                     Connection = DBConnection.GetConnection()
+                };
+
+                return sqlCommand.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"{typeof(DataController)}: Exception:{e}");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Ejecuta una consulta de MySql en la base de datos del sistema
+        /// </summary>
+        /// <param name="query">Consulta</param>
+        /// <returns>Datos en forma de <see cref="MySqlDataReader"/></returns>
+        private static MySqlDataReader SysQuery(string query)
+        {
+            try
+            {
+                MySqlCommand sqlCommand = new MySqlCommand(query)
+                {
+                    Connection = SysDBConnection.GetConnection()
                 };
 
                 return sqlCommand.ExecuteReader();
@@ -561,7 +604,7 @@ namespace OCESACNA.Controller
         /// <param name="subjectModule">Área de formación</param>
         public static void AddSubjectModule(DBSubjectModule subjectModule)
         {
-            Query($"INSERT INTO subject_module (`Name`) VALUES ('{subjectModule.Name}')")
+            Query($"INSERT INTO subject_modules (`Name`) VALUES ('{subjectModule.Name}')")
                 ?.Close();
             Cache.SetSubjectModulesCacheOutdated();
             OnSubjectModuleDataModified();
@@ -573,7 +616,7 @@ namespace OCESACNA.Controller
         /// <param name="subjectModule"></param>
         public static void UpdateSubjectModule(DBSubjectModule subjectModule)
         {
-            Query($"UPDATE subject_module SET `Name` = '{subjectModule.Name}' " +
+            Query($"UPDATE subject_modules SET `Name` = '{subjectModule.Name}' " +
                 $"WHERE `SbjetModuleID` = '{subjectModule.SbjetModuleID}'")
                 ?.Close();
             Cache.SetSubjectModulesCacheOutdated();
@@ -586,7 +629,7 @@ namespace OCESACNA.Controller
         /// <param name="id">ID</param>
         public static void DeleteSubjectModule(int id)
         {
-            Query($"DELETE FROM subject_module WHERE `SbjetModuleID` = '{id}'")
+            Query($"DELETE FROM subject_modules WHERE `SbjetModuleID` = '{id}'")
                 ?.Close();
             Cache.SetSubjectModulesCacheOutdated();
             OnSubjectModuleDataModified();

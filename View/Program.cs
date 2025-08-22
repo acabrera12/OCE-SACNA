@@ -1,5 +1,3 @@
-using OCESACNA.Controller;
-using OCESACNA.Core;
 using System;
 using System.Windows.Forms;
 using Settings = OCESACNA.View.Properties.Settings;
@@ -46,21 +44,22 @@ namespace OCESACNA.View
             bool Initialized = false;
             int retryCount = 0;
 
-            while(!Initialized && retryCount < MaxRetries)
+            while (!Initialized && retryCount < MaxRetries)
             {
                 Initialized = Startup.Initialize(Settings, out var handler);
 
-                if(!Initialized)
+                if (!Initialized)
                 {
                     Handler = handler;
                     Application.Run(Handler);
 
-                    if((bool)(Handler?.CloseOnExit))
+                    if ((bool)(Handler?.EndOnClose))
                     {
                         break;
                     }
                     else
                     {
+                        retryCount++;
                         continue;
                     }
                 }
@@ -73,8 +72,8 @@ namespace OCESACNA.View
             else if (retryCount >= MaxRetries)
             {
                 MessageBox.Show(
-                    "Se alcanzó el número máximo de intentos de inicialización. \n" +
-                    "Por seguridad, el programa terminará la ejecución. \n" +
+                    "Se alcanzó el número máximo de intentos de inicialización.\n" +
+                    "Por seguridad, el programa terminará la ejecución.\n" +
                     "Puede volver a ejecutar el programa si lo desea.",
                     "Error crítico",
                     MessageBoxButtons.OK,

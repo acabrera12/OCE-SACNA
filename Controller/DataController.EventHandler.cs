@@ -1,7 +1,41 @@
-﻿namespace OCESACNA.Controller
+﻿using MySql.Data.MySqlClient;
+using OCESACNA.Model;
+using System.Timers;
+using System;
+
+namespace OCESACNA.Controller
 {
     public static partial class DataController
     {
+        private static void LogToDB(DBEventLog eventlog)
+        {
+            SysQuery("INSERT INTO events_log (`UserID`, `EventType`) VAUES " +
+                $"('{eventlog.UserID}', '{eventlog.EventType}')")
+                ?.Close();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static void InitTimer()
+        {
+            Timer = new Timer();
+            Timer.Interval = 5000;
+            Timer.Elapsed += Timer_Elapsed;
+            Timer.AutoReset = true;
+            Timer.Start();
+        }
+
+        /// <summary>
+        /// Es llamado cunado <see cref="Timer"/> produce un intervalo
+        /// </summary>
+        private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            var data = SysQuery("SELECT MAX(timestamp) FROM events_log") ?? throw new NullReferenceException();
+
+
+        }
+
         /// <summary>
         /// Delegado encargado de soportar los evento relacionados con la modificación de los datos
         public delegate void DataModifiedEventHandler();
@@ -56,7 +90,7 @@
         /// </summary>
         private static void OnUserDataModified()
         {
-            UserDataModified();
+            UserDataModified?.Invoke();
         }
 
         /// <summary>
@@ -64,7 +98,7 @@
         /// </summary>
         private static void OnCourseDataModified()
         {
-            CourseDataModified();
+            CourseDataModified?.Invoke();
         }
 
         /// <summary>
@@ -72,7 +106,7 @@
         /// </summary>
         private static void OnRepresentativeDataModified()
         {
-            RepresentativeDataModified();
+            RepresentativeDataModified?.Invoke();
         }
 
         /// <summary>
@@ -80,7 +114,7 @@
         /// </summary>
         private static void OnTeacherDataModified()
         {
-            TeacherDataModified();
+            TeacherDataModified?.Invoke();
         }
 
         /// <summary>
@@ -88,7 +122,7 @@
         /// </summary>
         private static void OnSubjectModuleDataModified()
         {
-            SubjectModuleDataModified();
+            SubjectModuleDataModified?.Invoke();
         }
 
         /// <summary>
@@ -96,7 +130,7 @@
         /// </summary>
         private static void OnSubjectDataModified()
         {
-            SubjectDataModified();
+            SubjectDataModified?.Invoke();
         }
 
         /// <summary>
@@ -104,7 +138,7 @@
         /// </summary>
         private static void OnStudentDataModified()
         {
-            StudentDataModified();
+            StudentDataModified?.Invoke();
         }
 
         /// <summary>
@@ -112,7 +146,7 @@
         /// </summary>
         private static void OnPendingSubjectDataModified()
         {
-            PendingSubjectDataModified();
+            PendingSubjectDataModified?.Invoke();
         }
 
         /// <summary>
@@ -120,7 +154,7 @@
         /// </summary>
         private static void OnScoreDataModified()
         {
-            ScoreDataModified();
+            ScoreDataModified?.Invoke();
         }
     }
 }

@@ -9,9 +9,9 @@ namespace OCESACNA.View.Menu
     public partial class HandlerMenu : Form, IColoreable
     {
         /// <summary>
-        /// Obtiene o establece el valor que determina si se cierra al salir del menú de ayuda
+        /// Obtiene o establece el valor que determina si se cierra el programa al salir del menú de ayuda
         /// </summary>
-        public bool CloseOnExit { get; private set; } = false;
+        public bool EndOnClose { get; private set; } = false;
 
         /// <summary>
         /// Inicializa una instancia del formulario <see cref="HandlerMenu"/>

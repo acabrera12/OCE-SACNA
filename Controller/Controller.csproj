@@ -45,6 +45,7 @@
     <Compile Include="AuthController.cs" />
     <Compile Include="Collections\Course.cs" />
     <Compile Include="Collections\Entity.cs" />
+    <Compile Include="Collections\EventLog.cs" />
     <Compile Include="Collections\PendingSubject.cs" />
     <Compile Include="Collections\Representative.cs" />
     <Compile Include="Collections\Score.cs" />

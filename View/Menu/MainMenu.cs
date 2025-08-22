@@ -119,6 +119,7 @@ namespace OCESACNA.View.Menu
 
             ShowModule(typeof(MainModule));
             HighlightBtn(HomeBtn);
+            MainModule.MainMenu = this;
         }
 
         /// <summary>

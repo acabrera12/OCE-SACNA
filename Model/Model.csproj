@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Connection.cs" />
     <Compile Include="DBCourse.cs" />
+    <Compile Include="DBEventLog.cs" />
     <Compile Include="DBPendingSubject.cs" />
     <Compile Include="DBRepresentative.cs" />
     <Compile Include="DBScore.cs" />

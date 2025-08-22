@@ -26,12 +26,7 @@ namespace OCESACNA.Controller
         {
             get
             {
-                if (LogedUser == null)
-                {
-                    return string.Empty;
-                }
-
-                return LogedUser.UserName;
+                return LogedUser == null ? string.Empty : LogedUser.UserName;
             }
         }
 
@@ -42,12 +37,7 @@ namespace OCESACNA.Controller
         {
             get
             {
-                if (LogedUser == null)
-                {
-                    return User.Ranking.NONE;
-                }
-
-                return LogedUser.Rank;
+                return LogedUser == null ? User.Ranking.NONE : LogedUser.Rank;
             }
         }
 
@@ -79,12 +69,7 @@ namespace OCESACNA.Controller
         {
             get
             {
-                if (LogedUser == null)
-                {
-                    return false;
-                }
-
-                return true;
+                return LogedUser != null;
             }
         }
 
@@ -107,6 +92,20 @@ namespace OCESACNA.Controller
         /// </summary>
         public static void Init()
         {
+            DataController.UserDataModified += LoadUsers;
+            LoadUsers();
+        }
+
+        /// <summary>
+        /// Carga los usuarios en el controlador
+        /// </summary>
+        private static void LoadUsers()
+        {
+            if (UsersList.Count != 0)
+            {
+                UsersList.Clear();
+            }
+
             foreach (DBUser user in DataController.GetAllUsers())
             {
                 UsersList.Add(user);

@@ -98,8 +98,8 @@ namespace OCESACNA.View.Collections
         /// <param name="theme">tema</param>
         public static void ChangeTheme(ColorTheme theme)
         {
-            OnThemeChanged(theme);
             Program.Settings.Theme = (int)theme._ThemeEnumeration;
+            OnThemeChanged(theme);
         }
 
         /// <summary>
@@ -109,8 +109,8 @@ namespace OCESACNA.View.Collections
         public void SetDarkMode(bool value)
         {
             DarkMode = value;
-            OnDarkModeChanged(value);
             Program.Settings.ThemeDarkMode = value;
+            OnDarkModeChanged(value);
         }
 
         /// <summary>

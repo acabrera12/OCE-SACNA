@@ -232,7 +232,7 @@ namespace OCESACNA.View.Module
             TextFilter.ReplaceSpacesInTextBox(PasswordBox);
             TextFilter.ReplaceSpacesInTextBox(ConfirmPasswordBox);
 
-            if (TextFilter.IsOneTextBoxTextEmpty(new TextBox[] { UserNameBox, PasswordBox, ConfirmPasswordBox }))
+            if (TextFilter.IsOneTextBoxTextEmpty(new TextBox[] { UserNameBox }))
             {
                 MessageBox.Show("Rellene todos los campos primero");
                 return;

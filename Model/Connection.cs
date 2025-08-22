@@ -9,7 +9,6 @@ namespace OCESACNA.Model
     {
         private MySqlConnection connection;
         private readonly string connectChain;
-        private readonly string database = "ocesacna";
 
         /// <summary>
         /// Inicializa una instancia de la clase <see cref="Connection"/>
@@ -17,7 +16,7 @@ namespace OCESACNA.Model
         /// <param name="server"><c>URI</c> del host de la base de datos</param>
         /// <param name="hostUser">Nombre del usuario de la base de datos</param>
         /// <param name="hostPass">Contraseña de acceso de la base de datos</param>
-        public Connection(string server = "localhost", string hostUser = "OCESACNA", string hostPass = "password")
+        public Connection(string server = "localhost", string hostUser = "OCESACNA", string hostPass = "password", string database = "ocesacna")
         {
             connectChain = $"Database={database}; DataSource={server}; User Id={hostUser}; Password={hostPass}";
         }
