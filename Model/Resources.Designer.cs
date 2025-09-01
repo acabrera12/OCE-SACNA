@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OCESACNA.View.Properties {
+namespace OCESACNA.Model {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace OCESACNA.View.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OCESACNA.View.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OCESACNA.Model.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,47 @@ namespace OCESACNA.View.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Se ha alcanzado el límite permitido para inicializar la aplicación y se terminará la ejecución. Puede volver a ejecutar el programa si lo desea..
+        ///   Busca una cadena traducida similar a Error.
         /// </summary>
-        internal static string Messages_InitializationAttempsError {
+        internal static string Error {
             get {
-                return ResourceManager.GetString("Messages_InitializationAttempsError", resourceCulture);
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Ha ocurrido un error durante la inicialización de la aplicación: &quot;{err}&quot;.
+        ///   Busca una cadena traducida similar a Administrador.
         /// </summary>
-        internal static string Messages_InitializationError {
+        internal static string User_RankString_Admin {
             get {
-                return ResourceManager.GetString("Messages_InitializationError", resourceCulture);
+                return ResourceManager.GetString("User_RankString_Admin", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Error de inicialización.
+        ///   Busca una cadena traducida similar a Predeterminado.
         /// </summary>
-        internal static string Titles_InitializationError {
+        internal static string User_RankString_Default {
             get {
-                return ResourceManager.GetString("Titles_InitializationError", resourceCulture);
+                return ResourceManager.GetString("User_RankString_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a N/A.
+        /// </summary>
+        internal static string User_RankString_None {
+            get {
+                return ResourceManager.GetString("User_RankString_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Usuario.
+        /// </summary>
+        internal static string User_RankString_User {
+            get {
+                return ResourceManager.GetString("User_RankString_User", resourceCulture);
             }
         }
     }

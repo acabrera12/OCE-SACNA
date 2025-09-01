@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OCESACNA.View.Properties {
+namespace OCESACNA.Controller.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,49 +25,37 @@ namespace OCESACNA.View.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool UI_FollowSystem {
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        public string Server_Host {
             get {
-                return ((bool)(this["UI_FollowSystem"]));
+                return ((string)(this["Server_Host"]));
             }
             set {
-                this["UI_FollowSystem"] = value;
+                this["Server_Host"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool UI_DarkMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string Server_User {
             get {
-                return ((bool)(this["UI_DarkMode"]));
+                return ((string)(this["Server_User"]));
             }
             set {
-                this["UI_DarkMode"] = value;
+                this["Server_User"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int UI_Theme {
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string Server_Password {
             get {
-                return ((int)(this["UI_Theme"]));
+                return ((string)(this["Server_Password"]));
             }
             set {
-                this["UI_Theme"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("CornflowerBlue")]
-        public global::System.Drawing.Color UI_ThemeTintColor {
-            get {
-                return ((global::System.Drawing.Color)(this["UI_ThemeTintColor"]));
-            }
-            set {
-                this["UI_ThemeTintColor"] = value;
+                this["Server_Password"] = value;
             }
         }
     }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OCESACNA.View.Properties {
+namespace OCESACNA.Controller.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace OCESACNA.View.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OCESACNA.View.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OCESACNA.Controller.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,11 @@ namespace OCESACNA.View.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Se ha alcanzado el límite permitido para inicializar la aplicación y se terminará la ejecución. Puede volver a ejecutar el programa si lo desea..
+        ///   Busca una cadena traducida similar a .
         /// </summary>
-        internal static string Messages_InitializationAttempsError {
+        internal static string Database_ConnectionError {
             get {
-                return ResourceManager.GetString("Messages_InitializationAttempsError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Ha ocurrido un error durante la inicialización de la aplicación: &quot;{err}&quot;.
-        /// </summary>
-        internal static string Messages_InitializationError {
-            get {
-                return ResourceManager.GetString("Messages_InitializationError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Error de inicialización.
-        /// </summary>
-        internal static string Titles_InitializationError {
-            get {
-                return ResourceManager.GetString("Titles_InitializationError", resourceCulture);
+                return ResourceManager.GetString("Database_ConnectionError", resourceCulture);
             }
         }
     }

@@ -117,13 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Messages_InitializationAttempsError" xml:space="preserve">
-    <value>Se ha alcanzado el límite permitido para inicializar la aplicación y se terminará la ejecución. Puede volver a ejecutar el programa si lo desea.</value>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
   </data>
-  <data name="Messages_InitializationError" xml:space="preserve">
-    <value>Ha ocurrido un error durante la inicialización de la aplicación: "{err}"</value>
+  <data name="User_RankString_Admin" xml:space="preserve">
+    <value>Administrador</value>
   </data>
-  <data name="Titles_InitializationError" xml:space="preserve">
-    <value>Error de inicialización</value>
+  <data name="User_RankString_Default" xml:space="preserve">
+    <value>Predeterminado</value>
+  </data>
+  <data name="User_RankString_None" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="User_RankString_User" xml:space="preserve">
+    <value>Usuario</value>
   </data>
 </root>

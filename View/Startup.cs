@@ -1,43 +1,54 @@
-using OCESACNA.Controller;
-using OCESACNA.View.Properties;
+﻿using OCESACNA.View.Properties;
 using System;
 using System.Windows.Forms;
+using OCESACNA.Controller;
 
 namespace OCESACNA.View
 {
     /// <summary>
-    /// Representa el inicializador del programa
+    /// Representa el inicializador de la aplicación
     /// </summary>
-    internal static class Startup
+    static class Startup
     {
         /// <summary>
-        /// Inicializa el programa
+        /// Inicializa la aplicación
         /// </summary>
-        /// <param name="settings">Configuración del programa</param>
-        /// <param name="handler">Menú de soporte. será usado en caso de un error durante la inicilización</param>
-        internal static bool Initialize(Settings settings, out View.Menu.HandlerMenu handler)
+        /// <param name="settings">Configuración de la aplicación</param>
+        /// <param name="handler">Menú de soporte integrado</param>
+        /// <returns><see langword="true"/> si se ha iniciado correctamente, de lo contrario <see langword="false"/></returns>
+        public static bool Initialize(Settings settings, out Menus.HandlerMenu handler)
         {
             handler = null;
-
             try
             {
-                DataController.Init(settings.HostName, settings.HostUser, settings.HostPassword);
-                AuthController.Init();
+                DataController.Initialize();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                handler = new View.Menu.HandlerMenu();
+                handler = new Menus.HandlerMenu(e);
 
-                Console.WriteLine($"{typeof(Startup)}: Exception during initialization: {ex.Message}");
+                Console.WriteLine(Resources.Messages_InitializationError.Replace("err", e.Message));
                 MessageBox.Show(
-                    $"Un error ha sido ocurrido durante la inicialización\nde la aplicación:\n{ex.Message}",
-                    "Error de inicialización",
+                    Resources.Messages_InitializationError.Replace("{err}", e.Message),
+                    Resources.Titles_InitializationError,
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBoxIcon.Error
+                );
 
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Finaliza la aplicación
+        /// </summary>
+        /// <param name="settings">Configuración de la aplicación</param>
+        public static void Finalize(Settings settings)
+        {
+            DataController.Finish();
+
+            settings.Save();
         }
     }
 }
