@@ -3,6 +3,7 @@ using OCESACNA.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 
 /// esta versión funciona bien pero presenta fallas
 /// recomendación: refactorizar todo el controlador
@@ -26,6 +27,8 @@ namespace OCESACNA.Controller
         /// </summary>
         public const string DBDateFormat = "yyyy-MM-dd";
 
+        static Timer Timer { get; set; }
+
         /// <summary>
         /// Inicializa el controlador
         /// </summary>
@@ -39,6 +42,25 @@ namespace OCESACNA.Controller
             }
 
             Cache.Initialize();
+
+            Timer = new Timer((object s) => { Sync(); }, null, 300, 10*1000);
+        }
+
+        private static void Sync()
+        {
+            if (!AuthController.IsUserLoged)
+                return;
+            Console.WriteLine($"{typeof(DataController)}: sync started");
+            OnCourseDataModified();
+            OnPendingSubjectDataModified();
+            OnRepresentativeDataModified();
+            OnScoreDataModified();
+            OnStudentDataModified();
+            OnSubjectDataModified();
+            OnSubjectModuleDataModified();
+            OnTeacherDataModified();
+            OnUserDataModified();
+            Console.WriteLine($"{typeof(DataController)}: sync finished");
         }
 
         /// <summary>

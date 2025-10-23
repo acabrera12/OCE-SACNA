@@ -34,22 +34,19 @@ namespace OCESACNA.View.Properties {
                 this["Theme"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ThemeDarkMode
-        {
-            get
-            {
+        public bool ThemeDarkMode {
+            get {
                 return ((bool)(this["ThemeDarkMode"]));
             }
-            set
-            {
+            set {
                 this["ThemeDarkMode"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
@@ -64,7 +61,7 @@ namespace OCESACNA.View.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("OCESACNA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ocesacna")]
         public string HostUser {
             get {
                 return ((string)(this["HostUser"]));
@@ -76,7 +73,7 @@ namespace OCESACNA.View.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("password")]
+        [global::System.Configuration.DefaultSettingValueAttribute("password1*")]
         public string HostPassword {
             get {
                 return ((string)(this["HostPassword"]));

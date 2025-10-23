@@ -56,7 +56,7 @@
         /// </summary>
         private static void OnUserDataModified()
         {
-            UserDataModified();
+            UserDataModified?.Invoke();
         }
 
         /// <summary>
@@ -64,7 +64,7 @@
         /// </summary>
         private static void OnCourseDataModified()
         {
-            CourseDataModified();
+            CourseDataModified?.Invoke();
         }
 
         /// <summary>
@@ -72,7 +72,7 @@
         /// </summary>
         private static void OnRepresentativeDataModified()
         {
-            RepresentativeDataModified();
+            RepresentativeDataModified?.Invoke();
         }
 
         /// <summary>
@@ -80,7 +80,7 @@
         /// </summary>
         private static void OnTeacherDataModified()
         {
-            TeacherDataModified();
+            TeacherDataModified?.Invoke();
         }
 
         /// <summary>
@@ -88,7 +88,7 @@
         /// </summary>
         private static void OnSubjectModuleDataModified()
         {
-            SubjectModuleDataModified();
+            SubjectModuleDataModified?.Invoke();
         }
 
         /// <summary>
@@ -96,7 +96,7 @@
         /// </summary>
         private static void OnSubjectDataModified()
         {
-            SubjectDataModified();
+            SubjectDataModified?.Invoke();
         }
 
         /// <summary>
@@ -104,7 +104,7 @@
         /// </summary>
         private static void OnStudentDataModified()
         {
-            StudentDataModified();
+            StudentDataModified?.Invoke();
         }
 
         /// <summary>
@@ -112,7 +112,7 @@
         /// </summary>
         private static void OnPendingSubjectDataModified()
         {
-            PendingSubjectDataModified();
+            PendingSubjectDataModified?.Invoke();
         }
 
         /// <summary>
@@ -120,7 +120,7 @@
         /// </summary>
         private static void OnScoreDataModified()
         {
-            ScoreDataModified();
+            ScoreDataModified?.Invoke();
         }
     }
 }

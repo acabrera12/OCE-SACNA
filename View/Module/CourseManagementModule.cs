@@ -41,7 +41,10 @@ namespace OCESACNA.View.Module
 
             Program.CurrentTheme.DarkModeChanged += ColorTheme_DarkModeChanged;
             ColorTheme.ThemeChanged += ColorTheme_ThemeChanged;
-            DataController.CourseDataModified += LoadData;
+            DataController.CourseDataModified += () => {
+                if (InvokeRequired)
+                    Invoke(new Action(()=> LoadData()));
+            };
 
             for (int year = 0; year <= (int)Course.Years.Year5th; year++)
             {
@@ -57,7 +60,7 @@ namespace OCESACNA.View.Module
             {
                 SearchPerYearBox.Items.Add(comboBox);
             }
-            
+
             ComboBoxElement.SetupComboBox(YearBox, true);
             ComboBoxElement.SetupComboBox(SectionBox, true);
             ComboBoxElement.SetupComboBox(SearchPerYearBox, true);
@@ -113,7 +116,7 @@ namespace OCESACNA.View.Module
             {
                 DataGrid.Rows.Clear();
             }
-
+            
             int selectedYear =
                 SearchPerYearBox.Items.Count != 0 ?
                 (int)((ComboBoxElement<Course.Years>)SearchPerYearBox.SelectedItem).Value :

@@ -12,10 +12,10 @@
       <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="HostUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">OCESACNA</Value>
+      <Value Profile="(Default)">ocesacna</Value>
     </Setting>
     <Setting Name="HostPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">password</Value>
+      <Value Profile="(Default)">password1*</Value>
     </Setting>
   </Settings>
 </SettingsFile>
