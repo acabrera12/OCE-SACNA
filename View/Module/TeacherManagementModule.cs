@@ -30,7 +30,10 @@ namespace OCESACNA.View.Module
 
             ColorTheme.ThemeChanged += ColorTheme_ThemeChanged;
             Program.CurrentTheme.DarkModeChanged += ColorTheme_DarkModeChanged;
-            DataController.TeacherDataModified += LoadData;
+            DataController.TeacherDataModified += () => {
+                if (InvokeRequired)
+                    Invoke(new Action(() => LoadData()));
+            };
         }
 
         public void ApplyTheme(ColorTheme theme)

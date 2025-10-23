@@ -39,7 +39,10 @@ namespace OCESACNA.View.Module
             ChangeUserPasswordForm.Acepted += ChangeUserPasswordForm_Acepted;
             Program.CurrentTheme.DarkModeChanged += ColorTheme_DarkModeChanged;
             ColorTheme.ThemeChanged += ColorTheme_ThemeChanged;
-            DataController.UserDataModified += LoadData;
+            DataController.UserDataModified += () => {
+                if (InvokeRequired)
+                    Invoke(new Action(()=> LoadData()));
+            };
 
             for (int rank = 2; rank <= (int)User.Ranking.ADMIN; rank++)
             {
