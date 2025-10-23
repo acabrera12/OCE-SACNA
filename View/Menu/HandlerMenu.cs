@@ -1,4 +1,5 @@
 ﻿using OCESACNA.View.Collections;
+using System;
 using System.Windows.Forms;
 
 namespace OCESACNA.View.Menu
@@ -11,18 +12,25 @@ namespace OCESACNA.View.Menu
         /// <summary>
         /// Obtiene o establece el valor que determina si se cierra al salir del menú de ayuda
         /// </summary>
-        public bool CloseOnExit { get; private set; } = false;
+        public bool ExitOnClose { get; private set; } = false;
 
         /// <summary>
         /// Inicializa una instancia del formulario <see cref="HandlerMenu"/>
         /// </summary>
-        public HandlerMenu()
+        public HandlerMenu(Exception ex)
         {
             InitializeComponent();
 
             ApplyTheme(Program.CurrentTheme);
-
             ColorTheme.ThemeChanged += ColorTheme_ThemeChanged;
+
+            exceptionLabel.Text = ex.GetType().Name;
+            exceptionDetails.Text = ex.Message + "\n" + ex.StackTrace;
+
+            exitOnCloseBtton.CheckedChanged += (object s, EventArgs ea) =>
+            {
+                ExitOnClose = exitOnCloseBtton.Checked;
+            };
         }
 
         public void ApplyTheme(ColorTheme theme)

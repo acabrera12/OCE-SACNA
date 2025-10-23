@@ -41,36 +41,47 @@ namespace OCESACNA.View
             CurrentTheme.SetDarkMode(Settings.ThemeDarkMode);
 
             // Inicializar controladores
-            bool Error = false, ContinueExecution = true;
-
-            try
+            int attemps = 0;
+            bool init = false;
+            while (attemps < 3)
             {
-                DataController.Init(Settings.HostName, Settings.HostUser, Settings.HostPassword);
-                AuthController.Init();
-            }
-            catch (Exception err)
-            {
-                Error = true;
-                Handler = new Menu.HandlerMenu();
-
-                Console.WriteLine($"{typeof(Program)}:A Exception was catched during Initialization: {err.Message}");
-                MessageBox.Show($"Un error ha sido provocado durante la" +
-                                $"\ninicialización de la aplicación:" +
-                                $"\n{err.Message}", "Error de inicialización",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Run(Handler);
-            }
-
-            // Ejecución de la aplicación
-            if (Error)
-            {
-                if ((bool)!(Handler?.CloseOnExit))
+                try
                 {
-                    ContinueExecution = false;
+                    DataController.Init(Settings.HostName, Settings.HostUser, Settings.HostPassword);
+                    AuthController.Init();
+                    init = true;
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Handler = new Menu.HandlerMenu(ex);
+
+                    Console.WriteLine($"{typeof(Program)}:A Exception was catched during Initialization: {ex.Message}");
+                    MessageBox.Show($"Un error ha sido provocado durante la" +
+                                    $"\ninicialización de la aplicación:" +
+                                    $"\n{ex.Message}", "Error de inicialización",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Run(Handler);
+                    attemps++;
+
+                    if (Handler.ExitOnClose)
+                        break;
+                    else
+                        continue;
                 }
             }
 
-            if (ContinueExecution)
+            // Ejecutar
+            if (attemps >= 3)
+            {
+                MessageBox.Show(
+                    "No se ha podido inicializar el programa y se ha superado el límite de intentos",
+                    "Error de inicialización",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation
+                );
+            }
+
+            else if (init)
             {
                 Application.Run(new Menu.AuthMenu());
             }
