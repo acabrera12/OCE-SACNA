@@ -583,7 +583,7 @@ namespace OCESACNA.Controller
         /// <param name="subjectModule">Área de formación</param>
         public static void AddSubjectModule(DBSubjectModule subjectModule)
         {
-            Query($"INSERT INTO subject_module (`Name`) VALUES ('{subjectModule.Name}')")
+            Query($"INSERT INTO subject_modules (`Name`) VALUES ('{subjectModule.Name}')")
                 ?.Close();
             Cache.SetSubjectModulesCacheOutdated();
             OnSubjectModuleDataModified();
@@ -595,7 +595,7 @@ namespace OCESACNA.Controller
         /// <param name="subjectModule"></param>
         public static void UpdateSubjectModule(DBSubjectModule subjectModule)
         {
-            Query($"UPDATE subject_module SET `Name` = '{subjectModule.Name}' " +
+            Query($"UPDATE subject_modules SET `Name` = '{subjectModule.Name}' " +
                 $"WHERE `SbjetModuleID` = '{subjectModule.SbjetModuleID}'")
                 ?.Close();
             Cache.SetSubjectModulesCacheOutdated();
@@ -608,7 +608,7 @@ namespace OCESACNA.Controller
         /// <param name="id">ID</param>
         public static void DeleteSubjectModule(int id)
         {
-            Query($"DELETE FROM subject_module WHERE `SbjetModuleID` = '{id}'")
+            Query($"DELETE FROM subject_modules WHERE `SbjetModuleID` = '{id}'")
                 ?.Close();
             Cache.SetSubjectModulesCacheOutdated();
             OnSubjectModuleDataModified();

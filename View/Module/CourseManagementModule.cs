@@ -207,7 +207,7 @@ namespace OCESACNA.View.Module
 
             Course.Years year = ((ComboBoxElement<Course.Years>)YearBox.SelectedItem).Value;
             string mention = MentionBox.Text;
-            char section = ((ComboBoxElement<char>)SectionBox.SelectedItem).Value;
+            char section = ((ComboBoxElement<char>)SectionBox.SelectedItem)?.Value ?? '*';
             Teacher teacher = SelectTeacherForm.SelectedItem;
 
             Course course = new Course(-1, teacher, year, mention, section);

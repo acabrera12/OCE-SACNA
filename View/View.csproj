@@ -237,6 +237,9 @@
     <EmbeddedResource Include="Module\SettingsModule.resx">
       <DependentUpon>SettingsModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Module\SubjectModuleManagementModule.resx">
+      <DependentUpon>SubjectModuleManagementModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Module\TeacherManagementModule.resx">
       <DependentUpon>TeacherManagementModule.cs</DependentUpon>
     </EmbeddedResource>
