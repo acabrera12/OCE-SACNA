@@ -103,6 +103,18 @@
     <Compile Include="Forms\ChangeUserPasswordForm.Designer.cs">
       <DependentUpon>ChangeUserPasswordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectCourseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectCourseForm.Designer.cs">
+      <DependentUpon>SelectCourseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectSubjectModuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectSubjectModuleForm.Designer.cs">
+      <DependentUpon>SelectSubjectModuleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectTeacherForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +222,12 @@
     <EmbeddedResource Include="Forms\ChangeUserPasswordForm.resx">
       <DependentUpon>ChangeUserPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectCourseForm.resx">
+      <DependentUpon>SelectCourseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectSubjectModuleForm.resx">
+      <DependentUpon>SelectSubjectModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectTeacherForm.resx">
       <DependentUpon>SelectTeacherForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Module\SettingsModule.resx">
       <DependentUpon>SettingsModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\SubjectManagementModule.resx">
+      <DependentUpon>SubjectManagementModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\SubjectModuleManagementModule.resx">
       <DependentUpon>SubjectModuleManagementModule.cs</DependentUpon>

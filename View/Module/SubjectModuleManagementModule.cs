@@ -12,7 +12,7 @@ namespace OCESACNA.View.Module
         public int SelectedIndex { get; set; } = -1;
 
         /// <summary>
-        /// Obtiene o establece el docente seleccionado
+        /// Obtiene o establece la asignatura seleccionado
         /// </summary>
         private SubjectModule SelectedSubjectMdl { get; set; }
 
@@ -21,9 +21,10 @@ namespace OCESACNA.View.Module
             InitializeComponent();
             LoadData();
 
-            DataController.SubjectModuleDataModified += () => {
+            DataController.SubjectModuleDataModified += () =>
+            {
                 if (InvokeRequired)
-                    Invoke(new Action(() => LoadData()));
+                    Invoke(new Action(LoadData));
             };
         }
 

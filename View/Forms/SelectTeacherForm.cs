@@ -19,6 +19,11 @@ namespace OCESACNA.View.Forms
         {
             InitializeComponent();
             ApplyTheme(Program.CurrentTheme);
+            DataController.TeacherDataModified += () =>
+            {
+                if (InvokeRequired)
+                    Invoke(new Action(LoadData));
+            };
             LoadData();
         }
 

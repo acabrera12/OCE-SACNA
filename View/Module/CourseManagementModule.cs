@@ -41,9 +41,10 @@ namespace OCESACNA.View.Module
 
             Program.CurrentTheme.DarkModeChanged += ColorTheme_DarkModeChanged;
             ColorTheme.ThemeChanged += ColorTheme_ThemeChanged;
-            DataController.CourseDataModified += () => {
+            DataController.CourseDataModified += () =>
+            {
                 if (InvokeRequired)
-                    Invoke(new Action(()=> LoadData()));
+                    Invoke(new Action(LoadData));
             };
 
             for (int year = 0; year <= (int)Course.Years.Year5th; year++)
