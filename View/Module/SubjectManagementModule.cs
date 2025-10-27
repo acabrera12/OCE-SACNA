@@ -14,6 +14,12 @@ namespace OCESACNA.View.Module
 
         private Subject SelectedSubject { get; set; }
 
+        private Teacher SelectedTeacher { get; set; }
+
+        private SubjectModule SelectedSubjectModule { get; set; }
+
+        private Course SelectedCourse { get; set; }
+
         /// <summary>
         /// Obtiene o establece el formulario de selección de datos
         /// </summary>
@@ -50,11 +56,13 @@ namespace OCESACNA.View.Module
                  if (InvokeRequired)
                      Invoke(new Action(LoadData));
              };
+            LoadData();
         }
 
-        private void SelectCourseForm_Acepted(object sender, EventArgs e)
+        private void SelectCourseForm_Acepted(Course course)
         {
-            SelectCourseBox.Text = SelectCourseForm.SelectedItem.FullName;
+            SelectedCourse = course;
+            SelectCourseBox.Text = SelectedCourse.FullName;
             SelectCourseForm.Hide();
         }
 
@@ -62,15 +70,17 @@ namespace OCESACNA.View.Module
         {
             if (!IsEditing)
             {
+                SelectedCourse = null;
                 SelectTeacherBox.Text = "(Seleccionar)";
             }
 
             SelectCourseForm.Hide();
         }
 
-        private void SelectSubjectModuleForm_Acepted(object sender, EventArgs e)
+        private void SelectSubjectModuleForm_Acepted(SubjectModule subjectModule)
         {
-            SelectModuleBox.Text = SelectSubjectModuleForm.SelectedItem.Name;
+            SelectedSubjectModule = subjectModule;
+            SelectModuleBox.Text = SelectedSubjectModule.Name;
             SelectSubjectModuleForm.Hide();
         }
 
@@ -79,14 +89,16 @@ namespace OCESACNA.View.Module
             if (!IsEditing)
             {
                 SelectTeacherBox.Text = "(Seleccionar)";
+                SelectedSubjectModule = null;
             }
 
             SelectSubjectModuleForm.Hide();
         }
 
-        private void SelectTeacherForm_Acepted(object sender, EventArgs e)
+        private void SelectTeacherForm_Acepted(Teacher teacher)
         {
-            SelectTeacherBox.Text = SelectTeacherForm.SelectedItem.FullName;
+            SelectedTeacher = teacher;
+            SelectTeacherBox.Text = SelectedTeacher.FullName;
             SelectTeacherForm.Hide();
         }
 
@@ -105,6 +117,7 @@ namespace OCESACNA.View.Module
             if (!IsEditing)
             {
                 SelectTeacherBox.Text = "(Seleccionar)";
+                SelectedTeacher = null;
             }
 
             SelectTeacherForm.Hide();
@@ -113,6 +126,9 @@ namespace OCESACNA.View.Module
         public void Clear()
         {
             SelectedSubject = null;
+            SelectedTeacher = null;
+            SelectedSubjectModule = null;
+            SelectedCourse = null;
             SelectedIndex = -1;
             NameBox.Text = string.Empty;
             SelectCourseBox.Text = "(Seleccionar)";
@@ -131,28 +147,28 @@ namespace OCESACNA.View.Module
                 return;
             }
 
-            if (SelectSubjectModuleForm.SelectedItem == null)
+            if (SelectedSubjectModule == null)
             {
                 MessageBox.Show("Seleccione un área de formación primero.");
                 return;
             }
 
-            if (SelectTeacherForm.SelectedItem == null)
+            if (SelectedTeacher == null)
             {
                 MessageBox.Show("Seleccione un docente primero.");
                 return;
             }
 
-            if (SelectCourseForm.SelectedItem == null)
+            if (SelectedCourse == null)
             {
                 MessageBox.Show("Seleccione un curso primero.");
                 return;
             }
 
             string name = NameBox.Text;
-            Teacher teacher = SelectTeacherForm.SelectedItem;
-            Course course = SelectCourseForm.SelectedItem;
-            SubjectModule module = SelectSubjectModuleForm.SelectedItem;
+            Teacher teacher = SelectedTeacher;
+            Course course = SelectedCourse;
+            SubjectModule module = SelectedSubjectModule;
 
             Subject subject = new Subject(-1, module, name, teacher, course);
 
@@ -177,9 +193,14 @@ namespace OCESACNA.View.Module
             SelectTeacherForm.SelectedItem = SelectedSubject.Teacher;
             SelectSubjectModuleForm.SelectedItem = SelectedSubject.SubjectModule;
 
-            SelectCourseBox.Text = SelectCourseForm.SelectedItem.FullName;
-            SelectTeacherBox.Text = SelectTeacherForm.SelectedItem.FullName;
-            SelectModuleBox.Text = SelectSubjectModuleForm.SelectedItem.Name;
+            SelectedCourse = SelectedSubject.Course;
+            SelectedTeacher = SelectedSubject.Teacher;
+            SelectedSubjectModule = SelectedSubject.SubjectModule;
+
+            SelectCourseBox.Text = SelectedCourse.FullName;
+            SelectTeacherBox.Text = SelectedTeacher.FullName;
+            SelectModuleBox.Text = SelectedSubjectModule.Name;
+            NameBox.Text = SelectedSubject.Name;
         }
 
         public void EditButton_Click(object sender, EventArgs e)
@@ -190,28 +211,28 @@ namespace OCESACNA.View.Module
                 return;
             }
 
-            if (SelectSubjectModuleForm.SelectedItem == null)
+            if (SelectedSubjectModule == null)
             {
                 MessageBox.Show("Seleccione un área de formación primero.");
                 return;
             }
 
-            if (SelectTeacherForm.SelectedItem == null)
+            if (SelectedTeacher == null)
             {
                 MessageBox.Show("Seleccione un docente primero.");
                 return;
             }
 
-            if (SelectCourseForm.SelectedItem == null)
+            if (SelectedCourse == null)
             {
                 MessageBox.Show("Seleccione un curso primero.");
                 return;
             }
 
             string name = NameBox.Text;
-            Teacher teacher = SelectTeacherForm.SelectedItem;
-            Course course = SelectCourseForm.SelectedItem;
-            SubjectModule module = SelectSubjectModuleForm.SelectedItem;
+            Teacher teacher = SelectedTeacher;
+            Course course = SelectedCourse;
+            SubjectModule module = SelectedSubjectModule;
 
             Subject subject = new Subject(SelectedSubject.SubjetID, module, name, teacher, course);
 
@@ -246,25 +267,21 @@ namespace OCESACNA.View.Module
         public void LoadData()
         {
             if (DataGrid.Rows.Count != 0)
-            {
                 DataGrid.Rows.Clear();
-            }
 
             foreach (Subject subject in DataController.GetAllSubjects())
-            {
                 DataGrid.Rows.Add(new object[]
                 {
                     "",
                     subject,
-                    subject.Name,
                     subject.SubjectModule,
                     subject.SubjectModule.Name,
+                    subject.Name,
                     subject.Teacher,
                     subject.Teacher.FullName,
                     subject.Course,
                     subject.Course.FullName
                 });
-            }
         }
 
         public void TextBox_TextChanged(object sender, EventArgs e)

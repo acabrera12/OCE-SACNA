@@ -10,17 +10,12 @@ namespace OCESACNA.View.Forms
         public SelectCourseForm()
         {
             InitializeComponent();
-            DataController.CourseDataModified += () =>
-            {
-                if (InvokeRequired)
-                    Invoke(new Action(LoadData));
-            };
             LoadData();
         }
 
         public Course SelectedItem { get; set; }
 
-        public event EventHandler Acepted;
+        public event SelectionFormEventHanlder<Course> Acepted;
         public event EventHandler Aborted;
 
         public void AbortButton_Click(object sender, EventArgs e)
@@ -28,7 +23,7 @@ namespace OCESACNA.View.Forms
             OnAbort();
         }
 
-        public void AceptButton_Click(object sender, EventArgs e)
+        private void AceptButton_Click(object sender, EventArgs e)
         {
             if (SelectedItem == null)
             {
@@ -36,7 +31,7 @@ namespace OCESACNA.View.Forms
                 return;
             }
 
-            OnAcept();
+            OnAcept(SelectedItem);
         }
 
         public void Clear()
@@ -45,12 +40,10 @@ namespace OCESACNA.View.Forms
             SelectBox.Text = "Seleccionar";
         }
 
-        public void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (DataGrid.Columns[e.ColumnIndex].Name != "Selection")
-            {
                 return;
-            }
 
             int index = e.RowIndex;
             SelectedItem = (Course)DataGrid.Rows[index].Cells["CourseValue"].Value;
@@ -60,12 +53,9 @@ namespace OCESACNA.View.Forms
         public void LoadData()
         {
             if (DataGrid.Rows.Count != 0)
-            {
                 DataGrid.Rows.Clear();
-            }
 
             foreach (Course course in DataController.GetAllCourses())
-            {
                 DataGrid.Rows.Add(new object[]
                 {
                     "",
@@ -73,18 +63,17 @@ namespace OCESACNA.View.Forms
                     course.FullName,
                     course.Guide.FullName
                 });
-            }
         }
 
-        public void OnAbort()
+        protected void OnAbort()
         {
             Clear();
             Aborted?.Invoke(this, EventArgs.Empty);
         }
 
-        public void OnAcept()
+        protected void OnAcept(Course selectedCourse)
         {
-            Acepted?.Invoke(this, EventArgs.Empty);
+            Acepted?.Invoke(selectedCourse);
         }
 
         private void SelectCourseForm_FormClosing(object sender, FormClosingEventArgs e)

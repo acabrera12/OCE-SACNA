@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using ScoreModule = OCESACNA.Controller.ScoreModule;
 
 namespace OCESACNA.View.Collections
 {
@@ -13,21 +12,21 @@ namespace OCESACNA.View.Collections
         /// <summary>
         /// Obtiene o establece el valor de la celda
         /// </summary>
-        public new ScoreModule Value { get; set; }
+        public new float[] Value { get; set; }
 
         /// <summary>
         /// Inicializa una instancia de la clase <see cref="DataGridViewScoreModuleCell"/> vacía
         /// </summary>
         public DataGridViewScoreModuleCell()
         {
-            Value = new ScoreModule();
+            Value = new float[3];
         }
 
         /// <summary>
         /// Inicializa una instancia de la clase <see cref="DataGridViewScoreModuleCell"/>
         /// </summary>
         /// <param name="scoreModule">Conjunto de valores de una calificación</param>
-        public DataGridViewScoreModuleCell(ScoreModule scoreModule)
+        public DataGridViewScoreModuleCell(float[] scoreModule)
         {
             Value = scoreModule;
         }
@@ -58,9 +57,9 @@ namespace OCESACNA.View.Collections
                 react2 = new Rectangle(cellBounds.Left + widthPerValue, cellBounds.Top, widthPerValue, cellBounds.Height),
                 react3 = new Rectangle(cellBounds.Left + 2 * widthPerValue, cellBounds.Top, widthPerValue, cellBounds.Height);
 
-            TextRenderer.DrawText(graphics, Value.Score.ToString(), cellStyle.Font, react1, cellStyle.ForeColor);
-            TextRenderer.DrawText(graphics, Value.ScoreDef.ToString(), cellStyle.Font, react2, cellStyle.ForeColor);
-            TextRenderer.DrawText(graphics, Value.Inas.ToString(), cellStyle.Font, react3, cellStyle.ForeColor);
+            TextRenderer.DrawText(graphics, Value[0].ToString(), cellStyle.Font, react1, cellStyle.ForeColor);
+            TextRenderer.DrawText(graphics, Value[1].ToString(), cellStyle.Font, react2, cellStyle.ForeColor);
+            TextRenderer.DrawText(graphics, Value[2].ToString(), cellStyle.Font, react3, cellStyle.ForeColor);
 
             Pen pen = new Pen(SystemColors.ControlDark);
 

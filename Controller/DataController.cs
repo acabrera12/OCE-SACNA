@@ -890,7 +890,7 @@ namespace OCESACNA.Controller
                 {
                     PendingSbjetID = (int)data["PendingSbjetID"],
                     StudentID = (int)data["StudentID"],
-                    Name = (string)data["Name"]
+                    SubjetID = (int)data["SubjetID"]
                 };
 
                 list.Add(current);
@@ -925,7 +925,7 @@ namespace OCESACNA.Controller
                 {
                     PendingSbjetID = (int)data["PendingSbjetID"],
                     StudentID = (int)data["StudentID"],
-                    Name = (string)data["Name"]
+                    SubjetID = (int)data["SubjetID"]
                 };
             }
 
@@ -940,8 +940,8 @@ namespace OCESACNA.Controller
         /// <param name="pendingSubject">Asignatura</param>
         public static void AddPendingSubject(DBPendingSubject pendingSubject)
         {
-            Query("INSERT INTO pending_subjects (`StudentID`, `Name`) VALUES " +
-                $"('{pendingSubject.StudentID}', '{pendingSubject.Name}')")
+            Query("INSERT INTO pending_subjects (`StudentID`, `SubjetID`) VALUES " +
+                $"('{pendingSubject.StudentID}', '{pendingSubject.SubjetID}')")
                 ?.Close();
             Cache.SetPendingSubjectsCacheOutdated();
             OnPendingSubjectDataModified();
@@ -954,7 +954,7 @@ namespace OCESACNA.Controller
         public static void UpdateSubject(DBPendingSubject pendingSubject)
         {
             Query($"UPDATE pending_subjects SET `StudentID`='{pendingSubject.StudentID}', " +
-                $"`Name`='{pendingSubject.Name}' " +
+                $"`SubjetID`='{pendingSubject.SubjetID}' " +
                 $"WHERE `PendingSbjetID`='{pendingSubject.PendingSbjetID}'")
                 ?.Close();
             Cache.SetPendingSubjectsCacheOutdated();

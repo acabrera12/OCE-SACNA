@@ -31,13 +31,20 @@ CREATE TABLE users (
 
 INSERT INTO users (`UserName`, `Password`, `PasswordHash`, `Rank`, `State`) VALUES ('OCESACNA', 'GGAOj26ZkvpqXvZRQwDvDA==', 'aLHo6SRMUU0sfOVULLQEmI3p320G2ZsFusmybQol05o=', '1', '1');
 
+DROP TABLE IF EXISTS teachers;
+CREATE TABLE teachers (
+	`TeachID` INTEGER(9) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	`FullName` VARCHAR(100) NOT NULL
+);
+
 DROP TABLE IF EXISTS courses;
 CREATE TABLE courses (
     `CourseID` INTEGER(9) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `Year` INT(1) NOT NULL,
     `GuideID` INTEGER(9) NOT NULL,
     `Mention` VARCHAR(100) NOT NULL,
-    `Section` CHAR(1) NOT NULL
+    `Section` CHAR(1) NOT NULL,
+    FOREIGN KEY (`GuideID`) REFERENCES teachers (`TeachID`)
 );
 
 DROP TABLE IF EXISTS representatives;
@@ -46,12 +53,6 @@ CREATE TABLE representatives (
 	`FullName` VARCHAR(100) NOT NULL,
 	`PhoneNumber` CHAR(20) NOT NULL,
 	`Email` CHAR(255) NOT NULL
-);
-
-DROP TABLE IF EXISTS teachers;
-CREATE TABLE teachers (
-	`TeachID` INTEGER(9) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	`FullName` VARCHAR(100) NOT NULL
 );
 
 DROP TABLE IF EXISTS subject_modules;
@@ -66,7 +67,10 @@ CREATE TABLE subjects (
     `SbjetModuleID` INTEGER(9) NOT NULL,
     `Name` VARCHAR(100) NOT NULL,
     `TeachID` INTEGER(9) NOT NULL,
-    `CourseID` INTEGER(9) NOT NULL
+    `CourseID` INTEGER(9) NOT NULL,
+    FOREIGN KEY (`SbjetModuleID`) REFERENCES subject_modules (`SbjetModuleID`),
+    FOREIGN KEY (`TeachID`) REFERENCES teachers (`TeachID`),
+    FOREIGN KEY (`CourseID`) REFERENCES courses (`CourseID`)
 );
 
 DROP TABLE IF EXISTS students;
@@ -84,14 +88,18 @@ CREATE TABLE students (
     `PhoneNumber` CHAR(20) NOT NULL,
     `Email` CHAR(255) NOT NULL,
     `RprsentID` INTEGER(16) NOT NULL,
-    `CourseID` INTEGER(9) NOT NULL
+    `CourseID` INTEGER(9) NOT NULL,
+    FOREIGN KEY (`RprsentID`) REFERENCES representatives (`RprsentID`),
+    FOREIGN KEY (`CourseID`) REFERENCES courses (`CourseID`)
 );
 
 DROP TABLE IF EXISTS pending_subjects;
 CREATE TABLE pending_subjects (
     `PendingSbjetID` INTEGER(9) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `StudentID` INTEGER(9) NOT NULL,
-    `Name` VARCHAR(100) NOT NULL
+    `SubjetID` INTEGER(9) NOT NULL,
+    FOREIGN KEY (`StudentID`) REFERENCES students (`StudentID`),
+    FOREIGN KEY (`SubjetID`) REFERENCES subjects (`SubjetID`)
 );
 
 DROP TABLE IF EXISTS scores;
@@ -100,25 +108,10 @@ CREATE TABLE scores (
     `StudentID` INTEGER(9) NOT NULL,
     `SubjetID` INTEGER(9) NOT NULL,
     `First` FLOAT NOT NULL,
-    `FirstDef` FLOAT NOT NULL,
-    `FirstInas` INT NOT NULL,
     `Second` FLOAT NOT NULL,
-    `SecondDef` FLOAT NOT NULL,
-    `SecondInas` INT NOT NULL,
     `Third` FLOAT NOT NULL,
-    `ThirdDef` FLOAT NOT NULL,
-    `ThirdInas` INT NOT NULL,
     `Final` FLOAT NOT NULL,
-    `FinalDef` FLOAT NOT NULL,
-    `FinalInas` INT NOT NULL
+    `Absences` INT NOT NULL,
+     FOREIGN KEY (`StudentID`) REFERENCES students (`StudentID`),
+    FOREIGN KEY (`SubjetID`) REFERENCES subjects (`SubjetID`)
 );
-
-ALTER TABLE courses ADD CONSTRAINT courses_GuideId_teachers_TeachID FOREIGN KEY (GuideID) REFERENCES teachers(TeachID);
-ALTER TABLE subjects ADD CONSTRAINT subjects_SbjetModuleID_subject_modules_SbjetModuleID FOREIGN KEY (SbjetModuleID) REFERENCES subject_modules(SbjetModuleID);
-ALTER TABLE subjects ADD CONSTRAINT subjects_TeachID_teachers_TeachID FOREIGN KEY (TeachID) REFERENCES teachers(TeachID);
-ALTER TABLE subjects ADD CONSTRAINT subjects_CourseID_courses_CourseID FOREIGN KEY (CourseID) REFERENCES courses(CourseID);
-ALTER TABLE students ADD CONSTRAINT students_RprsentID_representatives_RprsentID FOREIGN KEY (RprsentID) REFERENCES representatives(RprsentID);
-ALTER TABLE students ADD CONSTRAINT students_CourseID_courses_CourseID FOREIGN KEY (CourseID) REFERENCES courses(CourseID);
-ALTER TABLE pending_subjects ADD CONSTRAINT pending_subjects_StudentID_students_StudentID FOREIGN KEY (StudentID) REFERENCES students(StudentID);
-ALTER TABLE scores ADD CONSTRAINT scores_StudentID_students_StudentID FOREIGN KEY (StudentID) REFERENCES students(StudentID);
-ALTER TABLE scores ADD CONSTRAINT scores_SubjetID_subjects_SubjetID FOREIGN KEY (SubjetID) REFERENCES subjects(SubjetID);

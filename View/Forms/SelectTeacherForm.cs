@@ -8,113 +8,82 @@ namespace OCESACNA.View.Forms
     /// <summary>
     /// Representa el formulario de selección de docentes
     /// </summary>
-    public partial class SelectTeacherForm : Form, IColoreable, ISelectionForm<Teacher>
-    {
-        public Teacher SelectedItem { get; set; }
-
+    public partial class SelectTeacherForm : Form, ISelectionForm<Teacher>
+    { 
         /// <summary>
         /// Inicializa una instancia del formulario
         /// </summary>
         public SelectTeacherForm()
         {
             InitializeComponent();
-            ApplyTheme(Program.CurrentTheme);
-            DataController.TeacherDataModified += () =>
-            {
-                if (InvokeRequired)
-                    Invoke(new Action(LoadData));
-            };
             LoadData();
         }
 
-        public event EventHandler Acepted;
+        public Teacher SelectedItem { get; set; }
+
+        public event SelectionFormEventHanlder<Teacher> Acepted;
 
         public event EventHandler Aborted;
 
-        public void AbortButton_Click(object sender, EventArgs e)
-        {
-            OnAbort();
-        }
-
-        public void AceptButton_Click(object sender, EventArgs e)
+        protected void OnAcept(Teacher selectedTeacher)
         {
             if (SelectedItem == null)
             {
-                MessageBox.Show("Seleccione un elemento primero.");
+                MessageBox.Show(
+                    "Seleccione un elemento primero."
+                );
                 return;
             }
-
-            OnAcept();
+            Acepted?.Invoke(selectedTeacher);
         }
 
-        public void ApplyTheme(ColorTheme theme)
+        protected void OnAbort()
         {
-            // this
-            theme.ApplyBackgroundStyle(this);
-        }
-
-        public void ColorTheme_DarkModeChanged(bool value)
-        {
-            ApplyTheme(Program.CurrentTheme);
-        }
-
-        public void ColorTheme_ThemeChanged(ColorTheme theme)
-        {
-            ApplyTheme(theme);
-        }
-
-        public void LoadData()
-        {
-            if (DataGrid.Rows.Count != 0)
-            {
-                DataGrid.Rows.Clear();
-            }
-
-            foreach (Teacher teacher in DataController.GetAllTeachers())
-            {
-                DataGrid.Rows.Add(new object[]
-                {
-                    "", teacher,
-                    teacher.FullName
-                });
-            }
-        }
-
-        public void OnAbort()
-        {
-            Clear();
             Aborted?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void OnAcept()
-        {
-            Acepted?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (DataGrid.Columns[e.ColumnIndex].Name != "Selection")
-            {
-                return;
-            }
-
-            int index = e.RowIndex;
-            SelectedItem = (Teacher)DataGrid.Rows[index].Cells["TeacherValue"].Value;
-            SelectBox.Text = SelectedItem.FullName;
-        }
-
-        /// <summary>
-        /// Es llamado cuando se va a cerrar el formulario
-        /// </summary>
-        private void SelectTeacherForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            OnAbort();
         }
 
         public void Clear()
         {
             SelectedItem = null;
             SelectBox.Text = "Seleccionar";
+        }
+
+        public void LoadData()
+        {
+            if (DataGrid.Rows.Count != 0)
+                DataGrid.Rows.Clear();
+
+            foreach (Teacher teacher in DataController.GetAllTeachers())
+                DataGrid.Rows.Add(
+                    "",
+                    teacher,
+                    teacher.FullName
+                );
+        }
+
+        private void AceptButton_Click(object sender, EventArgs e)
+        {
+            OnAcept(SelectedItem);
+        }
+
+        private void AbortButton_Click(object sender, EventArgs e)
+        {
+            OnAbort();
+        }
+
+        private void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DataGrid.Columns[e.ColumnIndex].Name != "Selection")
+                return;
+
+            int index = e.RowIndex;
+            SelectedItem = (Teacher)DataGrid.Rows[index].Cells["TeacherValue"].Value;
+            SelectBox.Text = SelectedItem.FullName;
+        }
+
+        private void SelectTeacherForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            OnAbort();
         }
     }
 }

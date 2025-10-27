@@ -16,21 +16,21 @@
         public int StudentID { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el nombre
+        /// Obtiene o establece el ID de la asignatura
         /// </summary>
-        public string Name { get; set; }
+        public int SubjetID { get; set; }
 
         /// <summary>
         /// Inicializa una instancia de la estructura <see cref="DBPendingSubject"/>
         /// </summary>
         /// <param name="pendingSbjetID">ID</param>
         /// <param name="studentID">ID del estudiante</param>
-        /// <param name="name">Nombre</param>
-        public DBPendingSubject(int pendingSbjetID = -1, int studentID = -1, string name = "")
+        /// <param name="subjetID">ID de la asignatura</param>
+        public DBPendingSubject(int pendingSbjetID = -1, int studentID = -1, int subjetID = -1)
         {
             PendingSbjetID = pendingSbjetID;
             StudentID = studentID;
-            Name = name;
+            SubjetID = subjetID;
         }
     }
 }

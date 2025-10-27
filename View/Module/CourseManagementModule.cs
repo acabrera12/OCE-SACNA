@@ -26,6 +26,8 @@ namespace OCESACNA.View.Module
         /// </summary>
         private Course SelectedCourse { get; set; }
 
+        private Teacher SelectedTeacher { get; set; }
+
         /// <summary>
         /// Inicializa una instancia del formulario
         /// </summary>
@@ -70,9 +72,10 @@ namespace OCESACNA.View.Module
         /// <summary>
         /// Es llamado cuando se acepta el formulario <see cref="SelectTeacherForm"/>
         /// </summary>
-        private void SelectTeacherForm_Acepted(object sender, EventArgs e)
+        private void SelectTeacherForm_Acepted(Teacher teacher)
         {
-            SelectGuideBox.Text = SelectTeacherForm.SelectedItem.FullName;
+            SelectedTeacher = teacher;
+            SelectGuideBox.Text = SelectedTeacher.FullName;
             SelectTeacherForm.Hide();
         }
 
@@ -84,6 +87,7 @@ namespace OCESACNA.View.Module
             if (!IsEditing)
             {
                 SelectGuideBox.Text = "(Seleccionar)";
+                SelectedTeacher = null;
             }
             
             SelectTeacherForm.Hide();
@@ -114,9 +118,7 @@ namespace OCESACNA.View.Module
         public void LoadData()
         {
             if (DataGrid.Rows.Count != 0)
-            {
                 DataGrid.Rows.Clear();
-            }
             
             int selectedYear =
                 SearchPerYearBox.Items.Count != 0 ?
@@ -124,7 +126,6 @@ namespace OCESACNA.View.Module
                 (int)Course.Years.Year1th;
 
             foreach (Course course in DataController.GetAllCourses().Where(t => t.Year == selectedYear))
-            {
                 DataGrid.Rows.Add(new object[]
                 {
                     "", course,
@@ -132,8 +133,7 @@ namespace OCESACNA.View.Module
                     course.Mention,
                     course.Section,
                     course.Guide.FullName
-                }) ;
-            }
+                });
         }
 
         public void TextBox_TextChanged(object sender, EventArgs e)
@@ -189,7 +189,8 @@ namespace OCESACNA.View.Module
 
             MentionBox.Text = SelectedCourse.Mention;
             SelectTeacherForm.SelectedItem = SelectedCourse.Guide;
-            SelectGuideBox.Text = SelectedCourse.Guide.FullName;
+            SelectedTeacher = SelectedCourse.Guide;
+            SelectGuideBox.Text = SelectedTeacher.FullName;
         }
 
         public void CreateButton_Click(object sender, EventArgs e)
@@ -200,7 +201,7 @@ namespace OCESACNA.View.Module
                 return;
             }
 
-            if (SelectTeacherForm.SelectedItem == null)
+            if (SelectedTeacher == null)
             {
                 MessageBox.Show("Seleccione un guía primero.");
                 return;
@@ -209,7 +210,7 @@ namespace OCESACNA.View.Module
             Course.Years year = ((ComboBoxElement<Course.Years>)YearBox.SelectedItem).Value;
             string mention = MentionBox.Text;
             char section = ((ComboBoxElement<char>)SectionBox.SelectedItem)?.Value ?? '*';
-            Teacher teacher = SelectTeacherForm.SelectedItem;
+            Teacher teacher = SelectedTeacher;
 
             Course course = new Course(-1, teacher, year, mention, section);
 
@@ -237,7 +238,7 @@ namespace OCESACNA.View.Module
                 return;
             }
 
-            if (SelectTeacherForm.SelectedItem == null)
+            if (SelectedTeacher == null)
             {
                 MessageBox.Show("Seleccione un guía primero.");
                 return;
@@ -246,7 +247,7 @@ namespace OCESACNA.View.Module
             Course.Years year = ((ComboBoxElement<Course.Years>)YearBox.SelectedItem).Value;
             string mention = MentionBox.Text;
             char section = ((ComboBoxElement<char>)SectionBox.SelectedItem).Value;
-            Teacher teacher = SelectTeacherForm.SelectedItem;
+            Teacher teacher = SelectedTeacher;
 
             Course course = new Course(SelectedCourse.CourseID, teacher, year, mention, section);
 
@@ -287,6 +288,7 @@ namespace OCESACNA.View.Module
         public void Clear()
         {
             SelectedCourse = null;
+            SelectedTeacher = null;
             SelectedIndex = -1;
             MentionBox.Text = string.Empty;
             SelectGuideBox.Text = "(Seleccionar)";

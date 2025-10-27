@@ -1,10 +1,10 @@
 ﻿using System.Windows.Forms;
-using ScoreModule = OCESACNA.Controller.ScoreModule;
+using Score = OCESACNA.Controller.Score;
 
 namespace OCESACNA.View.Collections
 {
     /// <summary>
-    /// Representa una columna de <see cref="DataGridView"/> que almacena valores de <see cref="ScoreModule"/>
+    /// Representa una columna de <see cref="DataGridView"/> que almacena valores de <see cref="Score"/>
     /// </summary>
     public class DataGridViewScoreModuleColumn : DataGridViewColumn
     {

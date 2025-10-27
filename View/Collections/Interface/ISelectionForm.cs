@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 
 namespace OCESACNA.View.Collections
 {
@@ -22,7 +21,7 @@ namespace OCESACNA.View.Collections
         /// <summary>
         /// Evento llamado cuando se acepta el formulario
         /// </summary>
-        event EventHandler Acepted;
+        event SelectionFormEventHanlder<T> Acepted;
 
         /// <summary>
         /// Evento llamado cuando se cancela el formulario
@@ -30,33 +29,16 @@ namespace OCESACNA.View.Collections
         event EventHandler Aborted;
 
         /// <summary>
-        /// Dispara el evento <see cref="Acepted"/>
-        /// </summary>
-        void OnAcept();
-
-        /// <summary>
-        /// Dispara el evento <see cref="Aborted"/>
-        /// </summary>
-        void OnAbort();
-
-        /// <summary>
-        /// Es llamado cuando se presiona el botón aceptar en el formulario
-        /// </summary>
-        void AceptButton_Click(object sender, EventArgs e);
-
-        /// <summary>
-        /// Es llamado cuando se presiona el botón cancelar en el formulario
-        /// </summary>
-        void AbortButton_Click(object sender, EventArgs e);
-
-        /// <summary>
-        /// Es llamado cuando se hace click en un elemento de la tabla de datos
-        /// </summary>
-        void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e);
-
-        /// <summary>
         /// Limpia el formulario
         /// </summary>
         void Clear();
     }
+
+    /// <summary>
+    /// Representa un método que controlará un evento de un formulario de
+    /// selección de datos
+    /// </summary>
+    /// <typeparam name="T">Tipo de datos a seleccionar</typeparam>
+    /// <param name="selectedItem">Elemento seleccionado</param>
+    public delegate void SelectionFormEventHanlder<T>(T selectedItem);
 }

@@ -24,24 +24,29 @@ namespace OCESACNA.Controller
         public Subject Subject { get; set; }
 
         /// <summary>
-        /// Obtiene o esblece el módulo de calificaciones del primer lapso
+        /// Obtiene o esblece la calificación del primer lapso
         /// </summary>
-        public ScoreModule FirstLapse { get; set; }
+        public float First { get; set; }
 
         /// <summary>
-        /// Obtiene o esblece el módulo de calificaciones del segundo lapso
+        /// Obtiene o esblece la calificación del segundo lapso
         /// </summary>
-        public ScoreModule SecondLapse { get; set; }
+        public float Second { get; set; }
 
         /// <summary>
-        /// Obtiene o esblece el módulo de calificaciones del tercer lapso
+        /// Obtiene o esblece la calificación del tercer lapso
         /// </summary>
-        public ScoreModule ThirdLapse { get; set; }
+        public float Third { get; set; }
 
         /// <summary>
-        /// Obtiene o esblece el módulo de calificaciones finales
+        /// Obtiene o esblece la calificación final
         /// </summary>
-        public ScoreModule Final { get; set; }
+        public float Final { get; set; }
+
+        /// <summary>
+        /// Obtiene o esblece las inasistencias
+        /// </summary>
+        public int Absences { get; set; }
 
         /// <summary>
         /// Letras de calificación
@@ -61,47 +66,43 @@ namespace OCESACNA.Controller
         /// <summary>
         /// Inicializa una instancia de la clase <see cref="Score"/>
         /// </summary>
-        /// <param name="scoreID"></param>
-        /// <param name="student"></param>
-        /// <param name="subject"></param>
-        /// <param name="firstLapse"></param>
-        /// <param name="secondLapse"></param>
-        /// <param name="thirdLapse"></param>
-        /// <param name="final"></param>
-        public Score(int scoreID = -1, Student student = null, Subject subject = null, ScoreModule? firstLapse = null, ScoreModule? secondLapse = null, ScoreModule? thirdLapse = null, ScoreModule? final = null)
+        /// <param name="scoreID">ID</param>
+        /// <param name="student">Estuadiante</param>
+        /// <param name="subject">Asignatura</param>
+        /// <param name="first">calificación del primer lapso</param>
+        /// <param name="second">calificación del segundo lapso</param>
+        /// <param name="third">calificación del tercer lapso</param>
+        /// <param name="absences">Inasistencias</param>
+        public Score(int scoreID = -1, Student student = null, Subject subject = null, float first = 0, float second = 0, float third = 0, int absences = 0)
         {
             ScoreID = scoreID;
             Student = student;
             Subject = subject;
-            FirstLapse = (ScoreModule)firstLapse;
-            SecondLapse = (ScoreModule)secondLapse;
-            ThirdLapse = (ScoreModule)thirdLapse;
-            Final = (ScoreModule)final;
+            First = first;
+            Second = second;
+            Third = third;
+            Final = absences;
         }
 
         /// <summary>
-        /// Calcula el promedio de un arreglo de conjuntos de calificaciones
+        /// Calcula el promedio de un arreglo de de calificaciones
         /// </summary>
         /// <param name="values">Arreglo de conjuntos</param>
-        /// <returns>Un conjunto <see cref="ScoreModule"/> con valores resultantes del cálculo</returns>
-        public static ScoreModule Average(ScoreModule[] values)
+        /// <returns>Un valor <see langword="float"/> resultante de la operación</returns>
+        public static float Average(params float[] values)
         {
-            var scores = from item in values select item.Score;
-            var scoresdef = from item in values select item.ScoreDef;
-            var inas = from item in values select item.Inas;
+            var count = values.Length;
+            if (count == 0)
+                return 0;
 
-            float
-                totalScores = scores.Sum() / scores.Count(),
-                totalScoreDefs = scoresdef.Sum() / scoresdef.Count();
+            else if (count == 1)
+                return values[0];
 
-            int totalInas = inas.Sum();
+            var sum = 0f;
+            foreach (float value in values)
+                sum += value;
 
-            return new ScoreModule()
-            {
-                Score = totalScores,
-                ScoreDef = totalScoreDefs,
-                Inas = totalInas
-            };
+            return sum / count;
         }
 
         /// <summary>
@@ -177,31 +178,12 @@ namespace OCESACNA.Controller
                 ScoreID = DBScore.ScoreID,
                 Student = DataController.GetStudent(DBScore.StudentID),
                 Subject = DataController.GetSubject(DBScore.SubjetID),
-
-                FirstLapse = new ScoreModule()
-                {
-                    Score = DBScore.First,
-                    ScoreDef = DBScore.FirstDef,
-                    Inas = DBScore.FirstInas
-                },
-
-                SecondLapse = new ScoreModule()
-                {
-                    Score = DBScore.Second,
-                    ScoreDef = DBScore.SecondDef,
-                    Inas = DBScore.SecondInas
-                },
-
-                ThirdLapse = new ScoreModule()
-                {
-                    Score = DBScore.Third,
-                    ScoreDef = DBScore.ThirdDef,
-                    Inas = DBScore.ThirdInas
-                }
+                First = DBScore.First,
+                Second = DBScore.Second,
+                Third = DBScore.Third
             };
 
-            score.Final = Average(new ScoreModule[] { score.FirstLapse, score.SecondLapse, score.ThirdLapse });
-
+            score.Final = Average(score.First, score.Second, score.Third);
             return score;
         }
 
@@ -215,53 +197,12 @@ namespace OCESACNA.Controller
                 ScoreID = score.ScoreID,
                 StudentID = score.Student.StudentID,
                 SubjetID = score.Subject.SubjetID,
-                First = score.FirstLapse.Score,
-                FirstDef = score.FirstLapse.ScoreDef,
-                FirstInas = score.FirstLapse.Inas,
-                Second = score.SecondLapse.Score,
-                SecondDef = score.SecondLapse.ScoreDef,
-                SecondInas = score.SecondLapse.Inas,
-                Third = score.ThirdLapse.Score,
-                ThirdDef = score.ThirdLapse.ScoreDef,
-                ThirdInas = score.ThirdLapse.Inas,
-                Final = score.Final.Score,
-                FinalDef = score.Final.ScoreDef,
-                FinalInas = score.Final.Inas
+                First = score.First,
+                Second = score.Second,
+                Third = score.Third,
+                Final = score.Final,
+                Absences = score.Absences
             };
-        }
-    }
-
-    /// <summary>
-    /// Representa un conjunto de calificaciones e inasistencias
-    /// </summary>
-    public struct ScoreModule
-    {
-        /// <summary>
-        /// Obtiene o establece la calificación
-        /// </summary>
-        public float Score { get; set; }
-
-        /// <summary>
-        /// Obtiene o establece la calificación definitiva
-        /// </summary>
-        public float ScoreDef { get; set; }
-
-        /// <summary>
-        /// Obtiene o establece las inasistencias
-        /// </summary>
-        public int Inas { get; set; }
-
-        /// <summary>
-        /// Inicializa una instancia de la estructura <see cref="ScoreModule"/>
-        /// </summary>
-        /// <param name="score">Calificación</param>
-        /// <param name="scoreDef">Calificación definitiva</param>
-        /// <param name="inas">Inasistencias</param>
-        public ScoreModule(float score = -1, float scoreDef = -1, int inas = -1)
-        {
-            Score = score;
-            ScoreDef = scoreDef;
-            Inas = inas;
         }
     }
 }

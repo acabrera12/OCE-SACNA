@@ -18,21 +18,21 @@ namespace OCESACNA.Controller
         public int StudentID { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el nombre
+        /// Obtiene o establece el ID de la asignatura
         /// </summary>
-        public string Name { get; set; }
+        public int SubjetID { get; set; }
 
         /// <summary>
         /// Inicializa una instancia de la clase <see cref="PendingSubject"/>
         /// </summary>
         /// <param name="pendingSbjetID">ID</param>
         /// <param name="studentID">ID del estudiante</param>
-        /// <param name="name">Nombre</param>
-        public PendingSubject(int pendingSbjetID = -1, int studentID = -1, string name = "")
+        /// <param name="subjetID">ID de la asignatura</param>
+        public PendingSubject(int pendingSbjetID = -1, int studentID = -1, int subjetID = -1)
         {
             PendingSbjetID = pendingSbjetID;
             StudentID = studentID;
-            Name = name;
+            SubjetID = subjetID;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace OCESACNA.Controller
             {
                 PendingSbjetID = DBPendingSubject.PendingSbjetID,
                 StudentID = DBPendingSubject.StudentID,
-                Name = DBPendingSubject.Name
+                SubjetID = DBPendingSubject.SubjetID
             };
         }
 
@@ -57,7 +57,7 @@ namespace OCESACNA.Controller
             {
                 PendingSbjetID = pendingSubject.PendingSbjetID,
                 StudentID = pendingSubject.StudentID,
-                Name = pendingSubject.Name
+                SubjetID = pendingSubject.SubjetID
             };
         }
     }

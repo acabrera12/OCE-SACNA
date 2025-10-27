@@ -32,9 +32,9 @@ namespace OCESACNA.View.Forms
             this.AceptButton = new System.Windows.Forms.Button();
             this.AbortButton = new System.Windows.Forms.Button();
             this.DataGrid = new System.Windows.Forms.DataGridView();
-            this.TeacherName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TeacherValue = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Selection = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.TeacherValue = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.TeacherName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SelectBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.SuspendLayout();
@@ -78,14 +78,12 @@ namespace OCESACNA.View.Forms
             this.DataGrid.TabIndex = 2;
             this.DataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellContentClick);
             // 
-            // TeacherName
+            // Selection
             // 
-            this.TeacherName.HeaderText = "Nombre";
-            this.TeacherName.Name = "TeacherName";
-            this.TeacherName.ReadOnly = true;
-            this.TeacherName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TeacherName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TeacherName.Width = 219;
+            this.Selection.HeaderText = "";
+            this.Selection.Name = "Selection";
+            this.Selection.ReadOnly = true;
+            this.Selection.Width = 30;
             // 
             // TeacherValue
             // 
@@ -95,12 +93,14 @@ namespace OCESACNA.View.Forms
             this.TeacherValue.Visible = false;
             this.TeacherValue.Width = 50;
             // 
-            // Selection
+            // TeacherName
             // 
-            this.Selection.HeaderText = "";
-            this.Selection.Name = "Selection";
-            this.Selection.ReadOnly = true;
-            this.Selection.Width = 30;
+            this.TeacherName.HeaderText = "Nombre";
+            this.TeacherName.Name = "TeacherName";
+            this.TeacherName.ReadOnly = true;
+            this.TeacherName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TeacherName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TeacherName.Width = 219;
             // 
             // SelectBox
             // 

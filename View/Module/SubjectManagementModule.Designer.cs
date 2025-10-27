@@ -345,7 +345,6 @@
             // 
             // SubjectModuleName
             // 
-            this.SubjectModuleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.SubjectModuleName.HeaderText = "Área de formación";
             this.SubjectModuleName.Name = "SubjectModuleName";
             this.SubjectModuleName.ReadOnly = true;
@@ -415,15 +414,6 @@
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Panel TopPanel;
         private System.Windows.Forms.DataGridView DataGrid;
-        private System.Windows.Forms.DataGridViewButtonColumn Selection;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectModuleValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectModuleName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeacherValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeacherName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CourseValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CourseName;
         private System.Windows.Forms.Label SelectModuleLabel;
         private System.Windows.Forms.TextBox SelectModuleBox;
         private System.Windows.Forms.Label SelectTeacherLabel;
@@ -433,5 +423,14 @@
         private System.Windows.Forms.Label SelectCourseLabel;
         private System.Windows.Forms.TextBox SelectCourseBox;
         private FontAwesome.Sharp.IconButton SelectCourseButton;
+        private System.Windows.Forms.DataGridViewButtonColumn Selection;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectModuleValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectModuleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TeacherValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TeacherName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CourseValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CourseName;
     }
 }

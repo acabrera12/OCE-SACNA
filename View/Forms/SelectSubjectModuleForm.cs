@@ -10,25 +10,20 @@ namespace OCESACNA.View.Forms
         public SelectSubjectModuleForm()
         {
             InitializeComponent();
-            DataController.SubjectModuleDataModified += () =>
-            {
-                if (InvokeRequired)
-                    Invoke(new Action(LoadData));
-            };
             LoadData();
         }
 
         public SubjectModule SelectedItem { get; set; }
 
-        public event EventHandler Acepted;
+        public event SelectionFormEventHanlder<SubjectModule> Acepted;
         public event EventHandler Aborted;
 
-        public void AbortButton_Click(object sender, EventArgs e)
+        private void AbortButton_Click(object sender, EventArgs e)
         {
             OnAbort();
         }
 
-        public void AceptButton_Click(object sender, EventArgs e)
+        private void AceptButton_Click(object sender, EventArgs e)
         {
             if (SelectedItem == null)
             {
@@ -36,7 +31,7 @@ namespace OCESACNA.View.Forms
                 return;
             }
 
-            OnAcept();
+            OnAcept(SelectedItem);
         }
 
         public void Clear()
@@ -48,9 +43,7 @@ namespace OCESACNA.View.Forms
         public void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (DataGrid.Columns[e.ColumnIndex].Name != "Selection")
-            {
                 return;
-            }
 
             int index = e.RowIndex;
             SelectedItem = (SubjectModule)DataGrid.Rows[index].Cells["SubjectModuleValue"].Value;
@@ -60,30 +53,26 @@ namespace OCESACNA.View.Forms
         public void LoadData()
         {
             if (DataGrid.Rows.Count != 0)
-            {
                 DataGrid.Rows.Clear();
-            }
 
             foreach (SubjectModule subjectModule in DataController.GetAllSubjectModules())
-            {
                 DataGrid.Rows.Add(new object[]
                 {
                     "",
                     subjectModule,
                     subjectModule.Name
                 });
-            }
         }
 
-        public void OnAbort()
+        protected void OnAbort()
         {
             Clear();
             Aborted?.Invoke(this, EventArgs.Empty);
         }
 
-        public void OnAcept()
+        protected void OnAcept(SubjectModule selectedSubjectModule)
         {
-            Acepted?.Invoke(this, EventArgs.Empty);
+            Acepted?.Invoke(selectedSubjectModule);
         }
 
         private void SelectSubjectModuleForm_FormClosing(object sender, FormClosingEventArgs e)
